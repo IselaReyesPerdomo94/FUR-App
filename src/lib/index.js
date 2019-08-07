@@ -1,7 +1,7 @@
 // aqui exportaras las funciones que necesites
 
 //Autentificación con Facebook
-const sigInFacebook = () =>{
+const sigInFacebook = () => {
 
     const provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function(result) {
@@ -22,6 +22,17 @@ const sigInFacebook = () =>{
     });
 }
 
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        // User is signed in.
+        console.log(user)
+        console.log(bc.displayName);
+    } else {
+        // No user is signed in.
+        console.log('usuario')
+    }
+});
 
 const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput, acceptRegisterInput) => {
     const name = userNameInput.value;
