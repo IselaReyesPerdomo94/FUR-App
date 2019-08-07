@@ -12,12 +12,13 @@ figure {
     margin: 0;
 }
 
-p {
-    margin: 0.1rem;
-}
-
 main {
     text-align: center;
+}
+
+main section p {
+    margin: 0;
+    margin-bottom: 0px;
 }
 
 
@@ -28,7 +29,7 @@ main {
     color: #011627;
     position: relative;
     left: 6rem;
-    top: 2rem;
+    top: 1rem;
     cursor: pointer;
 }
 
@@ -51,10 +52,22 @@ main {
 
 .redes {
     display: flex;
+    justify-content: center;
 }
 
 .redes a img {
     height: 2rem;
+}
+
+.register-img {
+    display: flex;
+    align-items: center;
+}
+
+.register-img a img {
+    cursor: pointer;
+    height: 3rem;
+    margin: 0.2rem 1rem 0rem 1rem;
 }
 
 .input-login {
@@ -84,7 +97,7 @@ main {
     width: 11.5rem;
     color: white;
     position: relative;
-    bottom: -4rem;
+    bottom: -2rem;
     font-size: 1.3rem;
 }
 
@@ -101,7 +114,7 @@ main {
 
 #slogan {
     font-family: 'Oswald', sans-serif;
-    margin: 0 1rem 1rem 1rem;
+    margin: 0 1rem 0 1rem;
 }
 
 #facebook,

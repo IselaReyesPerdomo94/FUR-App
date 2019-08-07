@@ -1,10 +1,15 @@
 // aqui exportaras las funciones que necesites
 
-const register = (emailInput, passwordInput, passwordConfirmInput, acceptRegisterInput) => {
+const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput, acceptRegisterInput) => {
+    const name = userNameInput.value;
     const email = emailInput.value;
     const password = passwordInput.value;
     const confirmPass = passwordConfirmInput.value;
     const accept = acceptRegisterInput.checked;
+    if (name === '') {
+        alert('No te olvides de escribir tu nombre');
+        return;
+    }
     if (email.length < 4) {
         alert('Tu email no es válido');
         return;
