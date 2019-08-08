@@ -1,12 +1,13 @@
 let login = {
-    render : async () => {
-        let view =         
-`<section class="login" id="login">
+    render: async() => {
+        let view =
+            `<section class="login" id="login">
 <header>
 <figure><img src="img/fur-logo.png" alt="Logo fur" id="logo-login"></figure>
 </header>
 <p id="slogan">Porque son más que sólo tus mascotas</p>
 <p>Inicia sesión o regístrate con </p>
+
 <div class="redes">
 <a id="facebook">
 <img src="img/facebook-logo.png" alt="Facebook"> Facebook
@@ -63,35 +64,33 @@ Acepto
 </div>
 </div>
 `
-       
+
         return view
-    }, after_render: async () => {
+    },
+    after_render: async() => {
 
-     // Este es el punto de entrada de tu aplicacion
+        // Este es el punto de entrada de tu aplicacion
 
-console.log("hola");
- 
-
-//Const
-const userNameInput = document.getElementById('user-name');
-const emailInput = document.getElementById('email');
-const passwordInput = document.getElementById('password');
-const passwordConfirmInput = document.getElementById('confirm-p');
-const acceptRegisterInput = document.getElementById('accept');
-const readyRegister = document.getElementById('ready');
-const facebook = document.getElementById('facebook');
-const google = document.getElementById('google');
+        console.log("hola");
 
 
-//Events
-readyRegister.addEventListener('click', () => window.register(userNameInput, emailInput, passwordInput, passwordConfirmInput, acceptRegisterInput));
+        //Const
+        const userNameInput = document.getElementById('user-name');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const passwordConfirmInput = document.getElementById('confirm-p');
+        const acceptRegisterInput = document.getElementById('accept');
+        const readyRegister = document.getElementById('ready');
+        const facebook = document.getElementById('facebook');
+        const google = document.getElementById('google');
 
-facebook.addEventListener('click', window.signInFacebook);
-google.addEventListener('click', window.signInGoogle);
- }
+
+        //Events
+        readyRegister.addEventListener('click', () => window.register(userNameInput, emailInput, passwordInput, passwordConfirmInput, acceptRegisterInput));
+
+        facebook.addEventListener('click', window.signInFacebook);
+        google.addEventListener('click', window.signInGoogle);
+    }
 }
 
- export default login;
-
- 
-
+export default login;

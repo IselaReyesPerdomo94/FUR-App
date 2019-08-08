@@ -2,19 +2,20 @@
 
 //Vistas de la página
 import Login from './views/pages/login.js';
-import Error404 from './views/pages/Error404.js'
+import Home from './views/pages/home.js';
+import Error404 from './views/pages/Error404.js';
 import Utils from './services/Utils.js';
-import Navbar from './views/components/Navbar.js'
-import Bottombar from './views/components/Bottombar.js'
+import Navbar from './views/components/Navbar.js';
+import Bottombar from './views/components/Bottombar.js';
 
 
 const routes = {
-    '/'   :  Login
-    // , '/home'   :  Home 
-    
+    '/': Login,
+    '/home': Home
+
 };
 
-const router = async () => {
+const router = async() => {
     const header = null || document.getElementById('header_container');
     const content = null || document.getElementById('content');
     const footer = null || document.getElementById('footer_container');
@@ -28,7 +29,7 @@ const router = async () => {
 
     // Parse the URL and if it has an id part, change it with the string ":id"
     let parsedURL = (request.resource ? '/' + request.resource : '/') + (request.id ? '/:id' : '') + (request.verb ? '/' + request.verb : '')
-    
+
     // Get the page from our hash of supported routes.
     // If the parsed URL is not in our list of supported routes, select the 404 page instead
     let page = routes[parsedURL] ? routes[parsedURL] : Error404
@@ -41,6 +42,3 @@ window.addEventListener('hashchange', router);
 
 // Listen on page load:
 window.addEventListener('load', router);
-
-
-
