@@ -1,7 +1,7 @@
 // aqui exportaras las funciones que necesites
-
+console.log("hey");
 //Autentificación con Facebook
-const sigInFacebook = () => {
+const signInFacebook = () => {
 
     const provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function(result) {
@@ -35,7 +35,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 //Sign in Google
-const sigInGoogle = () => {
+const signInGoogle = () => {
     console.log("hola google");
     
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -97,4 +97,8 @@ const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput
     email - password.html
 }
 
-export { register, sigInFacebook, sigInGoogle };
+window.signInFacebook = signInFacebook;
+window.signInGoogle = signInGoogle;
+window.register = register;
+
+
