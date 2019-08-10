@@ -1,7 +1,7 @@
 let login = {
     render: async() => {
-        let view =
-            `<section class="login" id="login">
+        let view = `
+<section class="login" id="login">
 <header>
 <figure><img src="img/fur-logo.png" alt="Logo fur" id="logo-login"></figure>
 </header>
@@ -18,17 +18,15 @@ let login = {
 </div>
 <p>O</p>
 <form>
-<input type="text" class="input-login" placeholder="Usuario">
+<input type="text" class="input-login" placeholder="correo" id="email-login">
 <input type="password" name="password" id="current-password" class="input-login" placeholder="Contraseña">
 </form>
 
 <!-- Button trigger modal -->
 <a href="" class="register" data-toggle="modal" data-target="#exampleModalCenter">Regístrate</a>
-<input type="button" value="Ingresar" class="buttons">
+<input type="button" value="Ingresar" class="buttons" id="login-button">
 
 </section>
-<!-- Button trigger modal -->
-
 
 
 <!-- Modal -->
@@ -69,27 +67,27 @@ Acepto
     },
     after_render: async() => {
 
-        // Este es el punto de entrada de tu aplicacion
-
-        console.log("hola");
-
-
-        //Const
+        //Const when user registers
         const userNameInput = document.getElementById('user-name');
         const emailInput = document.getElementById('email');
         const passwordInput = document.getElementById('password');
         const passwordConfirmInput = document.getElementById('confirm-p');
         const acceptRegisterInput = document.getElementById('accept');
         const readyRegister = document.getElementById('ready');
+
+        //Const when user signs in with Facebook, Google or existent account
         const facebook = document.getElementById('facebook');
         const google = document.getElementById('google');
-
+        const emailLogin = document.getElementById('email-login');
+        const currentPassword = document.getElementById('current-password');
+        const loginButton = document.getElementById('login-button');
 
         //Events
         readyRegister.addEventListener('click', () => window.register(userNameInput, emailInput, passwordInput, passwordConfirmInput, acceptRegisterInput));
 
         facebook.addEventListener('click', window.signInFacebook);
         google.addEventListener('click', window.signInGoogle);
+        loginButton.addEventListener('click', () => window.signInEmailPassword(emailLogin, currentPassword));
     }
 }
 
