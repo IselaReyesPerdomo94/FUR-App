@@ -1,7 +1,10 @@
 let Bottombar = {
     render : async () => {
-        let view = `
-        <p>Soy el footer </p>`
+        let view =   `
+        <section class="bottombar">
+            
+        </section>`
+      
         return view
     }
  , after_render: async () => {}

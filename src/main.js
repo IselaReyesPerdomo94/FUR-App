@@ -16,6 +16,7 @@ import Bottombar from './views/components/Bottombar.js';
 const routes = {
     '/': Login,
     '/home': Home,
+    
     '/perfil': Profile,
     '/mi-informacion': MyInfo,
     '/mis-actividades': Activities,
