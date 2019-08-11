@@ -114,13 +114,29 @@ const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput
 const signInEmailPassword = (emailLogin, currentPassword) => {
     const email = emailLogin.value;
     const password = currentPassword.value;
+    if (email === '') {
+        alert('No olvides tu correo para iniciar sesión');
+        return;
+    }
+    if (password === '') {
+        alert('Ingresa tu contraseña');
+        return;
+    }
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then(() => goingProgile())
         .catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
-            // ...
+            if (errorCode === 'auth/invalid-email') {
+                alert('Tu correo electrónico es inválido');
+            }
+            if (errorCode === 'auth/user-not-found') {
+                alert('Ups! Parece ser que tu correo no esta registrado')
+            }
+            if (errorCode === 'auth/wrong-password') {
+                alert('Tu contraseña es incorrecta')
+            }
         });
 }
 
