@@ -35,7 +35,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 //Sign in Google
-const sigInGoogle = () => {
+const signInGoogle = () => {
     console.log("hola google");
     
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -97,4 +97,4 @@ const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput
     email - password.html
 }
 
-export { register, sigInFacebook, sigInGoogle };
+export { register, sigInFacebook, signInGoogle};

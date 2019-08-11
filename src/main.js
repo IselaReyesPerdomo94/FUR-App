@@ -1,5 +1,5 @@
 // Este es el punto de entrada de tu aplicacion
-import { register, sigInFacebook, sigInGoogle} from './lib/index.js';
+import { register, sigInFacebook, signInGoogle} from './lib/index.js';
 
 
 //Const
@@ -16,4 +16,4 @@ const google = document.getElementById('google');
 readyRegister.addEventListener('click', () => register(userNameInput, emailInput, passwordInput, passwordConfirmInput, acceptRegisterInput));
 
 facebook.addEventListener('click', sigInFacebook );
-google.addEventListener('click', sigInGoogle);
+google.addEventListener('click', signInGoogle);
