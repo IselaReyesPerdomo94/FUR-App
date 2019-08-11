@@ -1,60 +1,73 @@
 // aqui exportaras las funciones que necesites
-console.log("hey");
+
+
+//Home function
+const goingHome = () => {
+    location.hash = '/home';
+}
+
+//Going to profile function
+const goingProfile = () => {
+    location.hash = '/profile'
+}
+
 //Autentificación con Facebook
 const signInFacebook = () => {
 
     const provider = new firebase.auth.FacebookAuthProvider();
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-        const token = result.credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        // ...
-    }).catch(function(error) {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        const credential = error.credential;
-        // ...
-    });
+    firebase.auth().signInWithPopup(provider)
+        .then(function(result) {
+            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+            const token = result.credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+            // ...
+        }).then(() => goingHome())
+        .catch(function(error) {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            const credential = error.credential;
+            // ...
+        });
 }
 
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         // User is signed in.
-        console.log(user)
-        console.log(bc.displayName);
+        goingHome();
     } else {
         // No user is signed in.
-        console.log('usuario')
+        console.log('usuario no conectado')
     }
 });
 
 //Sign in Google
 const signInGoogle = () => {
     console.log("hola google");
-    
+
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function(result) {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const token = result.credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        // ...
-      }).catch(function(error) {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        const credential = error.credential;
-        // ...
-      });
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            const token = result.credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+            // ...
+        }).then(() => goingHome())
+        .catch(function(error) {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            const credential = error.credential;
+            // ...
+        });
 }
 
 const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput, acceptRegisterInput) => {
@@ -85,6 +98,7 @@ const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput
     }
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(() => goingProfile())
         .catch(function(error) {
             // Handle Errors here.
             const errorCode = error.code;
@@ -97,8 +111,20 @@ const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput
     email - password.html
 }
 
+const signInEmailPassword = (emailLogin, currentPassword) => {
+    const email = emailLogin.value;
+    const password = currentPassword.value;
+    firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(() => goingProgile())
+        .catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+        });
+}
+
 window.signInFacebook = signInFacebook;
 window.signInGoogle = signInGoogle;
 window.register = register;
-
-
+window.signInEmailPassword = signInEmailPassword;

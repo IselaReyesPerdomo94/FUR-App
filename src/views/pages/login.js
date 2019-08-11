@@ -1,12 +1,13 @@
 let login = {
-    render : async () => {
-        let view =         
-`<section class="login" id="login">
+    render: async() => {
+        let view = `
+<section class="login" id="login">
 <header>
 <figure><img src="img/fur-logo.png" alt="Logo fur" id="logo-login"></figure>
 </header>
 <p id="slogan">Porque son más que sólo tus mascotas</p>
 <p>Inicia sesión o regístrate con </p>
+
 <div class="redes">
 <a id="facebook">
 <img src="img/facebook-logo.png" alt="Facebook"> Facebook
@@ -17,17 +18,15 @@ let login = {
 </div>
 <p>O</p>
 <form>
-<input type="text" class="input-login" placeholder="Usuario">
+<input type="text" class="input-login" placeholder="correo" id="email-login">
 <input type="password" name="password" id="current-password" class="input-login" placeholder="Contraseña">
 </form>
 
 <!-- Button trigger modal -->
 <a href="" class="register" data-toggle="modal" data-target="#exampleModalCenter">Regístrate</a>
-<input type="button" value="Ingresar" class="buttons">
+<input type="button" value="Ingresar" class="buttons" id="login-button">
 
 </section>
-<!-- Button trigger modal -->
-
 
 
 <!-- Modal -->
@@ -63,35 +62,33 @@ Acepto
 </div>
 </div>
 `
-       
+
         return view
-    }, after_render: async () => {
+    },
+    after_render: async() => {
 
-     // Este es el punto de entrada de tu aplicacion
+        //Const when user registers
+        const userNameInput = document.getElementById('user-name');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const passwordConfirmInput = document.getElementById('confirm-p');
+        const acceptRegisterInput = document.getElementById('accept');
+        const readyRegister = document.getElementById('ready');
 
-console.log("hola");
- 
+        //Const when user signs in with Facebook, Google or existent account
+        const facebook = document.getElementById('facebook');
+        const google = document.getElementById('google');
+        const emailLogin = document.getElementById('email-login');
+        const currentPassword = document.getElementById('current-password');
+        const loginButton = document.getElementById('login-button');
 
-//Const
-const userNameInput = document.getElementById('user-name');
-const emailInput = document.getElementById('email');
-const passwordInput = document.getElementById('password');
-const passwordConfirmInput = document.getElementById('confirm-p');
-const acceptRegisterInput = document.getElementById('accept');
-const readyRegister = document.getElementById('ready');
-const facebook = document.getElementById('facebook');
-const google = document.getElementById('google');
+        //Events
+        readyRegister.addEventListener('click', () => window.register(userNameInput, emailInput, passwordInput, passwordConfirmInput, acceptRegisterInput));
 
-
-//Events
-readyRegister.addEventListener('click', () => window.register(userNameInput, emailInput, passwordInput, passwordConfirmInput, acceptRegisterInput));
-
-facebook.addEventListener('click', window.signInFacebook);
-google.addEventListener('click', window.signInGoogle);
- }
+        facebook.addEventListener('click', window.signInFacebook);
+        google.addEventListener('click', window.signInGoogle);
+        loginButton.addEventListener('click', () => window.signInEmailPassword(emailLogin, currentPassword));
+    }
 }
 
- export default login;
-
- 
-
+export default login;
