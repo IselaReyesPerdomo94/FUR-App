@@ -104,3 +104,6 @@ Como usuario estando en la página de home debo de poder filtrar los post que ap
 - Si selecciono una opción debo de saber en que pestaña estoy navegando.
 - Una vez seleccionando una opción solo debo de ver post que cumplen con el criterio de filtrado.
 
+
+##Prototipo de alta fidelidad
+
