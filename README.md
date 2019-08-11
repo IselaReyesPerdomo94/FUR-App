@@ -1,4 +1,4 @@
-![Logo](https://github.com/IselaReyesPerdomo94/FUR-App/blob/master/src/img/fur-logo.png)
+![Logo](https://github.com/IselaReyesPerdomo94/FUR-App/blob/master/src/img/fur-readme.png)
 
 ## Definición del producto
 
@@ -46,7 +46,7 @@ https://www.figma.com/file/ZLiehtcKzvRbtlNrS5FlEJ/Untitled?node-id=0%3A1
 
 ## Historias de usuario
 
-#### Iniciar sesión u registrarse
+#### 1. Iniciar sesión u registrarse
 
 Como usuario nuevo debo poder crear una cuenta nueva con mi correo electrónico y una contraseña. También debo de poder iniciar sesión con Facebook o con Google.
 
@@ -57,7 +57,7 @@ Como usuario nuevo debo poder crear una cuenta nueva con mi correo electrónico 
 - Debo poder ver esta página de creación en Móviles y desktop (responsive).
 - No debe necesitar recargar la página para crear una cuenta (SPA).
 
-#### Cerrar sesión
+#### 2. Cerrar sesión
 
 Como usuario nuevo debo poder cerrar sesión y regresarme a la pantalla de login.
 
@@ -65,34 +65,42 @@ Como usuario nuevo debo poder cerrar sesión y regresarme a la pantalla de login
 - Debo tener a la vista la opción de cerrar sesión en la barra de navegación o bien en una de las opciones del menú hamburguesa.
 - Cuando de click en cerrar sesión debo regresar a la pantalla de Login.
 
-#### Agregar post nuevo
+#### 3. Agregar post nuevo
 Como usuario debo poder crear un post nuevo desde mi perfil o bien, desde el home.
 
 ##### Criterios de aceptación:
 - En home o desde mi perfil debo tener la opción de crear un post nuevo, con la opción clasificarlo y agregar una fotografía que lo acompañe.
-#### Borrar post
+#### 4. Borrar post
 Como usario debo poder borrar post propios.
 
 ##### Criterios de aceptación:
 - El post debe tener en su menú la opción de borrar.
 - Cuando le de click en borrar debe aparecer un recuadro que confirme que quiero borrar dicho post.
 - Cuando navegue no debo de volver a ver ese post borrado.
-#### Editar post
+#### 5. Editar post
 Como usuario debo poder editar post ya publicados.
 
 ##### Criterios de aceptación:
 - El post debe tener en su menú la opción de editar.
 - Cuando le de click en editar debe permitirme borrar y escribir nuevamente información sobre el mismo post.
 - Cuando navegue debo poder ver mi post editado.
-#### Dar like a post
-Como usario debo de poder ver post de otras personas y p
+#### 6. Dar like a post
+Como usario debo de poder ver post de otras personas y dar "like" a cualquiera de los post. 
 
 ##### Criterios de aceptación:
 
-#### Comentar post
-
+- Cada post debe tener la opción de dar like.
+- El usuario debe poder dar like y que se vea reflejado en el post.
+- Debe de ser solo un like por usuario.
+#### 7. Comentar post
+Como usuario debo de poder comentar cualquier post.
 ##### Criterios de aceptación:
-#### Filtrar post
-
+- El post debe darte la opción de comentar algo.
+- Una vez comentando debo de poder visualizar el comentario.
+#### 8. Filtrar post
+Como usuario estando en la página de home debo de poder filtrar los post que aparecen.
 ##### Criterios de aceptación:
+- En home debo de tener un barra de navegación extra con las opciones de filtrado predeterminadas.
+- Si selecciono una opción debo de saber en que pestaña estoy navegando.
+- Una vez seleccionando una opción solo debo de ver post que cumplen con el criterio de filtrado.
 
