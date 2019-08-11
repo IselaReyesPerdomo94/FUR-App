@@ -6,6 +6,11 @@ const goingHome = () => {
     location.hash = '/home';
 }
 
+//Going to profile function
+const goingProfile = () => {
+    location.hash = '/profile'
+}
+
 //Autentificación con Facebook
 const signInFacebook = () => {
 
@@ -37,7 +42,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         goingHome();
     } else {
         // No user is signed in.
-        console.log('usuario')
+        console.log('usuario no conectado')
     }
 });
 
@@ -93,7 +98,7 @@ const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput
     }
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(() => goingHome())
+        .then(() => goingProfile())
         .catch(function(error) {
             // Handle Errors here.
             const errorCode = error.code;
@@ -106,6 +111,20 @@ const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput
     email - password.html
 }
 
+const signInEmailPassword = (emailLogin, currentPassword) => {
+    const email = emailLogin.value;
+    const password = currentPassword.value;
+    firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(() => goingProgile())
+        .catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+        });
+}
+
 window.signInFacebook = signInFacebook;
 window.signInGoogle = signInGoogle;
 window.register = register;
+window.signInEmailPassword = signInEmailPassword;

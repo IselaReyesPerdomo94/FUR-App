@@ -1,9 +1,9 @@
-let profile = {
+let help = {
 
     render: async() => {
         let view = /*html*/ `
             <section class="profile">
-                <h1> This is your profile homs </h1>
+                <h1> Ayuda para todos jeje saludos</h1>
             </section>
         `
         return view
@@ -12,4 +12,4 @@ let profile = {
 
     }
 }
-export default profile;
+export default help;
