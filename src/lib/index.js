@@ -22,7 +22,7 @@ const signInFacebook = () => {
             // The signed-in user info.
             const user = result.user;
             // ...
-        }).t3hen(() => goingHome())
+        }).then(() => goingHome())
         .catch(function(error) {
             // Handle Errors here.
             const errorCode = error.code;
