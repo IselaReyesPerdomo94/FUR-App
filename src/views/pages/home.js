@@ -6,8 +6,10 @@ let home = {
             <hr class="line-1">
             <div class="flex-container">
             <div>
+            <a href="#Memes">
             <img src="img/happy-emoticon-with-one-tooth.svg" alt="Memes" class="memes">
             <p class="etiquetas-filtrado">Memes</p>
+            </a>
             </div>
             <div>
             <img src="img/vaccine.svg" alt="Veterinario" class="veterinario">
@@ -27,6 +29,13 @@ let home = {
             </div>
             </div>
             <hr class="line-2">
+            <div class="publication-conteiner">
+            <div class="utilidades">
+            
+            </div>
+            <div>
+            </div>
+            <div>
             </section>
         `
         return view

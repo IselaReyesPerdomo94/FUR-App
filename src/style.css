@@ -332,7 +332,6 @@ main {
 /*IMÁGENES DE FILTRADO*/
 .veterinario, .memes, .pet-friendly, .tips, .perdidos{
     height: 6vh;
-    
     border: 0.2rem;
 
 }
@@ -343,6 +342,30 @@ main {
 .etiquetas-filtrado{
     font-size: 15px;
     margin: 0.19rem;
+}
+
+.flex-container a, p{
+    color: #011627;
+    
+}
+.flex-container a, p:hover{
+    color: #EC0843;
+    cursor: pointer;
+    text-decoration: none;
+}
+.memes:hover{
+    color: #EC0843;
+}
+/*CAJA DE PUBLICACIONES*/
+.publication-conteiner{
+    background-color: white;
+    height: 60vh;
+    width: 19.5rem;
+}
+.utilidades{
+    background-color: #EC0843;
+    height: 60vh;
+    width: 6rem;
 }
 
 @media only screen and (min-width: 768px) {
@@ -395,4 +418,16 @@ main {
         margin: 2rem;
     
     }
+    /*CAJA DE PUBLICACIONES*/
+.publication-conteiner{
+    background-color: white;
+    height: 60vh;
+    width: 60rem;
+}
+.utilidades{
+    background-color: #EC0843;
+    height: 80vh;
+    width: 18rem;
+}
+    
 }
