@@ -322,6 +322,20 @@ main {
     margin: 0;
 }
 
+/*HOME*/
+.flex-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+/*IMÁGENES DE FILTRADO*/
+.veterinario, .memes{
+    height: 9vh;
+    margin: 1rem;
+
+}
+
 @media only screen and (min-width: 768px) {
     .login {
         background-image: url("img/cat2.jpg");
