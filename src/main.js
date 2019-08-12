@@ -33,8 +33,9 @@ const router = async() => {
 
     // Parse the URL and if it has an id part, change it with the string ":id"
     let parsedURL = (request.resource ? '/' + request.resource : '/') + (request.id ? '/:id' : '') + (request.verb ? '/' + request.verb : '')
-
+    console.log(parsedURL);
     if (parsedURL !== '/') {
+        console.log('diferente de diagonal')
         header.innerHTML = await Navbar.render();
         await Navbar.after_render();
         footer.innerHTML = await Bottombar.render();
