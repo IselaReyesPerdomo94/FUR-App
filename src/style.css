@@ -116,7 +116,7 @@ footer {
 
 /*CLASES*/
 
-.header-container {
+#header-container {
     position: sticky;
     top: 0;
 }
@@ -324,7 +324,6 @@ footer {
     margin: 0;
 }
 
-
 /*HOME*/
 .flex-container{
     display: flex;
@@ -336,6 +335,7 @@ footer {
 .veterinario, .memes, .pet-friendly, .tips, .perdidos{
     height: 6vh;
     border: 0.2rem;
+    cursor:pointer;
 
 }
 .line-1, .line-2{
@@ -369,12 +369,6 @@ footer {
     background-color: #EC0843;
     height: 60vh;
     width: 6rem;
-
-#header-container {
-    position: sticky;
-    background-color: white;
-    top: 0;
-
 }
 
 @media only screen and (min-width: 768px) {
@@ -428,15 +422,15 @@ footer {
     
     }
     /*CAJA DE PUBLICACIONES*/
-.publication-conteiner{
+    .publication-conteiner{
     background-color: white;
     height: 60vh;
     width: 60rem;
-}
-.utilidades{
+    }
+    .utilidades{
     background-color: #EC0843;
     height: 80vh;
     width: 18rem;
-}
+    }
     
 }
