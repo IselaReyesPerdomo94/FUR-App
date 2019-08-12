@@ -11,7 +11,10 @@ const goingProfile = () => {
     location.hash = '/profile'
 }
 
-//Autentificación con Facebook
+const goingLogin = () => {
+        location.hash = '/';
+    }
+    //Autentificación con Facebook
 const signInFacebook = () => {
 
     const provider = new firebase.auth.FacebookAuthProvider();
@@ -40,9 +43,11 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         // User is signed in.
         goingHome();
+        console.log('usuario conectado')
     } else {
         // No user is signed in.
         console.log('usuario no conectado')
+        goingLogin();
     }
 });
 
@@ -140,7 +145,20 @@ const signInEmailPassword = (emailLogin, currentPassword) => {
         });
 }
 
+const signOut = () => {
+    firebase.auth().signOut()
+        .then(function() {
+            // Sign-out successful.
+        }).catch(function(error) {
+            // An error happened.
+        });
+
+}
+
 window.signInFacebook = signInFacebook;
 window.signInGoogle = signInGoogle;
 window.register = register;
 window.signInEmailPassword = signInEmailPassword;
+
+window.signOut = signOut;
+
