@@ -159,4 +159,6 @@ window.signInFacebook = signInFacebook;
 window.signInGoogle = signInGoogle;
 window.register = register;
 window.signInEmailPassword = signInEmailPassword;
+
 window.signOut = signOut;
+
