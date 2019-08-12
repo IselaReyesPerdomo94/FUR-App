@@ -56,11 +56,12 @@ menu ul {
     list-style: none;
 }
 
-.header {
-    position: sticky;
-    background-color: white;
-    top: 0;
-    z-index: 2;
+footer {
+    background-color: #EC0843;
+    display: flex;
+    justify-content: center;
+    color: white;
+    text-align: center;
 }
 
 .options {
@@ -115,6 +116,11 @@ menu ul {
 
 /*CLASES*/
 
+.header-container {
+    position: sticky;
+    top: 0;
+}
+
 .register {
     font-size: 1rem;
     color: #011627;
@@ -163,7 +169,7 @@ menu ul {
 
 .input-login {
     border-radius: 10px;
-    border: 2px solid white;
+    border: 2px solid #011627;
     background: rgba(24, 61, 196, 0.02);
     padding: 0.5rem;
     margin: 0.2rem;
@@ -182,18 +188,20 @@ menu ul {
     width: 11.5rem;
     color: white;
     position: relative;
-    bottom: -2rem;
+    bottom: -1rem;
     font-size: 1.2rem;
-
+    margin: 0.5rem;
+    cursor: pointer;
 }
 
-main {
+.mi-info {
     display: flex;
+    flex-direction: column;
     background-image: url("img/welovepetsC_2048x.jpg");
-    width: 100%;
-    height: 30%;
-    background-repeat:no-repeat;
-    background-position: bottom;      
+    padding: 2rem;
+    background-position: center;
+    background-color: #F4F4F4;
+    background-repeat: no-repeat;
 }
 
 .listo {
@@ -204,38 +212,42 @@ main {
     font-family: 'Ropa sans';
 }
 
-.photo{
+.photo {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: 'Ropa sans';
 }
-.element-photo {
-    width: 11rem;
-    height: 10rem;
-}
-/* Formulario Mi info */
 
+.element-photo {
+    width: 9rem;
+    height: 8rem;
+}
+
+
+/* Formulario Mi info */
 
 .form-profile {
     font-family: 'Ropa sans';
     margin: 0
 }
 
-.input-profile{
+.input-profile {
     border: 2px solid #EC0843;
     width: 17rem;
     border-radius: 10px;
 }
-.age{
-    display:flex;
+
+.age {
+    display: flex;
     justify-content: center;
 }
-.num-age{
+
+.num-age {
     border: 2px solid #EC0843;
     width: 5rem;
-    border-radius: 10px;  
+    border-radius: 10px;
     text-align: center;
     margin: 0 1rem 0 1rem;
 }
@@ -243,52 +255,41 @@ main {
 .input-age {
     border: 2px solid #EC0843;
     width: 8rem;
-    border-radius: 10px;  
+    border-radius: 10px;
     text-align: center;
 }
+
 .description-fur {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .input-description {
     border: 2px solid #EC0843;
     height: 8rem;
     width: 17rem;
-    border-radius: 10px;  
+    border-radius: 10px;
     text-align: center;
 }
 
-.save{
+.save {
     display: flex;
     justify-content: center;
-}    
+}
+
 .button-agree {
-        background-color: #EC0843;
-        padding: 0.3rem;
-        border-radius: 10px;
-        border: none;
-        width: 11.5rem;
-        color: white;
-        position: relative;
-        /* bottom: -3rem; */
-        font-size: 1rem;
-        position: relative;
-    }
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
+    background-color: #EC0843;
+    padding: 0.3rem;
+    border-radius: 10px;
+    border: none;
+    width: 11.5rem;
+    color: white;
+    position: relative;
+    font-size: 1rem;
+    position: relative;
+    margin: 0.5rem;
+}
 
 
 /*ID*/
@@ -311,6 +312,7 @@ main {
     border-radius: 10px;
     margin: 0.5rem;
     color: white;
+    cursor: pointer;
 }
 
 #google {
@@ -321,6 +323,7 @@ main {
     width: 100%;
     margin: 0;
 }
+
 
 /*HOME*/
 .flex-container{
@@ -366,6 +369,12 @@ main {
     background-color: #EC0843;
     height: 60vh;
     width: 6rem;
+
+#header-container {
+    position: sticky;
+    background-color: white;
+    top: 0;
+
 }
 
 @media only screen and (min-width: 768px) {

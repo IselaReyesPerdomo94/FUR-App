@@ -11,7 +11,10 @@ const goingProfile = () => {
     location.hash = '/profile'
 }
 
-//Autentificación con Facebook
+const goingLogin = () => {
+        location.hash = '/';
+    }
+    //Autentificación con Facebook
 const signInFacebook = () => {
 
     const provider = new firebase.auth.FacebookAuthProvider();
@@ -40,9 +43,11 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         // User is signed in.
         goingHome();
+        console.log('usuario conectado')
     } else {
         // No user is signed in.
         console.log('usuario no conectado')
+        goingLogin();
     }
 });
 
@@ -114,17 +119,46 @@ const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput
 const signInEmailPassword = (emailLogin, currentPassword) => {
     const email = emailLogin.value;
     const password = currentPassword.value;
+    if (email === '') {
+        alert('No olvides tu correo para iniciar sesión');
+        return;
+    }
+    if (password === '') {
+        alert('Ingresa tu contraseña');
+        return;
+    }
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then(() => goingProgile())
         .catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
-            // ...
+            if (errorCode === 'auth/invalid-email') {
+                alert('Tu correo electrónico es inválido');
+            }
+            if (errorCode === 'auth/user-not-found') {
+                alert('Ups! Parece ser que tu correo no esta registrado')
+            }
+            if (errorCode === 'auth/wrong-password') {
+                alert('Tu contraseña es incorrecta')
+            }
         });
+}
+
+const signOut = () => {
+    firebase.auth().signOut()
+        .then(function() {
+            // Sign-out successful.
+        }).catch(function(error) {
+            // An error happened.
+        });
+
 }
 
 window.signInFacebook = signInFacebook;
 window.signInGoogle = signInGoogle;
 window.register = register;
 window.signInEmailPassword = signInEmailPassword;
+
+window.signOut = signOut;
+

@@ -1,8 +1,9 @@
 let myInfo = {
 
     render: async() => {
-        let view = /*html*/ 
-        `   
+        let view = /*html*/
+            `   
+        <section class="mi-info">
             <section class="profile-photo">
                 <h1> Mi info</h1>
             </section>
@@ -21,8 +22,8 @@ let myInfo = {
             <div class="age">
             <label for="num-age">Edad</label>
             <input type="number" class="num-age">
-            <select name="choose" class="input-age"><br>
-            <option value="nul" selected disabled></option>
+            <select name="choose" class="input-age">
+            <option value="null" selected disabled></option>
             <option value="opt1">Años</option>
             <option value="opt2">Meses</option>
            <option value="opt3">Semanas</option><br>
@@ -30,8 +31,9 @@ let myInfo = {
            </div>
            <div class="description-fur">
             <label for="description">Cuéntanos algo de tu mascota</label>
-            <input type="text" class="input-description"><br>
-            <button type="button" class="button-agree" id="agree-fur">+ Agregar mascotas</button><br><br>
+            <textarea rows="3" cols="50">
+            </textarea>
+            <button type="button" class="button-agree" id="agree-fur">+ Agregar mascotas</button>
             </div>
             <div class="save">
             <button type="button" class="buttons" id="save">Guardar</button> 
@@ -39,15 +41,15 @@ let myInfo = {
             
   </div>
             
-            
-    </select>
   </div>
-  </div>
+  </div>      
+    </section>
+ 
   
 
             `
-            
-        
+
+
         return view
     },
     after_render: async() => {

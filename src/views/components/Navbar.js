@@ -37,6 +37,12 @@ let Navbar = {
     </header>`
         return view
     },
-    after_render: async() => {}
+    after_render: async() => {
+        const signOutDesk = document.getElementById('sign-out-desk');
+        const signOutMob = document.getElementById('sign-out');
+
+        signOutDesk.addEventListener('click', window.signOut);
+        signOutMob.addEventListener('click', signOut);
+    }
 }
 export default Navbar;
