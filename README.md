@@ -105,7 +105,13 @@ Como usuario estando en la página de home debo de poder filtrar los post que ap
 - Una vez seleccionando una opción solo debo de ver post que cumplen con el criterio de filtrado.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 ##Prototipo de alta fidelidad
 =======
 >>>>>>> upstream/master
+=======
+
+##Prototipo de alta fidelidad
+
+>>>>>>> origin/master
