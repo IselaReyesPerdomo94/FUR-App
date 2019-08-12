@@ -3,27 +3,30 @@ let home = {
     render: async() => {
         let view = /*html*/ `
             <section class="home">
-            <hr>
+            <hr class="line-1">
             <div class="flex-container">
             <div>
             <img src="img/happy-emoticon-with-one-tooth.svg" alt="Memes" class="memes">
-            <p>Memes</p>
+            <p class="etiquetas-filtrado">Memes</p>
             </div>
             <div>
             <img src="img/vaccine.svg" alt="Veterinario" class="veterinario">
-            <p>Veterinario</p>
+            <p class="etiquetas-filtrado">Veterinario</p>
             </div>
             <div>
-            <img src="" alt="Veterinario" class="veterinario">
+            <img src="img/pet.svg" alt="PetFriendly" class="pet-friendly">
+            <p class="etiquetas-filtrado">PetFriendly</p>
             </div>
             <div>
-            <img src="img/vaccine.svg" alt="Veterinario" class="veterinario">
+            <img src="img/elemental-tip.svg" alt="Tips" class="tips">
+            <p class="etiquetas-filtrado">Tips</p>
+            </div>
+            <div>
+            <img src="img/icon.svg" alt="Perdidos" class="perdidos">
+            <p class="etiquetas-filtrado">Perdidos</p>
             </div>
             </div>
-            
-            
-
-            <hr>
+            <hr class="line-2">
             </section>
         `
         return view

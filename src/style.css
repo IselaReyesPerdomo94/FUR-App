@@ -330,10 +330,19 @@ main {
     
 }
 /*IMÁGENES DE FILTRADO*/
-.veterinario, .memes{
-    height: 9vh;
-    margin: 1rem;
+.veterinario, .memes, .pet-friendly, .tips, .perdidos{
+    height: 6vh;
+    
+    border: 0.2rem;
 
+}
+.line-1, .line-2{
+    background-color: #EC0843;
+    height: 0.2vh;
+}
+.etiquetas-filtrado{
+    font-size: 15px;
+    margin: 0.19rem;
 }
 
 @media only screen and (min-width: 768px) {
@@ -380,5 +389,10 @@ main {
     .menu-desktop a:hover {
         color: #EC0843;
         cursor: pointer;
+    }
+    .veterinario, .memes, .pet-friendly, .tips, .perdidos{
+        height: 9vh;
+        margin: 2rem;
+    
     }
 }
