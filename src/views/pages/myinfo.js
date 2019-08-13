@@ -31,10 +31,15 @@ let myInfo = {
            </div>
            <div class="description-fur">
             <label for="description">Cuéntanos algo de tu mascota</label>
+            <input type="text" class="input-description"><br>
             <textarea rows="3" cols="50">
             </textarea>
+            <div class="photo-fur">
+            <img src="./img/elements/camera.png" class="fur-photo"/>
+            <a ref="foto-foto">Añadir foto</a>
             <button type="button" class="button-agree" id="agree-fur">+ Agregar mascotas</button>
             </div>
+            <button type="button" class="button-agree" id="agree-fur">+ Agregar mascotas</button><br><br>
             <div class="save">
             <button type="button" class="buttons" id="save">Guardar</button> 
             </div>

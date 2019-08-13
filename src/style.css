@@ -272,6 +272,19 @@ footer {
     border-radius: 10px;
     text-align: center;
 }
+.photo-fur{
+    display: flex;
+    width: 5rem;
+    height: 5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: left;
+}
+
+.fur-photo {
+    width: 2rem;
+    height: 2rem;
+}
 
 .save {
     display: flex;

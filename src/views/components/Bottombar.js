@@ -5,7 +5,15 @@ let Bottombar = {
         `
 
         return view
+
+    }
+    
+ , after_render: async () => {}
+ }
+ export default Bottombar;
+
     },
     after_render: async() => {}
 }
 export default Bottombar;
+
