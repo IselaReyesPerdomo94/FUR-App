@@ -16,7 +16,7 @@ const goingLogin = () => {
     }
     //Autentificación con Facebook
 const signInFacebook = () => {
-
+    console.log('usando fb')
     const provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithPopup(provider)
         .then(function(result) {
@@ -25,9 +25,11 @@ const signInFacebook = () => {
             // The signed-in user info.
             const user = result.user;
             // ...
-        }).then(() => goingHome())
+        })
         .catch(function(error) {
             // Handle Errors here.
+            console.log('no funciono')
+            console.log(error)
             const errorCode = error.code;
             const errorMessage = error.message;
             // The email of the user's account used.
@@ -43,13 +45,13 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         // User is signed in.
         goingHome();
-        console.log('usuario conectado')
     } else {
         // No user is signed in.
         console.log('usuario no conectado')
         goingLogin();
     }
 });
+
 
 //Sign in Google
 const signInGoogle = () => {
@@ -128,7 +130,7 @@ const signInEmailPassword = (emailLogin, currentPassword) => {
         return;
     }
     firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(() => goingProgile())
+        .then(() => goingHome())
         .catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
@@ -148,17 +150,17 @@ const signInEmailPassword = (emailLogin, currentPassword) => {
 const signOut = () => {
     firebase.auth().signOut()
         .then(function() {
-            // Sign-out successful.
+            console.log('Sign-out successful');
+            goingLogin();
+            // location.reload();
         }).catch(function(error) {
             // An error happened.
         });
-
 }
 
 window.signInFacebook = signInFacebook;
 window.signInGoogle = signInGoogle;
 window.register = register;
 window.signInEmailPassword = signInEmailPassword;
-
 window.signOut = signOut;
 

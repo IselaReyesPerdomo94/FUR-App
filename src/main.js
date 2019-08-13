@@ -25,6 +25,7 @@ const routes = {
 };
 
 const router = async() => {
+    
     const header = null || document.getElementById('header-container');
     const content = null || document.getElementById('content');
     const footer = null || document.getElementById('footer-container');
@@ -33,19 +34,43 @@ const router = async() => {
 
     // Parse the URL and if it has an id part, change it with the string ":id"
     let parsedURL = (request.resource ? '/' + request.resource : '/') + (request.id ? '/:id' : '') + (request.verb ? '/' + request.verb : '')
-
-    if (parsedURL !== '/') {
-        header.innerHTML = await Navbar.render();
-        await Navbar.after_render();
-        footer.innerHTML = await Bottombar.render();
-        await Bottombar.after_render();
+console.log('este es parsedURL', parsedURL);
+    if (parsedURL === '/') {
+        header.style.display = 'none';
+        footer.style.display = 'none';
+    } else{
+        header.style.display = 'block';
+        footer.style.display = 'block';
+        
     }
+
+    header.innerHTML = await Navbar.render();
+    await Navbar.after_render();
+    footer.innerHTML = await Bottombar.render();
+    await Bottombar.after_render();
 
     // Get the page from our hash of supported routes.
     // If the parsed URL is not in our list of supported routes, select the 404 page instead
     let page = routes[parsedURL] ? routes[parsedURL] : Error404
     content.innerHTML = await page.render();
     await page.after_render();
+
+    firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        // User is signed in.
+        const userInfo = user;
+        console.log(userInfo)
+        return userInfo;
+    }
+        else{
+        // No user is signed in.
+        console.log('usuario no conectado')
+        
+        goingLogin();
+    }
+});
+
+
 }
 
 // Listen on hash change:
