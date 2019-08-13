@@ -12,8 +12,5 @@ let Bottombar = {
  }
  export default Bottombar;
 
-    },
-    after_render: async() => {}
-}
-export default Bottombar;
+
 
