@@ -9,7 +9,7 @@ let myInfo = {
             </section>
             <div class="photo">
              <img src="./img/elements/foto.png" class="element-photo"/>
-             <h1>Nombre</h1>
+             <h1 id="user-name"></h1>
             </div>
             <form>
             <div class="form-profile">
