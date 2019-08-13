@@ -14,6 +14,7 @@ let Navbar = {
                         <ul class="options">
                             <div class="options-menu">
                                 <li><a href="#/home">Inicio</a> </li>
+                                <li><a href="#/perfil">Mi perfil</a> </li>
                                 <li><a href="#/mi-informacion">Mi info</a></li>
                                 <li><a href="#/mis-actividades">Mis actividades</a></li>
                                 <li><a href="#/ayuda">Ayuda</a></li>
@@ -25,6 +26,7 @@ let Navbar = {
                 </ul>
                 <ul class="menu-desktop">
                     <li><a href="#/home">Inicio</a> </li>
+                    <li><a href="#/perfil">Mi perfil</a> </li>
                     <li><a href="#/mi-informacion">Mi info</a></li>
                     <li><a href="#/mis-actividades">Mis actividades</a></li>
                     <li><a href="#/ayuda">Ayuda</a></li>
