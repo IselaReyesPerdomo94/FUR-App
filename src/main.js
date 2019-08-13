@@ -8,7 +8,7 @@ import Profile from './views/pages/profile.js';
 import Activities from './views/pages/activities.js';
 import Help from './views/pages/help.js';
 import Error404 from './views/pages/Error404.js';
-import Utils from './services/Utils.js';
+import Utils from './services/utils.js';
 import Navbar from './views/components/Navbar.js';
 import Bottombar from './views/components/Bottombar.js';
 
@@ -16,7 +16,7 @@ import Bottombar from './views/components/Bottombar.js';
 const routes = {
     '/': Login,
     '/home': Home,
-    
+
     '/perfil': Profile,
     '/mi-informacion': MyInfo,
     '/mis-actividades': Activities,
