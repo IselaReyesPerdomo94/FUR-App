@@ -27,19 +27,46 @@ let home = {
             </div>
             </div>
             <hr class="line-2">
-            <div class="publication-conteiner">
-            <div class="utilidades">
-            
-            </div>
-            <div>
-            </div>
-            <div>
+           
+            <!-- Button trigger modal -->
+<button type="button" class="btn-btn-primary" data-toggle="modal" data-target="#exampleModal">
++ Agregar Publicación
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">¡Realiza una publicación de tus mascotas!
+        <img src="img/kitty.svg" alt="gatito" class="kitty">
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <textarea placeholder="Escribe una publicación...pio pio" class="publicacion" id="publicacion"></textarea>
+      </div>
+      <div class="image">
+      </div> 
+      <div class="modal-footer">
+      <button type="button" class="btn-btn-primary" data-dismiss="modal" id="cerrar-publicar"> <img src="img/picture.svg" alt="Agregar imagen" class="add-image"></button>
+        <button type="button" class="btn-btn-primary" data-dismiss="modal" id="cerrar-publicar">Cerrar</button>
+        <button type="button" class="btn-btn-primary" id="btn-publicar">Publicar</button>
+      </div>
+    </div>
+  </div>
+</div>
+           
             </section>
+
         `
         return view
     },
     after_render: async() => {
-
+        const publication = document.getElementById("publicacion").value;
+        const post = document.getElementById("btn-publicar");
     }
 }
 export default home;
