@@ -46,6 +46,7 @@ let myInfo = {
             <label for="description">Cuéntanos algo de tu mascota</label>
             <textarea rows="3" cols="50">
             </textarea>
+            </div>
             <div class="photo-fur">
                <div class="content-image-add"
                 <a href="">
@@ -53,8 +54,9 @@ let myInfo = {
                     Añadir foto
                 </a>
                 </div>
+            </div>    
             </div>
-            </div>
+            </div> 
             <div class="modal-footer">
             <div class="save">
             <button type="button" class="buttons" id="save">Guardar</button> 
@@ -63,21 +65,14 @@ let myInfo = {
                   </div>
                 </div>
               </div>
-            </div>
-
-
-
-
+            </div>          
             
-            
-  </div>
-            
+  </div>          
   </div>
   </div>      
     </section>
- 
+    
   
-
             `
 
 
@@ -87,4 +82,24 @@ let myInfo = {
 
     }
 }
+
+const petCard = {
+  card: `
+  <div class="card-myinfo">
+  <div class="img-myinfo-content">
+    <h3>*petname*</h3>
+    <img src="*img*"/ class="img-myinfo">
+  </div>
+  <div class="txt-myinfo"> 
+    <p>Apodos:<span>*nickname*</span></p>
+    <p>Especie:<span>*specie*</span></p>
+    <p>Edad:<span>*age*</span></p>
+    <p>Sexo:<span>*h-m*</p>
+    <p>Acerca de:<span>*about*</span></p>
+  </div>
+</div>
+`
+}
+
+export {petCard};
 export default myInfo;
