@@ -126,7 +126,6 @@ footer {
     color: #011627;
     position: relative;
     left: 6rem;
-    top: 1rem;
     cursor: pointer;
 }
 
@@ -188,7 +187,6 @@ footer {
     border: none;
     width: 11.5rem;
     color: white;
-    position: relative;
     bottom: -1rem;
     font-size: 1.2rem;
     margin: 0.5rem;
@@ -265,7 +263,6 @@ footer {
     width: 98%;
 }
 
-
 .photo-fur{
     display: flex;
     width: 100%;
@@ -298,11 +295,10 @@ footer {
     border: none;
     width: 11.5rem;
     color: white;
-    position: relative;
     font-size: 1rem;
-    position: relative;
     margin: 0.5rem;
 }
+
 
 .img-myinfo-content , .txt-myinfo {
     display: flex;
@@ -315,12 +311,8 @@ footer {
     padding: 0.3rem;
     color: #EC0843;
     font-size: 10px;
-    
 }
-       
-          
-        
-
+      
 .card-myinfo {
     display: flex;
     justify-content: space-between;
@@ -330,8 +322,6 @@ footer {
     padding: 0.3rem;
     border-radius: 10px;
     border-color: #EC0843;
-
-
 }
 
 .img-myinfo {
@@ -340,10 +330,58 @@ footer {
     margin: 2rem 0 0 0;
 }
 
+/*Activities section*/
+.activities{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
 
+.cards-act-container{
+    display: flex;
+    width: 100%;
+    justify-content:  center;
+}
 
+/*Activities modal*/
+.activitie-modal{
+    max-width: 100%;
+}
 
+.item-container{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
 
+.item-container input, 
+.item-container select{
+    width: 11rem;
+}
+
+.activitie-modal input, 
+.activitie-modal select,
+.activitie-modal textarea{
+    border-radius: 10px;
+    border: 2px solid #EC0843;
+    margin: 0.5rem 0;
+}
+
+.act-name, .activitie-modal textarea{
+    width: 90%;
+} 
+
+/*Activitie card*/
+.card-act{
+    display: flex;
+    flex-direction: column;
+    background-color:#FFF1F1;
+    height: fit-content;
+    width: 90%;
+    border-radius: 10px;
+}
 
 /*ID*/
 
