@@ -453,17 +453,53 @@ footer {
 /*CAJA DE PUBLICACIONES*/
 .publication-conteiner{
     background-color: white;
-    height: 60vh;
+    height: 40vh;
     width: 19.5rem;
+    display: flex;
+    justify-content: center;
 }
 .utilidades{
     background-color: #EC0843;
-    height: 60vh;
+    height: 40vh;
     width: 6rem;
+}
+.publicacion{
+    border-radius: 8px;
+    margin: 0.5rem;
+    height: 22vh;
+    width: 15rem;
+    border: 1px solid #EC0843;
+    border-collapse: collapse;
+}
+.sub-archivos{
+    display: flex;
 }
 
 .hide{
     display: none;
+}
+.btn-primary{
+    background-color: #EC0843;
+}
+.image{
+    display: flex;
+    justify-content: left;
+}
+.add-image, .kitty{
+    height: 2rem;
+    width: 2rem;
+
+
+}
+.btn-btn-primary{
+    background-color: #EC0843;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Oswald', sans-serif;
+    color: white;
+}
+.modal-title, #cerrar-publicar, #btn-publicar{
+    font-family: 'Oswald', sans-serif;
 }
 
 @media only screen and (min-width: 768px) {
@@ -517,15 +553,13 @@ footer {
     
     }
     /*CAJA DE PUBLICACIONES*/
-    .publication-conteiner{
-    background-color: white;
-    height: 60vh;
-    width: 60rem;
-    }
-    .utilidades{
-    background-color: #EC0843;
-    height: 80vh;
-    width: 18rem;
+    .publicacion{
+        border-radius: 10px;
+        width: 26rem;
     }
     
-}
+    .add-image{
+        height: 2rem;
+        width: 2rem;
+    }
+        
