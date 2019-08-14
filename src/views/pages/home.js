@@ -65,8 +65,28 @@ let home = {
         return view
     },
     after_render: async() => {
-        const publication = document.getElementById("publicacion").value;
-        const post = document.getElementById("btn-publicar");
+        const publicationInput = document.getElementById('publicacion').value;
+        const post = document.getElementById('btn-publicar');
+        const user = firebase.auth().currentUser;
+        
+        //Cloud Firestore Collections
+        const profiles = db.collection('profile');
+        const posts = db.collection('posts');
+        const likes = db.collection('likes');
+
+        //Añadir perfil desde Firestore
+        profiles.add({
+          email : user.email, 
+          name : user.displayName,
+          photo : user.photoURL,
+          uidUser : user.uid
+        })
+        .then((docRef) => {
+          console.log('este es el Id:', docRef.id);
+        }) 
+        .catch((error) => {
+          console.error('agregando error del documento: ',error);
+        });
     }
 }
 export default home;
