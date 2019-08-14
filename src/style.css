@@ -1,0 +1,565 @@
+/*etiquetas*/
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body,
+figure {
+    font-family: 'Ropa Sans', sans-serif;
+    margin: 0;
+}
+
+main {
+    text-align: center;
+}
+
+main section p {
+    margin: 0;
+    margin-bottom: 0px;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 12vh;
+    margin: 0 0;
+    font-size: 1rem;
+    width: 100%;
+    padding: 1rem;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+header nav menu {
+    margin: 0;
+}
+
+nav figure {
+    margin: 1rem;
+    display: flex;
+}
+
+nav figure img {
+    height: 5rem;
+}
+
+nav menu li i {
+    font-size: 2rem;
+    color: #011627;
+}
+
+menu ul {
+    list-style: none;
+}
+
+footer {
+    background-color: #EC0843;
+    display: flex;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.options {
+    display: none;
+    width: 100%;
+    padding: 0.5rem;
+    left: 0;
+    position: absolute;
+}
+
+.options ul,
+.menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menu-bars:hover .options {
+    color: #EC0843;
+    display: block;
+    height: fit-content;
+    padding: 0 2rem;
+    cursor: pointer;
+}
+
+.options-menu {
+    background-color: #EC0843;
+    width: 100%;
+    padding: 1rem;
+    font-family: 'Ropa Sans', sans-serif;
+}
+
+.options-menu li,
+.options-menu a {
+    font-size: 1.5rem;
+    color: white;
+    margin: 1rem 0rem 1rem 0rem;
+    list-style: none;
+    text-decoration: none;
+}
+
+.options-menu li:hover,
+.options-menu a:hover {
+    color: #011627;
+    cursor: pointer;
+}
+
+.menu-desktop {
+    display: none;
+}
+
+
+/*CLASES*/
+
+#header-container {
+    position: sticky;
+    top: 0;
+}
+
+.register {
+    font-size: 1rem;
+    color: #011627;
+    position: relative;
+    left: 6rem;
+    cursor: pointer;
+}
+
+.register:hover {
+    color: white;
+}
+
+.login {
+    height: 100vh;
+    width: 100%;
+    background-image: url("img/perro-mirando-arriba_23-2147787329.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.4rem;
+}
+
+.redes {
+    display: flex;
+    justify-content: center;
+}
+
+.redes a img {
+    height: 2rem;
+}
+
+.register-img {
+    display: flex;
+    align-items: center;
+}
+
+.register-img a img {
+    cursor: pointer;
+    height: 3rem;
+    margin: 0.2rem 1rem 0rem 1rem;
+}
+
+.input-login {
+    border-radius: 10px;
+    border: 2px solid #011627;
+    background: rgba(24, 61, 196, 0.02);
+    padding: 0.5rem;
+    margin: 0.2rem;
+}
+
+.register-input, .input-profile {
+    border-radius: 10px;
+    border: 2px solid #EC0843;
+    width: 17rem;
+}
+
+.buttons {
+    background-color: #EC0843;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: none;
+    width: 11.5rem;
+    color: white;
+    bottom: -1rem;
+    font-size: 1.2rem;
+    margin: 0.5rem;
+    cursor: pointer;
+}
+
+.mi-info {
+    display: flex;
+    flex-direction: column;
+    background-image: url("img/welovepetsC_2048x.jpg");
+    padding: 2rem;
+    background-position: center;
+    background-color: #F4F4F4;
+    background-repeat: no-repeat;
+}
+
+.listo {
+    bottom: 0;
+}
+
+.profile-photo {
+    font-family: 'Ropa sans';
+}
+
+.photo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Ropa sans';
+}
+
+.element-photo {
+    width: 9rem;
+    height: 8rem;
+}
+
+
+/* Formulario Mi info */
+
+.form-profile {
+    font-family: 'Ropa sans';
+    margin: 0
+}
+
+
+.age {
+    display: flex;
+    justify-content: center;
+}
+
+.num-age, .input-age {
+    border-radius: 10px;
+    border: 2px solid #EC0843;
+    width: 5rem;
+    border-radius: 10px;
+    text-align: center;
+    margin: 0 1rem 0 1rem;
+}
+
+.input-age {
+    width: 8rem;
+}
+
+.description-fur {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.description-fur textarea {
+    border: 2px solid #EC0843;
+    border-radius: 10px;
+    width: 98%;
+}
+
+.photo-fur{
+    display: flex;
+    width: 100%;
+    height: 5rem;
+    align-items: center;
+    justify-content: center;
+
+}
+.content-image-add {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fur-photo {
+    width: 2rem;
+    height: 2rem;
+}
+
+.save {
+    display: flex;
+    justify-content: center;
+}
+
+.button-agree {
+    background-color: #EC0843;
+    padding: 0.3rem;
+    border-radius: 10px;
+    border: none;
+    width: 11.5rem;
+    color: white;
+    font-size: 1rem;
+    margin: 0.5rem;
+}
+
+
+.img-myinfo-content , .txt-myinfo {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: inherit;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFBFB;
+    padding: 0.3rem;
+    color: #EC0843;
+    font-size: 10px;
+}
+      
+.card-myinfo {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    height: 15rem;
+    background-color: #FFFBFB;
+    padding: 0.3rem;
+    border-radius: 10px;
+    border-color: #EC0843;
+}
+
+.img-myinfo {
+    width: 12rem;
+    height: 10rem;
+    margin: 2rem 0 0 0;
+}
+
+/*Activities section*/
+.activities{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cards-act-container{
+    display: flex;
+    width: 100%;
+    justify-content:  center;
+}
+
+/*Activities modal*/
+.activitie-modal{
+    max-width: 100%;
+}
+
+.item-container{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.item-container input, 
+.item-container select{
+    width: 11rem;
+}
+
+.activitie-modal input, 
+.activitie-modal select,
+.activitie-modal textarea{
+    border-radius: 10px;
+    border: 2px solid #EC0843;
+    margin: 0.5rem 0;
+}
+
+.act-name, .activitie-modal textarea{
+    width: 90%;
+} 
+
+/*Activitie card*/
+.card-act{
+    display: flex;
+    flex-direction: column;
+    background-color:#FFF1F1;
+    height: fit-content;
+    width: 90%;
+    border-radius: 10px;
+}
+
+/*ID*/
+
+#logo-login {
+    height: 8rem;
+}
+
+#slogan {
+    font-family: 'Oswald', sans-serif;
+    margin: 0 1rem 0 1rem;
+}
+
+#facebook,
+#google {
+    background-color: #183DC3;
+    width: 9rem;
+    height: 44px;
+    padding: 0.3rem;
+    border-radius: 10px;
+    margin: 0.5rem;
+    color: white;
+    cursor: pointer;
+}
+
+#google {
+    background-color: #D62D22;
+}
+
+#divider {
+    width: 100%;
+    margin: 0;
+}
+
+/*HOME*/
+.flex-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+/*IMÁGENES DE FILTRADO*/
+.veterinario, .memes, .pet-friendly, .tips, .perdidos{
+    height: 6vh;
+    border: 0.2rem;
+    cursor:pointer;
+
+}
+.line-1, .line-2{
+    background-color: #EC0843;
+    height: 0.2vh;
+}
+.etiquetas-filtrado{
+    font-size: 15px;
+    margin: 0.19rem;
+}
+
+.flex-container a, p{
+    color: #011627;
+    
+}
+.flex-container a, p:hover{
+    color: #EC0843;
+    cursor: pointer;
+    text-decoration: none;
+}
+.memes:hover{
+    color: #EC0843;
+}
+/*CAJA DE PUBLICACIONES*/
+.publication-conteiner{
+    background-color: white;
+    height: 40vh;
+    width: 19.5rem;
+    display: flex;
+    justify-content: center;
+}
+.utilidades{
+    background-color: #EC0843;
+    height: 40vh;
+    width: 6rem;
+}
+.publicacion{
+    border-radius: 8px;
+    margin: 0.5rem;
+    height: 22vh;
+    width: 15rem;
+    border: 1px solid #EC0843;
+    border-collapse: collapse;
+}
+.sub-archivos{
+    display: flex;
+}
+
+.hide{
+    display: none;
+}
+.btn-primary{
+    background-color: #EC0843;
+}
+.image{
+    display: flex;
+    justify-content: left;
+}
+.add-image, .kitty{
+    height: 2rem;
+    width: 2rem;
+
+
+}
+.btn-btn-primary{
+    background-color: #EC0843;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Oswald', sans-serif;
+    color: white;
+}
+.modal-title, #cerrar-publicar, #btn-publicar{
+    font-family: 'Oswald', sans-serif;
+}
+
+@media only screen and (min-width: 768px) {
+    .login {
+        background-image: url("img/cat2.jpg");
+        background-repeat: no-repeat;
+    }
+    .input-login {
+        border: 2px solid #011627;
+        color: #011627;
+    }
+    .input-login::placeholder {
+        color: #011627;
+    }
+    .register-input {
+        border: 2px solid #EC0843;
+        width: 17rem;
+    }
+    #logo-login {
+        height: 12rem;
+    }
+    .menu {
+        display: none;
+    }
+    nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 1rem;
+    }
+    .menu-desktop {
+        display: flex;
+        flex-direction: row;
+    }
+    .menu-desktop li,
+    .menu-desktop a {
+        display: flex;
+        justify-content: space-between;
+        margin: auto 1rem;
+        text-decoration: none;
+        color: #011627;
+    }
+    .menu-desktop li:hover,
+    .menu-desktop a:hover {
+        color: #EC0843;
+        cursor: pointer;
+    }
+    .veterinario, .memes, .pet-friendly, .tips, .perdidos{
+        height: 9vh;
+        margin: 2rem;
+    
+    }
+    /*CAJA DE PUBLICACIONES*/
+    .publicacion{
+        border-radius: 10px;
+        width: 26rem;
+    }
+    
+    .add-image{
+        height: 2rem;
+        width: 2rem;
+    }
+}    
