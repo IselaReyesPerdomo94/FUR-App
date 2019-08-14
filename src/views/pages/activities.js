@@ -7,7 +7,7 @@ let activities = {
                 <p>En este lugar puedes agregar las citas o actividades 
                 relacionadas con tus mascotas y así no olvidarlas. Si deseas agregar una solo da click en agregar actividad</p>
 
-                <div id="cards-act">
+                <div id="cards-act-container" class="cards-act-container">
                 </div>
                 <!-- Triggering modal -->
                 <button class="button-agree" value="+ Agregar actividad" id="plus-activitie" data-toggle="modal" data-target="#exampleModal">
@@ -72,7 +72,7 @@ let activities = {
         const titleInput = document.getElementById('title');
         const dateInput = document.getElementById('date');
         const timeInput = document.getElementById('hour');
-        const descriptionInput = document.getElementById('date');
+        const descriptionInput = document.getElementById('description');
         const priorityInput = document.getElementById('priority')
 
         const saveButtonActivitie = document.getElementById('save-act');
@@ -81,7 +81,7 @@ let activities = {
         }
         const printCards = () => {
             const newCards = window.createActivityCard(titleInput, dateInput, timeInput, descriptionInput, priorityInput);
-            const cardsSpace = document.getElementById('cards-act');
+            const cardsSpace = document.getElementById('cards-act-container');
             cardsSpace.innerHTML += newCards;
         }
         saveButtonActivitie.addEventListener('click', printCards)
