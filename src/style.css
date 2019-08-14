@@ -126,7 +126,6 @@ footer {
     color: #011627;
     position: relative;
     left: 6rem;
-    top: 1rem;
     cursor: pointer;
 }
 
@@ -188,7 +187,6 @@ footer {
     border: none;
     width: 11.5rem;
     color: white;
-    position: relative;
     bottom: -1rem;
     font-size: 1.2rem;
     margin: 0.5rem;
@@ -262,8 +260,8 @@ footer {
 .description-fur textarea {
     border: 2px solid #EC0843;
     border-radius: 10px;
+    margin: 0.5rem;
 }
-
 
 .photo-fur{
     display: flex;
@@ -297,12 +295,45 @@ footer {
     border: none;
     width: 11.5rem;
     color: white;
-    position: relative;
     font-size: 1rem;
-    position: relative;
     margin: 0.5rem;
 }
 
+/*Activities section*/
+
+
+/*Activities modal*/
+.activitie-modal{
+    max-width: 100%;
+}
+
+.item-container{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.item-container input, 
+.item-container select{
+    width: 11rem;
+}
+
+.activitie-modal input, 
+.activitie-modal select,
+.activitie-modal textarea{
+    border-radius: 10px;
+    border: 2px solid #EC0843;
+    margin: 0.5rem 0;
+}
+
+.act-name, .activitie-modal textarea{
+    width: 100%;
+} 
+
+/* .modal-footer{
+    background-color: white;
+} */
 
 /*ID*/
 
