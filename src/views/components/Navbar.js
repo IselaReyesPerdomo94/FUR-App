@@ -44,7 +44,7 @@ let Navbar = {
         const signOutMob = document.getElementById('sign-out');
 
         signOutDesk.addEventListener('click', window.signOut);
-        signOutMob.addEventListener('click', signOut);
+        signOutMob.addEventListener('click', window.signOut);
     }
 }
 export default Navbar;
