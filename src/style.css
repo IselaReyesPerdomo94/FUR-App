@@ -558,17 +558,48 @@ p:hover {
 }
 
 .btn-btn-primary {
-    background-color: #EC0843;
+    background-color: white;
     border: none;
     border-radius: 8px;
     font-family: 'Oswald', sans-serif;
-    color: white;
+    color: #011627;
+    width: 7rem;
+    height: 3vh;
+    display: flex;
+    float: right;
 }
 
 .modal-title,
 #cerrar-publicar,
 #btn-publicar {
     font-family: 'Oswald', sans-serif;
+}
+.conteiner-post{
+    width: 19.1rem;
+    height: 20vh;
+    background-color: white;
+    border: 2px solid #EC0843;
+    
+    justify-content: center;
+}
+.crea-post{
+    width: 19rem;
+    height: 6vh;
+    background-color: #EC0843;
+    display: flex;
+    float: right;
+    
+}
+.c-post{
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    font-size: 1rem;
+    padding: 0.3rem;
+    
+}
+.conteiner-posts{
+    display: flex;
+    justify-content: center;
 }
 
 @media only screen and (min-width: 768px) {
@@ -640,9 +671,25 @@ p:hover {
         flex-direction: row-reverse;
         padding: 5rem;
     }
-}
-
-/* MI INFO */
+    .conteiner-post{
+        width: 50.1rem;
+        height: 20vh;
+        background-color: white;
+        border: 2px solid #EC0843;
+        justify-content: center; 
+    }
+    .crea-post{
+        width: 50rem;
+        height: 6vh;
+        background-color: #EC0843;
+        justify-content: left;
+    }
+    .c-post{
+        font-family: 'Oswald', sans-serif;
+        color: white;
+        font-size: 1rem;
+    }
+  /* MI INFO */
 
 .img-myinfo-content,
 .txt-myinfo {
@@ -667,8 +714,6 @@ p:hover {
     padding: 0.3rem;
     border: 2px solid #EC0843;
     border-radius: 10px;
-    
-
 }
 
 .img-myinfo {
@@ -676,3 +721,5 @@ p:hover {
     height: 5rem;
     margin: 2rem 0 0 0;
 }
+}
+
