@@ -100,6 +100,7 @@ const myInfo = {
         }
         saveFur.addEventListener('click', furCards)
     }
+    
 
 
 }

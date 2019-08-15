@@ -1,5 +1,5 @@
-const home = {
 
+const home = {
     render: async() => {
         const view = /*html*/ `
             <section class="home">
