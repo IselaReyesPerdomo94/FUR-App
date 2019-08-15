@@ -10,7 +10,7 @@ const goingHome = () => {
 
 //Going to profile function
 const goingProfile = () => {
-    location.hash = '/profile'
+    location.hash = '/mi-informacion'
 }
 
 const goingLogin = () => {
@@ -108,7 +108,20 @@ const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput
     }
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(()=> {
+             db.collection("users").add({
+             name: name,
+             email: email
+        })
+        .then(function(docRef) {
+          console.log("Document written with ID: ", docRef.id);
+        })
         .then(() => goingProfile())
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
+        });
+        }
+        )
         .catch(function(error) {
             // Handle Errors here.
             const errorCode = error.code;
@@ -118,7 +131,7 @@ const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput
             console.log(password);
 
         });
-    email - password.html;
+    email - password.html;      
 }
 
 const signInEmailPassword = (emailLogin, currentPassword) => {
@@ -148,7 +161,6 @@ const signInEmailPassword = (emailLogin, currentPassword) => {
                 alert('Tu contraseña es incorrecta')
             }
         });
-        savingUserData();
 }
 
 const signOut = () => {
@@ -178,16 +190,10 @@ const savingUserData = () => {
         .catch((error) => {
           console.error("Error adding document: ", error);
         });
-        goingHome();
-    } else {
-        // No user is signed in.
-        console.log('usuario no conectado')
-        goingLogin();
-    }
+    } 
 });   
+}
         
-    }
-
 
 //Activities function
 
@@ -220,6 +226,3 @@ window.signInEmailPassword = signInEmailPassword;
 window.signOut = signOut;
 window.createActivityCard = createActivityCard;
 window.createFurCard = createFurCard;
-
-
-
