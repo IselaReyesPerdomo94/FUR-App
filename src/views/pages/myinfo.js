@@ -1,7 +1,7 @@
-let myInfo = {
+const myInfo = {
 
     render: async() => {
-        let view = /*html*/
+        const view = /*html*/
             `   
         <section class="mi-info">
             <section class="profile-photo">
@@ -100,6 +100,7 @@ let myInfo = {
         }
         saveFur.addEventListener('click', furCards)
     }
+    
 
 
 }
