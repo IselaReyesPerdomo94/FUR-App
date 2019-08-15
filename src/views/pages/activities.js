@@ -76,28 +76,51 @@ let activities = {
         const priorityInput = document.getElementById('priority')
 
         const saveButtonActivitie = document.getElementById('save-act');
-        const eraseInputs = () => {
 
+        const eraseInputs = (titleInput, dateInput, timeInput, descriptionInput) => {
+            titleInput.value = '';
+            dateInput.value = '';
+            timeInput.value = '';
+            descriptionInput.value = '';
         }
+
+        const paintPriority = (priorityInput) => {
+            const priorityTitleList = document.getElementsByClassName('title-card-act');
+            const priorityTitle = priorityTitleList[priorityTitleList.length - 1];
+            if (priorityInput.value === 'low') {
+                priorityTitle.classList.add('title-low-prior');
+            } else if (priorityInput.value === 'mid') {
+                priorityTitle.classList.add('title-mid-prior');
+            } else {
+                priorityTitle.classList.add('title-high-prior');
+            }
+        }
+
         const printCards = () => {
             const newCards = window.createActivityCard(titleInput, dateInput, timeInput, descriptionInput, priorityInput);
             const cardsSpace = document.getElementById('cards-act-container');
             cardsSpace.innerHTML += newCards;
         }
-        saveButtonActivitie.addEventListener('click', printCards)
+        saveButtonActivitie.addEventListener('click', () => {
+            printCards();
+            paintPriority(priorityInput);
+            eraseInputs(titleInput, dateInput, timeInput, descriptionInput, priorityInput);
+        })
     }
 }
 
 
 const components = {
-       card : `<div class="card-act">
-                    <h1>*title*</h1>
+    card: `<div class="card-act">
+                <div class="title-card-act">
+                    <h5>*title*</h5>
+                </div>    
                     <span>Fecha: <span>*date*</span></span>
                     <span>Hora: <span>*time*</span></span>
                     <span>Descripción: <span>*description*</span></span>     
               </div>`
-    }
+}
 
-    export {components};
+export { components };
 
 export default activities;

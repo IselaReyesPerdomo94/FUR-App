@@ -1,5 +1,5 @@
 // aqui exportaras las funciones que necesites
-import {components}  from "../views/pages/activities.js";
+import { components } from "../views/pages/activities.js";
 
 //Home function
 const goingHome = () => {
@@ -160,14 +160,12 @@ const signOut = () => {
 
 //Activities function
 
-const createActivityCard = (titleInput, dateInput, timeInput, descriptionInput, priorityInput ) => {
+const createActivityCard = (titleInput, dateInput, timeInput, descriptionInput, priorityInput) => {
     const newCard = components.card
-    .replace('*title*', titleInput.value)
-    .replace('*date*', dateInput.value)
-    .replace('*time*', timeInput.value)
-    .replace('*description*', descriptionInput.value)
-
-console.log(priorityInput.value)
+        .replace('*title*', titleInput.value)
+        .replace('*date*', dateInput.value)
+        .replace('*time*', timeInput.value)
+        .replace('*description*', descriptionInput.value);
     return newCard;
 }
 
@@ -177,4 +175,3 @@ window.register = register;
 window.signInEmailPassword = signInEmailPassword;
 window.signOut = signOut;
 window.createActivityCard = createActivityCard;
-
