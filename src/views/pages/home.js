@@ -27,17 +27,15 @@ const home = {
             </div>
             </div>
             <hr class="line-2">
+            <!--Trigger modal -->
            <div class="conteiner-posts">
-           <!-- Button trigger modal -->
-           <div class="conteiner-post">
+           <div class="conteiner-post" data-toggle="modal" data-target="#exampleModal">
            <div class="photo-post">
            </div>
-           <div class="crea-post">
+           <div class="crea-post" >
            <p class="c-post">Crear post</p>
            </div>
-           <button type="button" class="btn-btn-primary" data-toggle="modal" data-target="#exampleModal">
-           Comparte lo que piensas
-           </button>
+          
            </div>
 
 <!-- Modal -->
@@ -60,7 +58,7 @@ const home = {
      <div class="modal-footer">
      <button type="button" class="btn-btn-primary" data-dismiss="modal" id="cerrar-publicar"> <img src="img/picture.svg" alt="Agregar imagen" class="add-image"></button>
        <button type="button" class="btn-btn-primary" data-dismiss="modal" id="cerrar-publicar">Cerrar</button>
-       <button type="button" class="btn-btn-primary" id="btn-publicar">Publicar</button>
+       <button type="button" class="btn-btn-primary" id="btn-post">Publicar</button>
      </div>
    </div>
  </div>
@@ -73,9 +71,32 @@ const home = {
         return view
     },
     after_render: async() => {
-        const publicationInput = document.getElementById('publicacion').value;
-        const post = document.getElementById('btn-publicar');
+      const postsButton = document.querySelector('#btn-post');
+      const user = firebase.auth().currentUser;
+      const postInput = document.getElementById('publicacion').value;
+
+      postsButton.addEventListener('click', () => {
+        const savingPostData = () => 
+              db.collection('posts').add({
+                name : user.displayName,
+                post : postInput,
+                photo: user.photoURL,
+                userID: user.uid
+              })
+              .then((docRef) => {
+                console.log("Document written with ID: ", docRef.id);
+                
+              })
+            })
+  
+          }
         
+      
     }
-}
+
+        
+       
+        
+    
+
 export default home;
