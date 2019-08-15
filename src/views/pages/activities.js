@@ -74,8 +74,8 @@ const activities = {
         const timeInput = document.getElementById('hour');
         const descriptionInput = document.getElementById('description');
         const priorityInput = document.getElementById('priority')
-
         const saveButtonActivitie = document.getElementById('save-act');
+        const user = firebase.auth().currentUser;
 
         const eraseInputs = (titleInput, dateInput, timeInput, descriptionInput) => {
             titleInput.value = '';
@@ -101,7 +101,32 @@ const activities = {
             const cardsSpace = document.getElementById('cards-act-container');
             cardsSpace.innerHTML += newCards;
         }
+
+        const savingActivitie = (titleInput, dateInput, timeInput, descriptionInput)=>{
+            const title = titleInput.value;
+            const date = dateInput.value;
+            const time = timeInput.value;
+            const description = descriptionInput.value;
+            db.collection("activities").add({
+                userID: user.uid,
+                name: user.displayName,
+                title: title,
+                date: date,
+                time: time,
+                description: description
+            })
+            .then(function(docRef) {
+                    console.log("Document written with ID: ", docRef.id);
+                    console.log("Guardando actividad")
+            })
+            .catch(function(error) {
+                    console.error("Error adding document: ", error);
+                    console.error("No se guarda nada")
+            });
+        }  
+        
         saveButtonActivitie.addEventListener('click', () => {
+            savingActivitie(titleInput, dateInput, timeInput, descriptionInput);
             printCards();
             paintPriority(priorityInput);
             eraseInputs(titleInput, dateInput, timeInput, descriptionInput, priorityInput);
