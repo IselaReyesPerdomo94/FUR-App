@@ -1,5 +1,6 @@
 // aqui exportaras las funciones que necesites
-import {components}  from "../views/pages/activities.js";
+import { components } from "../views/pages/activities.js";
+import { petCard } from "../views/pages/myinfo.js";
 
 //Home function
 const goingHome = () => {
@@ -160,15 +161,35 @@ const signOut = () => {
 
 //Activities function
 
-const createActivityCard = (titleInput, dateInput, timeInput, descriptionInput, priorityInput ) => {
+const createActivityCard = (titleInput, dateInput, timeInput, descriptionInput, priorityInput) => {
     const newCard = components.card
-    .replace('*title*', titleInput.value)
-    .replace('*date*', dateInput.value)
-    .replace('*time*', timeInput.value)
-    .replace('*description*', descriptionInput.value)
+        .replace('*title*', titleInput.value)
+        .replace('*date*', dateInput.value)
+        .replace('*time*', timeInput.value)
+        .replace('*description*', descriptionInput.value)
 
-console.log(priorityInput.value)
+    console.log(priorityInput.value)
     return newCard;
+}
+
+//Mi Info function
+
+const createFurCard = (furName, nickName, specie, ageFur, ageFurTwo, descriptionFur) => {
+    console.log(furName.value);
+    console.log(nickName.value);
+    // console.log(specie.value);
+    const newFurCard = petCard.card
+        .replace('*petName*', furName.value)
+        .replace('*nickName*', nickName.value)
+        .replace('*age*', ageFur.value)
+        .replace('*age2*', ageFurTwo.value)
+        .replace('*specie*', specie.value)
+        .replace('*about*', descriptionFur.value)
+
+    console.log(descriptionFur.value)
+    return newFurCard;
+
+
 }
 
 window.signInFacebook = signInFacebook;
@@ -177,4 +198,4 @@ window.register = register;
 window.signInEmailPassword = signInEmailPassword;
 window.signOut = signOut;
 window.createActivityCard = createActivityCard;
-
+window.createFurCard = createFurCard;
