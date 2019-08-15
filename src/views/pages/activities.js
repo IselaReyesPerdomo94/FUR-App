@@ -1,6 +1,6 @@
-let activities = {
+const activities = {
     render: async() => {
-        let view = /*html*/ `
+        const view = /*html*/ `
             <section class="activities">
                 <h1> Tus actividades </h1>
                 <h3 id="user-activities"></h3>
