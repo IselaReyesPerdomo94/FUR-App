@@ -1,6 +1,9 @@
 // aqui exportaras las funciones que necesites
 import { components } from "../views/pages/activities.js";
 
+import { petCard } from "../views/pages/myinfo.js";
+
+
 //Home function
 const goingHome = () => {
     location.hash = '/home';
@@ -160,13 +163,26 @@ const signOut = () => {
 
 //Activities function
 
-const createActivityCard = (titleInput, dateInput, timeInput, descriptionInput, priorityInput) => {
+const createActivityCard = (titleInput, dateInput, timeInput, descriptionInput) => {
     const newCard = components.card
         .replace('*title*', titleInput.value)
         .replace('*date*', dateInput.value)
         .replace('*time*', timeInput.value)
-        .replace('*description*', descriptionInput.value);
+        .replace('*description*', descriptionInput.value)
     return newCard;
+}
+
+//Mi Info function
+
+const createFurCard = (furName, nickName, specie, ageFur, ageFurTwo, descriptionFur) => {
+    const newFurCard = petCard.card
+        .replace('*petName*', furName.value)
+        .replace('*nickName*', nickName.value)
+        .replace('*age*', ageFur.value)
+        .replace('*age2*', ageFurTwo.value)
+        .replace('*specie*', specie.value)
+        .replace('*about*', descriptionFur.value)
+    return newFurCard;
 }
 
 window.signInFacebook = signInFacebook;
@@ -175,3 +191,7 @@ window.register = register;
 window.signInEmailPassword = signInEmailPassword;
 window.signOut = signOut;
 window.createActivityCard = createActivityCard;
+window.createFurCard = createFurCard;
+
+
+

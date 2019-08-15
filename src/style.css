@@ -341,7 +341,8 @@ footer {
     align-items: center;
 }
 
-.cards-act-container {
+
+.cards-act-container, .cards-fur-container {
     display: flex;
     flex-direction: column-reverse;
     width: 100%;
