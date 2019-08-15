@@ -1,7 +1,7 @@
-let profile = {
+const profile = {
 
     render: async() => {
-        let view = /*html*/ `
+        const view = /*html*/ `
             <section class="profile">
                 <h1> This is your profile homs </h1>
             </section>

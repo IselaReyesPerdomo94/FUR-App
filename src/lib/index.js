@@ -3,7 +3,6 @@ import { components } from "../views/pages/activities.js";
 
 import { petCard } from "../views/pages/myinfo.js";
 
-
 //Home function
 const goingHome = () => {
     location.hash = '/home';
@@ -41,6 +40,7 @@ const signInFacebook = () => {
             const credential = error.credential;
             // ...
         });
+        savingUserData();
 }
 
 
@@ -54,7 +54,6 @@ firebase.auth().onAuthStateChanged(function(user) {
         goingLogin();
     }
 });
-
 
 //Sign in Google
 const signInGoogle = () => {
@@ -78,6 +77,7 @@ const signInGoogle = () => {
             const credential = error.credential;
             // ...
         });
+        savingUserData();
 }
 
 const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput, acceptRegisterInput) => {
@@ -118,7 +118,7 @@ const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput
             console.log(password);
 
         });
-    email - password.html
+    email - password.html;
 }
 
 const signInEmailPassword = (emailLogin, currentPassword) => {
@@ -148,6 +148,7 @@ const signInEmailPassword = (emailLogin, currentPassword) => {
                 alert('Tu contraseña es incorrecta')
             }
         });
+        savingUserData();
 }
 
 const signOut = () => {
@@ -160,6 +161,33 @@ const signOut = () => {
             // An error happened.
         });
 }
+//Saving user data
+
+const savingUserData = () => {  
+    firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        db.collection("users").add({
+        name: user.displayName,
+        email: user.email, 
+        photo: user.photoURL,
+        userID: user.uid
+        })
+        .then(function(docRef) {
+          console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
+        });
+        goingHome();
+    } else {
+        // No user is signed in.
+        console.log('usuario no conectado')
+        goingLogin();
+    }
+});   
+        
+    }
+
 
 //Activities function
 

@@ -1,4 +1,4 @@
-let help = {
+const help = {
 
     render: async() => {
         let view = /*html*/ `
