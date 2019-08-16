@@ -28,16 +28,18 @@ const home = {
             </div>
             <hr class="line-2">
             <!--Trigger modal -->
-           <div class="conteiner-posts">
-           <div class="conteiner-post" data-toggle="modal" data-target="#exampleModal">
-           <div class="crea-post" >
-           <p class="c-post">Crear post</p>
-           </div>
-           <div class="photo-post">
-           </div>
-          
-           </div>
-
+            <div class="conteiner-posts">
+            <div class="conteiner-post" data-toggle="modal" data-target="#exampleModal">          
+            <div class="crea-post" >
+            <p class="c-post">Crear post</p>
+            </div>
+            <div class="photo-post">
+            <i class="fas fa-user-alt"></i>
+            <p class="think">¿En qué piensas?</p>
+            </div>
+           
+            </div>
+            </div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
  <div class="modal-dialog" role="document">

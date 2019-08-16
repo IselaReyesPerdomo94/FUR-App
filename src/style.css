@@ -552,7 +552,7 @@ p:hover {
     height: 2rem;
     width: 2rem;
 }
-
+/*Cajita para hacer post y elementos del modal*/
 .btn-btn-primary {
     background-color: white;
     border: none;
@@ -598,11 +598,22 @@ p:hover {
     justify-content: center;
 }
 .photo-post{
-    width: 5rem;
+    width: 15rem;
     height: 3vh;
-    background-image: url("img/fur-logo.png");
+    border: #EC0843;
+    display: flex;
+    justify-content: center;
+    
 }
-
+.think{
+    font-family: 'Oswald', sans-serif;
+    padding: 1rem;
+}
+.fa, .fa-user-alt{
+    color: #EC0843;
+    font-size: 3rem;
+    padding: 1rem;
+}
 @media only screen and (min-width: 768px) {
     .login {
         background-image: url("img/cat2.jpg");
@@ -677,7 +688,7 @@ p:hover {
         height: 20vh;
         background-color: white;
         border: 2px solid #EC0843;
-        justify-content: center; 
+         
     }
     .crea-post{
         width: 50rem;
@@ -690,10 +701,27 @@ p:hover {
         color: white;
         font-size: 1rem;
     }
+    .photo-post{
+        width: 15rem;
+        height: 3vh;
+        border: #EC0843;
+        display: flex;
+        justify-content: center;
+        
+    }
+    .think{
+        font-family: 'Oswald', sans-serif;
+        padding: 1rem;
+    }
+    .fa, .fa-user-alt{
+        color: #EC0843;
+        font-size: 3rem;
+        padding: 1rem;
+    }
   /* MI INFO */
 
-.img-myinfo-content,
-.txt-myinfo {
+    .img-myinfo-content,
+    .txt-myinfo {
     display: flex;
     flex-direction: column;
     width: 48%;
@@ -703,10 +731,10 @@ p:hover {
     background-color: #FFF1F1;
     color: #EC0843;
     font-size: 12px;   
-}
+     }
 
 
-.card-myinfo {
+    .card-myinfo {
     display: flex;
     justify-content: space-between;
     width: 90%;
@@ -715,12 +743,12 @@ p:hover {
     padding: 0.3rem;
     border: 2px solid #EC0843;
     border-radius: 10px;
-}
+    }
 
-.img-myinfo {
+    .img-myinfo {
     width: 7rem;
     height: 5rem;
     margin: 2rem 0 0 0;
+    } 
+    
 }
-}
-
