@@ -177,7 +177,7 @@ const signOut = () => {
 //Saving user data
 
 const savingUserData = () => {  
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         db.collection("users").add({
         name: user.displayName,
@@ -185,10 +185,10 @@ const savingUserData = () => {
         photo: user.photoURL,
         userID: user.uid
         })
-        .then(function(docRef) {
+        .then((docRef) =>{
           console.log("Document written with ID: ", docRef.id);
         })
-        .catch(function(error) {
+        .catch((error) => {
           console.error("Error adding document: ", error);
         });
     } 
