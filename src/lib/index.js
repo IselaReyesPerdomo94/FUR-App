@@ -171,6 +171,7 @@ const savingUserData = () => {
         email: user.email, 
         photo: user.photoURL,
         userID: user.uid
+
         })
         .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);
@@ -187,6 +188,7 @@ const savingUserData = () => {
 });   
         
     }
+
 
 
 //Activities function
@@ -220,6 +222,7 @@ window.signInEmailPassword = signInEmailPassword;
 window.signOut = signOut;
 window.createActivityCard = createActivityCard;
 window.createFurCard = createFurCard;
+window.saveFurInfo = saveFurInfo;
 
 
 
