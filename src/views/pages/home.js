@@ -30,10 +30,10 @@ const home = {
             <!--Trigger modal -->
            <div class="conteiner-posts">
            <div class="conteiner-post" data-toggle="modal" data-target="#exampleModal">
-           <div class="photo-post">
-           </div>
            <div class="crea-post" >
            <p class="c-post">Crear post</p>
+           </div>
+           <div class="photo-post">
            </div>
           
            </div>

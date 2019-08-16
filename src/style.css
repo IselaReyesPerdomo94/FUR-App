@@ -601,6 +601,11 @@ p:hover {
     display: flex;
     justify-content: center;
 }
+.photo-post{
+    width: 5rem;
+    height: 3vh;
+    background-image: url("img/fur-logo.png");
+}
 
 @media only screen and (min-width: 768px) {
     .login {
