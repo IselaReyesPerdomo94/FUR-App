@@ -111,7 +111,8 @@ const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput
         .then(()=> {
              db.collection("users").add({
              name: name,
-             email: email
+             email: email,
+             userID: user.uid
         })
         .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);
@@ -197,12 +198,13 @@ const savingUserData = () => {
 
 //Activities function
 
-const createActivityCard = (titleInput, dateInput, timeInput, descriptionInput) => {
+const createActivityCard = (title, date, time, description, priority) => {
     const newCard = components.card
-        .replace('*title*', titleInput.value)
-        .replace('*date*', dateInput.value)
-        .replace('*time*', timeInput.value)
-        .replace('*description*', descriptionInput.value)
+        .replace('*title*', title)
+        .replace('*date*', date)
+        .replace('*time*', time)
+        .replace('*description*', description)
+        .replace("*priority*",priority)
     return newCard;
 }
 
