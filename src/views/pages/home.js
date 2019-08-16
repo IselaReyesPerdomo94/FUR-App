@@ -73,28 +73,32 @@ const home = {
     after_render: async() => {
       const postsButton = document.querySelector('#btn-post');
       const user = firebase.auth().currentUser;
-      const postInput = document.getElementById('publicacion').value;
+      // Initialize Cloud Firestore through Firebase
+      
+      
+      const savingPostData = (postInput) => {
 
+        
+        db.collection('posts').add({
+          name : user.displayName,
+          post : postInput,
+          photo: user.photoURL,
+          userID: user.uid
+        })
+        .then((docRef) => {
+          console.log("Document written with ID: ", docRef.id);
+          
+        })
+        .catch((error) => {
+          console.error("Error adding document: ", error);
+        })
+      }
+      console.log(savingPostData);
+      
       postsButton.addEventListener('click', () => {
-        console.log('canito');
-        
-        const savingPostData = () => 
-        console.log('canito2');
-        
-              db.collection('posts').add({
-                name : user.displayName,
-                post : postInput,
-                photo: user.photoURL,
-                userID: user.uid
-              })
-              .then((docRef) => {
-                console.log("Document written with ID: ", docRef.id);
-                
-              })
-              .catch((error) => {
-                console.error("Error adding document: ", error);
-              })
-            })
+        const postInput = document.getElementById('publicacion').value;
+        savingPostData(postInput);
+      })
   
           }
         
