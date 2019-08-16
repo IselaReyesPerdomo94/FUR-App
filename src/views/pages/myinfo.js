@@ -77,8 +77,6 @@ const myInfo = {
     
   
             `
-
-
         return view
     },
     after_render: async() => {
@@ -88,53 +86,29 @@ const myInfo = {
         const ageFur = document.getElementById('age-input');
         const ageFurTwo = document.getElementById('age-complement-input');
         const descriptionFur = document.getElementById('description-input');
-
+        const cardFurSpace = document.getElementById('cards-fur-container');
         const saveFur = document.getElementById('save');
+
         const eraseInputs = () => {
-
         }
+
         const furCards = () => {
-            const newFurCard = window.createFurCard(furName, nickName, specie, ageFur, ageFurTwo, descriptionFur);
-            const cardFurSpace = document.getElementById('cards-fur-container');
-            cardFurSpace.innerHTML += newFurCard;
         }
+
+        const saveFurInfo = () => {
+             
+        }
+
         saveFur.addEventListener('click', () => {
-          window.saveFurInfo 
-
-
+          saveFurInfo()
         })
 
+  
     }
-
-    // Save My info
-
-    const saveFurInfo = (furName, nickName, specie, ageFur, ageFurTwo, descriptionFur) => {
-             const furName = furName.value;
-             const nickName = nickName.value;
-             const ageFur = ageFur.value;
-             const ageFurTwo = ageFurTwo.value;
-             const specie = specie.value;
-             const description =descriptionFur.value;
-             db.collection("pets").add({
-                uidFurCreator: user.uid, 
-                petsName : furName.value,
-                petsNickname : nickName.value,
-                petSpecie : specie.value,
-                petsAge : ageFur.value,
-                petsAgeTime : ageFurTwo.value,
-                petsInfo : descriptionFur.value,  
-             })
-
-             .then(function(docRef) {
-              console.log("Guardando información de FUR", docRef.id);
-            })
-            .catch(function(error) {
-              console.error("Error de información ", error);
-            }); 
 
     }
 
-}
+
 
 
 const petCard = {
