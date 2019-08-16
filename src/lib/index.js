@@ -10,7 +10,7 @@ const goingHome = () => {
 
 //Going to profile function
 const goingProfile = () => {
-    location.hash = '/profile'
+    location.hash = '/mi-informacion'
 }
 
 const goingLogin = () => {
@@ -108,7 +108,21 @@ const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput
     }
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(()=> {
+             db.collection("users").add({
+             name: name,
+             email: email,
+             userID: user.uid
+        })
+        .then(function(docRef) {
+          console.log("Document written with ID: ", docRef.id);
+        })
         .then(() => goingProfile())
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
+        });
+        }
+        )
         .catch(function(error) {
             // Handle Errors here.
             const errorCode = error.code;
@@ -118,7 +132,7 @@ const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput
             console.log(password);
 
         });
-    email - password.html;
+    email - password.html;      
 }
 
 const signInEmailPassword = (emailLogin, currentPassword) => {
@@ -148,7 +162,6 @@ const signInEmailPassword = (emailLogin, currentPassword) => {
                 alert('Tu contraseña es incorrecta')
             }
         });
-        savingUserData();
 }
 
 const signOut = () => {
@@ -164,7 +177,7 @@ const signOut = () => {
 //Saving user data
 
 const savingUserData = () => {  
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         db.collection("users").add({
         name: user.displayName,
@@ -173,32 +186,27 @@ const savingUserData = () => {
         userID: user.uid
 
         })
-        .then(function(docRef) {
+        .then((docRef) =>{
           console.log("Document written with ID: ", docRef.id);
         })
-        .catch(function(error) {
+        .catch((error) => {
           console.error("Error adding document: ", error);
         });
-        goingHome();
-    } else {
-        // No user is signed in.
-        console.log('usuario no conectado')
-        goingLogin();
-    }
+    } 
 });   
+}
         
-    }
-
 
 
 //Activities function
 
-const createActivityCard = (titleInput, dateInput, timeInput, descriptionInput) => {
+const createActivityCard = (title, date, time, description, priority) => {
     const newCard = components.card
-        .replace('*title*', titleInput.value)
-        .replace('*date*', dateInput.value)
-        .replace('*time*', timeInput.value)
-        .replace('*description*', descriptionInput.value)
+        .replace('*title*', title)
+        .replace('*date*', date)
+        .replace('*time*', time)
+        .replace('*description*', description)
+        .replace("*priority*",priority)
     return newCard;
 }
 
@@ -223,6 +231,3 @@ window.signOut = signOut;
 window.createActivityCard = createActivityCard;
 window.createFurCard = createFurCard;
 window.saveFurInfo = saveFurInfo;
-
-
-

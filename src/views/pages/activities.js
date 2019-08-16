@@ -69,14 +69,18 @@ const activities = {
         return view
     },
     after_render: async() => {
+        const firestore = firebase.firestore();
         const titleInput = document.getElementById('title');
         const dateInput = document.getElementById('date');
         const timeInput = document.getElementById('hour');
         const descriptionInput = document.getElementById('description');
         const priorityInput = document.getElementById('priority')
+        const cardsSpace = document.getElementById('cards-act-container');
 
         const saveButtonActivitie = document.getElementById('save-act');
-
+        
+        const user = firebase.auth().currentUser;
+        //prueba para jalar info de un solo usuario;
         const eraseInputs = (titleInput, dateInput, timeInput, descriptionInput) => {
             titleInput.value = '';
             dateInput.value = '';
@@ -84,35 +88,64 @@ const activities = {
             descriptionInput.value = '';
         }
 
-        const paintPriority = (priorityInput) => {
-            const priorityTitleList = document.getElementsByClassName('title-card-act');
-            const priorityTitle = priorityTitleList[priorityTitleList.length - 1];
-            if (priorityInput.value === 'low') {
-                priorityTitle.classList.add('title-low-prior');
-            } else if (priorityInput.value === 'mid') {
-                priorityTitle.classList.add('title-mid-prior');
-            } else {
-                priorityTitle.classList.add('title-high-prior');
-            }
-        }
+        const savingActivitie = (title, date, time, description, priority)=>{
 
-        const printCards = () => {
-            const newCards = window.createActivityCard(titleInput, dateInput, timeInput, descriptionInput, priorityInput);
-            const cardsSpace = document.getElementById('cards-act-container');
-            cardsSpace.innerHTML += newCards;
+            db.collection('activities').add({
+                userID: user.uid,
+                name: user.displayName,
+                title: title,
+                date: date,
+                time: time,
+                description: description,
+                priority: priority
+            })
+            .then(function(docRef) {
+                    console.log('Document written with ID: ', docRef.id);
+                    console.log('Guardando actividad')
+            })
+            .then( ()=> {
+                const newActCard = window.createActivityCard(title, date, time, description, priority);
+                cardsSpace.innerHTML += newActCard;
+            })
+            .catch(function(error) {
+                    console.error('Error adding document: ', error);
+                    console.error('No se guarda nada')
+            });
+        }  
+
+        const gettingCardFromFirebase = () => {
+            firestore.collection('activities').where("userID","==",user.uid)
+                .get()
+                .then((snapshot) => {
+                    snapshot.forEach(element => {
+                       const {title, date, time, description, priority} = element.data();
+                       const newCards = window.createActivityCard(title, date, time, description, priority)
+                       cardsSpace.innerHTML += newCards;
+                    });
+                })
         }
+        
+        gettingCardFromFirebase();
+
         saveButtonActivitie.addEventListener('click', () => {
-            printCards();
-            paintPriority(priorityInput);
+            const title = titleInput.value;
+            const date = dateInput.value;
+            const time = timeInput.value;
+            const description = descriptionInput.value;
+            const priority = priorityInput.value;
+
+            savingActivitie(title, date, time, description, priority);
             eraseInputs(titleInput, dateInput, timeInput, descriptionInput, priorityInput);
         })
+
+        
     }
 }
 
 
 const components = {
     card: `<div class="card-act">
-                <div class="title-card-act">
+                <div class="title-card-act *priority*">
                     <h5>*title*</h5>
                 </div>    
                     <span>Fecha: <span>*date*</span></span>
