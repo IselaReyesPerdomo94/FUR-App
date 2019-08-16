@@ -80,6 +80,7 @@ const myInfo = {
         return view
     },
     after_render: async() => {
+        const firestore = firebase.firestore();
         const furName = document.getElementById('fur-name-input');
         const nickName = document.getElementById('nickname-input');
         const specie = document.getElementById('specie-input');
@@ -89,24 +90,74 @@ const myInfo = {
         const cardFurSpace = document.getElementById('cards-fur-container');
         const saveFur = document.getElementById('save');
 
-        const eraseInputs = () => {
+        const user = firebase.auth().currentUser;
+
+        const eraseInputs = (furName, nickName, ageFur, ageFurTwo, specie, descriptionFur) => {
+            furName.value = '';
+            nickName = '';
+            ageFur = '';
+            ageFurTwo = '';
+            specie = '';
+            descriptionFur = '';
         }
 
-        const furCards = () => {
+        const saveFurInfo = (namefur, furnickname, furage, furagetwo, furspecie, furdescription) => {
+            db.collection('pets').add({
+                    userID: user.uid,
+                    name: user.displayName,
+                    petname: namefur,
+                    petnickname: furnickname,
+                    petage: furage,
+                    petagetwo: furagetwo,
+                    petspecie: furspecie,
+                    petdescription: furdescription,
+
+                })
+                .then((docRef) => {
+                    console.log('Document written with ID', docRef);
+                    console.log('Guardando mascota')
+                })
+                .then(() => {
+                    const newPetCard = window.createFurCard(namefur, furnickname, furage, furagetwo, furspecie, furdescription);
+                    cardFurSpace.innerHTML += newPetCard;
+                })
+                .catch((error) => {
+                    console.error('Error adding document: ', error);
+                    console.error('Error al guardar mascota')
+                });
         }
 
-        const saveFurInfo = () => {
-             
+        const gettingFurCardsfromFirebase = () => {
+            firestore.collection('pets').where('userID', '==', user.uid)
+                .get()
+                .then((snapshot) => {
+                    snapshot.forEach(element => {
+                        const { petname, petnickname, petspecie, petage, petagetwo, petdescription } = element.data();
+                        const newPetCard = window.createFurCard(petname, petnickname, petspecie, petage, petagetwo, petdescription)
+                        cardFurSpace.innerHTML += newPetCard;
+                    })
+                })
         }
 
+        gettingFurCardsfromFirebase();
         saveFur.addEventListener('click', () => {
-          saveFurInfo()
+            const namefur = furName.value;
+            const furnickname = nickName.value;
+            const furage = ageFur.value;
+            const furagetwo = ageFurTwo.value;
+            const furspecie = specie.value;
+            const furdescription = descriptionFur.value;
+
+            saveFurInfo(namefur, furnickname, furage, furagetwo, furspecie, furdescription)
+            eraseInputs(furName, nickName, ageFur, ageFurTwo, specie, descriptionFur);
+
         })
 
-  
-    }
+
 
     }
+
+}
 
 
 
@@ -129,4 +180,4 @@ const petCard = {
 }
 
 export { petCard };
-export default myInfo;
+export default myInfo
