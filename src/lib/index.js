@@ -229,3 +229,5 @@ window.signInEmailPassword = signInEmailPassword;
 window.signOut = signOut;
 window.createActivityCard = createActivityCard;
 window.createFurCard = createFurCard;
+window.goingLogin = goingLogin;
+

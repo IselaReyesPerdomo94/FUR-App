@@ -65,7 +65,7 @@ const router = async() => {
             // No user is signed in.
             console.log('usuario no conectado')
 
-            goingLogin();
+            window.goingLogin();
         }
     });
 
