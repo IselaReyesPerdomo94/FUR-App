@@ -64,7 +64,6 @@ const router = async() => {
         } else {
             // No user is signed in.
             console.log('usuario no conectado')
-
             window.goingLogin();
         }
     });
@@ -77,4 +76,3 @@ window.addEventListener('hashchange', router);
 
 // Listen on page load:
 window.addEventListener('load', router);
-
