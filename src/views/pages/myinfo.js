@@ -62,7 +62,7 @@ const myInfo = {
             </div> 
             <div class="modal-footer">
             <div class="save">
-            <button type="button" class="buttons" id="save">Guardar</button> 
+            <button type="button" class="buttons" id="save" data-dismiss="modal">Guardar</button> 
             </div>
                     
                   </div>
@@ -77,8 +77,6 @@ const myInfo = {
     
   
             `
-
-
         return view
     },
     after_render: async() => {
@@ -88,22 +86,29 @@ const myInfo = {
         const ageFur = document.getElementById('age-input');
         const ageFurTwo = document.getElementById('age-complement-input');
         const descriptionFur = document.getElementById('description-input');
-
+        const cardFurSpace = document.getElementById('cards-fur-container');
         const saveFur = document.getElementById('save');
+
         const eraseInputs = () => {
-
         }
+
         const furCards = () => {
-            const newFurCard = window.createFurCard(furName, nickName, specie, ageFur, ageFurTwo, descriptionFur);
-            const cardFurSpace = document.getElementById('cards-fur-container');
-            cardFurSpace.innerHTML += newFurCard;
         }
-        saveFur.addEventListener('click', furCards)
+
+        const saveFurInfo = () => {
+             
+        }
+
+        saveFur.addEventListener('click', () => {
+          saveFurInfo()
+        })
+
+  
     }
-    
+
+    }
 
 
-}
 
 
 const petCard = {
@@ -111,7 +116,7 @@ const petCard = {
   <div class="card-myinfo">
   <div class="img-myinfo-content">
     <h3>*petName*</h3>
-    <img src="*img*"/ class="img-myinfo">
+    <!--<img src="*img*"/ class="img-myinfo">-->
   </div>
   <div class="txt-myinfo"> 
     <p>Apodos:<span>*nickName*</span></p>

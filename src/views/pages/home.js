@@ -56,9 +56,12 @@ const home = {
      <div class="image">
      </div> 
      <div class="modal-footer">
+     <selector>
+
+     </selector>
      <button type="button" class="btn-btn-primary" data-dismiss="modal" id="cerrar-publicar"> <img src="img/picture.svg" alt="Agregar imagen" class="add-image"></button>
        <button type="button" class="btn-btn-primary" data-dismiss="modal" id="cerrar-publicar">Cerrar</button>
-       <button type="button" class="btn-btn-primary" id="btn-post">Publicar</button>
+       <button type="button" class="btn-btn-primary" id="btn-post" data-toggle="modal" data-target="#exampleModal">Publicar</button>
      </div>
    </div>
  </div>
@@ -72,11 +75,11 @@ const home = {
     },
     after_render: async() => {
       const postsButton = document.querySelector('#btn-post');
-      const user = firebase.auth().currentUser;
       // Initialize Cloud Firestore through Firebase
       
       
       const savingPostData = (postInput) => {
+        const user = firebase.auth().currentUser;
 
         
         db.collection('posts').add({
@@ -96,7 +99,7 @@ const home = {
       console.log(savingPostData);
       
       postsButton.addEventListener('click', () => {
-        const postInput = document.getElementById('publicacion').value;
+        const postInput = document.querySelector('#publicacion').value;
         savingPostData(postInput);
       })
   
