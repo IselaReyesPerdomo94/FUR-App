@@ -62,7 +62,7 @@ const myInfo = {
             </div> 
             <div class="modal-footer">
             <div class="save">
-            <button type="button" class="buttons" id="save">Guardar</button> 
+            <button type="button" class="buttons" id="save" data-dismiss="modal">Guardar</button> 
             </div>
                     
                   </div>
@@ -98,10 +98,41 @@ const myInfo = {
             const cardFurSpace = document.getElementById('cards-fur-container');
             cardFurSpace.innerHTML += newFurCard;
         }
-        saveFur.addEventListener('click', furCards)
-    }
-    
+        saveFur.addEventListener('click', () => {
+          window.saveFurInfo 
 
+
+        })
+
+    }
+
+    // Save My info
+
+    const saveFurInfo = (furName, nickName, specie, ageFur, ageFurTwo, descriptionFur) => {
+             const furName = furName.value;
+             const nickName = nickName.value;
+             const ageFur = ageFur.value;
+             const ageFurTwo = ageFurTwo.value;
+             const specie = specie.value;
+             const description =descriptionFur.value;
+             db.collection("pets").add({
+                uidFurCreator: user.uid, 
+                petsName : furName.value,
+                petsNickname : nickName.value,
+                petSpecie : specie.value,
+                petsAge : ageFur.value,
+                petsAgeTime : ageFurTwo.value,
+                petsInfo : descriptionFur.value,  
+             })
+
+             .then(function(docRef) {
+              console.log("Guardando información de FUR", docRef.id);
+            })
+            .catch(function(error) {
+              console.error("Error de información ", error);
+            }); 
+
+    }
 
 }
 
@@ -111,7 +142,7 @@ const petCard = {
   <div class="card-myinfo">
   <div class="img-myinfo-content">
     <h3>*petName*</h3>
-    <img src="*img*"/ class="img-myinfo">
+    <!--<img src="*img*"/ class="img-myinfo">-->
   </div>
   <div class="txt-myinfo"> 
     <p>Apodos:<span>*nickName*</span></p>
