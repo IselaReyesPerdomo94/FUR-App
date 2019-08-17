@@ -85,7 +85,6 @@ const home = {
     after_render: async() => {
       const postsButton = document.querySelector('#btn-post');
       const selectFilter = document.querySelector('.select-filter');
-      // Initialize Cloud Firestore through Firebase
       
       //Guardar data de los post
       const savingPostData = (postInput, postFilter) => {
@@ -107,11 +106,10 @@ const home = {
           console.error("Error adding document: ", error);
         })
       }
-      //Guardar data de los filtros
 
       console.log(savingPostData);
 
-      //Evento para guardar valores de input y filtro
+      //Método para obtener la data de los post
       db.collection("posts").get().then((querySnapshot) => {
         const root = document.getElementById("root");
         let str = ' ';
@@ -119,10 +117,13 @@ const home = {
             console.log(`${doc.id} => ${doc.data().post} => ${doc.data().name}`);
             str += `
             <div class="post-print conteiner-post">
-            <img src="${doc.data().photo}" alt="gatito" class="kitty">
-
+            <div class="profile-reactions">
+            <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
+            <p class="think t">${doc.data().name}</p>
+            </div>
+            <div>
             <p class="think">Post: ${doc.data().post} </p>
-            <p class="think">Publicado por: ${doc.data().name}</p>
+            </div>
             </div>
             `;
 
@@ -130,12 +131,14 @@ const home = {
         root.innerHTML = str; 
       });
       postsButton.addEventListener('click', () => {
+        //Guarda data de los filtros
         const postInput = document.querySelector('#publicacion').value;
+        //Guarda filtro seleccionado
         const postFilter =(selectFilter.options[selectFilter.selectedIndex].value);
         savingPostData(postInput, postFilter);
         
       })
-      //Obtener data 
+       
   
           }
         
