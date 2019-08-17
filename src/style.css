@@ -308,11 +308,7 @@ footer {
   box-sizing: border-box;  
    display: flex;
    justify-content: space-between;
-<<<<<<< HEAD
-   width: 70%;
-=======
    width: 90%;
->>>>>>> 99d8e150f65b66b3a2e9a8a5294b745bafb13fe0
    height: 13rem;
    background-color: white;
    padding: 0.9rem;
@@ -341,7 +337,7 @@ footer {
     font-size: 16px;
     text-align: justify;
 }
-
+/* Estilizando textos de cartas */
 .img-myinfo-content h3{
     font-size: 1rem;
     padding: 7px;
@@ -361,7 +357,7 @@ footer {
     color: #011627;
     font-weight: normal;
 } 
-
+/* Imagen de la mascota */
 .img-myinfo {
     width: 6rem;
     height: 5rem;
@@ -652,7 +648,7 @@ footer {
     flex-direction: column;
 }
 
-}
+
 
 .profile-header{
     color: white;
