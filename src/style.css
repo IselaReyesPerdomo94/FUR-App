@@ -203,6 +203,10 @@ footer {
 
 .profile-photo {
     font-family: 'Ropa sans';
+    background-color: white;
+    height: 20vh;
+    width: 90%;
+    margin: 1rem;
 }
 
 .photo {
@@ -297,57 +301,63 @@ footer {
 /* Cards Mi info */
 
 .mi-info {
-   
     background-image: url("img/peces-betta (1).jpg");
-    background-repeat: no-repeat;
+    background-size: auto;
 }
 .card-myinfo {
   box-sizing: border-box;  
    display: flex;
-   justify-content: space-between 1;
-   width: 70%;
+   justify-content: space-between;
+   width: 90%;
    height: 13rem;
-   background-color: #FFF1F1;
-   padding: 0.3rem;
+   background-color: white;
+   padding: 0.9rem;
    border-radius: 10px; 
    margin: 1rem; 
-   justify-content: center   
+   border: 2px dashed #41EAD4;
 }
 
 .img-myinfo-content,
 .txt-myinfo {
     display: flex;
     flex-direction: column;
-    width: 48%;
-    height: 12rem;    
+    width: 40%;
+    height: 11rem;    
     color: #EC0843; 
     align-items: center;
     justify-content: center; 
 }
 
 .txt-myinfo {
-    float: left;
-
-    justify-content: center;
-    background-color: #FFF1F1;
-    color: #EC0843;
+    width: 60%;
+    display:flex;
+    flex-direction:column;
+    background-color: white;
+    color: #011627;
     font-size: 16px;
+    text-align: justify;
 }
 
 .img-myinfo-content h3{
     font-size: 1rem;
     padding: 7px;
     border-radius: 10px;
-    border: 1.5px dashed #EC0843;
+    border: 1.5px dashed #011627;
+    color: #011627;
 }
 
 .txt-myinfo p {
     float: left;
     font-size: 14px;
-    font-weight: bold;
-      
+    font-weight: bold;  
+    color: #011627;
 }
  
+.txt-myinfo span{
+    color: #011627;
+    font-weight: normal;
+} 
+
 .img-myinfo {
     width: 6rem;
     height: 5rem;
@@ -789,50 +799,45 @@ footer {
     }
   
   /* MI INFO */
-  .mi-info {
-    background-image: url("img/Cómo-Saber-si-un-Periquito-está-Enfermo-300x235.jpg");
-    background-repeat: no-repeat;
-}
-.card-myinfo {
+    .mi-info {
+        background-image: url("img/Cómo-Saber-si-un-Periquito-está-Enfermo-300x235.jpg");
+        background-repeat: no-repeat;
+        background-size: auto;
+        background-position: left;  
+    }
+    .cards-fur-container{
+        flex-direction: row-reverse;
+        flex-wrap: wrap;
+    }
+
+    .card-myinfo {
   /* box-sizing: border-box;   */
-   width: 33%;
-   height: 11rem;
-   padding: 0.3rem;
-   justify-content: center;
- 
-}
+        width: 33%;
+        height: 11rem;
+        padding: 0.3rem;
+        justify-content: center;
+    }
 
-.img-myinfo-content,
-.txt-myinfo {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-    height: 10rem;    
-    align-items: center;
-    justify-content: center; 
-
-}
-    /* MI INFO */
     .img-myinfo-content,
     .txt-myinfo {
         display: flex;
         flex-direction: column;
-        width: 48%;
-        height: 12rem;
+        width: 40%;
+        height: 12rem;    
         align-items: center;
-        justify-content: center;
-        background-color: #FFF1F1;
-        color: #EC0843;
-        font-size: 12px;
+        justify-content: center; 
     }
+
+    .txt-myinfo{
+        width: 60%;
+    }
+    /* MI INFO */
     .card-myinfo {
         display: flex;
         justify-content: space-between;
-        width: 90%;
+        width: 35%;
         height: 13rem;
-        background-color: #FFF1F1;
         padding: 0.3rem;
-        border: 2px solid #EC0843;
         border-radius: 10px;
     }
     .img-myinfo {
@@ -850,8 +855,8 @@ footer {
         grid-template-areas: "first mid-photo third";
     }
     .mid-photo img {
-    height: 9rem;
-    border-radius: 100%;
+        height: 9rem;
+        border-radius: 100%;
     }
 
 }
