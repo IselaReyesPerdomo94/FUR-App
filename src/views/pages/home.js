@@ -34,7 +34,7 @@ const home = {
             <p class="c-post">Crear post</p>
             </div>
             <div class="photo-post">
-            <i class="fas fa-user-alt"></i>
+            <div id="root-1"></div>
             <p class="think">¿En qué piensas?</p>
             </div>
            
@@ -111,12 +111,15 @@ const home = {
 
       //Método para obtener la data de los post
       db.collection("posts").get().then((querySnapshot) => {
-        const root = document.getElementById("root");
+        const root = document.querySelector("#root");
+        const rootProfile = document.querySelector("#root-1");
         let str = ' ';
+        let strProfile = ' ';
+
         querySnapshot.forEach((doc) => {
             console.log(`${doc.id} => ${doc.data().post} => ${doc.data().name}`);
             str += `
-            <div class="post-print conteiner-post">
+            <div class="post-print conteiner-post-home">
             <div class="profile-reactions">
             <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
             <p class="think t">${doc.data().name}</p>
@@ -126,9 +129,15 @@ const home = {
             </div>
             </div>
             `;
+            strProfile = `
+            <div>
+            <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
+            </div>
+            `;
 
         });
-        root.innerHTML = str; 
+        root.innerHTML = str;
+        rootProfile.innerHTML = strProfile;
       });
       postsButton.addEventListener('click', () => {
         //Guarda data de los filtros
