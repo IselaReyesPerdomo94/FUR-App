@@ -3,9 +3,9 @@ const home = {
     render: async() => {
         const view = /*html*/ `
             <section class="home">
-            <hr class="line-1">
-            <div class="flex-container">
-            <div>
+              <hr class="line-1">
+              <div class="flex-container">
+              <div>
             <img src="img/happy-emoticon-with-one-tooth.svg" alt="Memes" class="memes">
             <p class="etiquetas-filtrado">Memes</p>
             </div>
@@ -55,12 +55,7 @@ const home = {
        </button>
      </div>
      <div class="modal-body">
-       <textarea placeholder="¿En que piensas?" class="publicacion" id="publicacion"></textarea>
-     </div>
-     <div class="image">
-     </div> 
-     <div class="modal-footer">
-     <select name="" class="select-filter">
+     <select name="tema" class="select-filter">
      <option value="All">¿Sobre qué tema publicarás?</option>
      <option value="Meme">Meme</option>
      <option value="Veterinario">Veterinario</option>
@@ -68,8 +63,13 @@ const home = {
      <option value="Tips">Tips</option>
      <option value="Perdidos">Perdidos</option>
      </select>
+       <textarea placeholder="¿En que piensas?" class="publicacion" id="publicacion"></textarea>
+     </div>
+     <div class="image">
+     </div> 
+     <div class="modal-footer">
+     
 
-       <button type="button" class="btn-btn-primary" data-dismiss="modal" id="cerrar-publicar"><p class="btn-text">Cerrar</p></button>
        <button type="button" class="btn-btn-primary" id="btn-post" data-toggle="modal" data-target="#exampleModal"><p class="btn-text">Publicar</p></button>
      </div>
    </div>
@@ -107,8 +107,6 @@ const home = {
         })
       }
 
-      console.log(savingPostData);
-
       //Método para obtener la data de los post
       db.collection("posts").get().then((querySnapshot) => {
         const user = firebase.auth().currentUser;
@@ -116,27 +114,34 @@ const home = {
         const rootProfile = document.querySelector("#root-1");
         let str = ' ';
         let strProfile = ' ';
-
+         
         querySnapshot.forEach((doc) => {
-            console.log(`${doc.id} => ${doc.data().post} => ${doc.data().name}`);
+          let theme = doc.data().filter;
+          if(theme == undefined){
+            
+          theme = 'General';
+          console.log('se cambio theme por', theme)
+        } 
             str += `
             <div class="post-print conteiner-post-home">
-            <div class="profile-reactions">
-            <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
-            <p class="think t">${doc.data().name}</p>
-            </div>
-            <div>
-            <p class="think th">Post: ${doc.data().post} </p>
-            </div>
-            </div>
-            `;
-            strProfile = `
-            <div>
-            <img src="${user.photoURL}" alt="Foto de perfil" class="photo-profile">
+              <div class="profile-reactions">
+                <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
+                <p class="think t">${doc.data().name}</p>
+              </div>
+              <div>
+                <p class="think th" id="tema">Tema: ${theme} </p>
+                <p class="think th"> ${doc.data().post} </p>
+              </div>
+              </div>
+              `;
+              strProfile = `
+              <div>
+                  <img src="${user.photoURL}" alt="Foto de perfil" class="photo-profile">
             </div>
             `;
 
         });
+        
         root.innerHTML = str;
         rootProfile.innerHTML = strProfile;
       });

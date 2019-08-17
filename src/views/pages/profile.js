@@ -7,25 +7,24 @@ const profile = {
                     <div class="first">
                         <p>Soy: </p>
                     </div>
-                    <div class="mid-photo">
-                        
-                        
-                    </div>
-                    <div class="third">
-                        <figure>
-                            <i class="fas fa-paw"></i>
-                        </figure>
-                        <p>Perro: Fetuccini </p>
-                    </div>
+                <div class="mid-photo">    
+                </div>
+                <div class="third">
+                    <figure>
+                        <i class="fas fa-paw"></i>
+                    </figure>
+                    <p>Perro: Fetuccini </p>
+                </div>
                 </div>
                 <div class="conteiner-posts">
                     <div class="conteiner-post" data-toggle="modal" data-target="#exampleModal">
-                    <div class="photo-post">
+                        <div class="photo-post">
+                            <div class="crea-post" >
+                                <p class="c-post">Crear post</p>
+                            </div>
 
-                    </div>
-                    <div class="crea-post" >
-                        <p class="c-post">Crear post</p>
-                    </div>
+                        </div>
+                    </div>    
                 </div>
 
                 <!-- Modal -->
