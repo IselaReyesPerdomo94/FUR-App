@@ -526,7 +526,7 @@ p:hover {
     margin: 0.5rem;
     height: 22vh;
     width: 15rem;
-    border: 1px solid #EC0843;
+    border: 2px solid #EC0843;
     border-collapse: collapse;
 }
 
@@ -554,15 +554,18 @@ p:hover {
 }
 /*Cajita para hacer post y elementos del modal*/
 .btn-btn-primary {
-    background-color: white;
+    background-color: #EC0843;
     border: none;
-    border-radius: 8px;
-    font-family: 'Oswald', sans-serif;
-    color: #011627;
+    border-radius: 5px;
     width: 7rem;
-    height: 3vh;
+    height: 5vh;
     display: flex;
     float: right;
+}
+.btn-text{
+    margin: 0.5rem 0.5rem 4rem 2rem;
+    font-family: 'Oswald', sans-serif;
+    color: white;
 }
 
 .modal-title,
@@ -613,6 +616,16 @@ p:hover {
     color: #EC0843;
     font-size: 3rem;
     padding: 1rem;
+}
+.select-filter{
+    background-color: #EC0843;
+    border: 3px solid #EC0843;
+    border-radius: 5px;
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    
+    
+
 }
 @media only screen and (min-width: 768px) {
     .login {

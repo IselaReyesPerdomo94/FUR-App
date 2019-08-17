@@ -58,12 +58,17 @@ const home = {
      <div class="image">
      </div> 
      <div class="modal-footer">
-     <selector>
+     <select name="" class="select-filter">
+     <option value="All">¿Sobre qué tema publicarás?</option>
+     <option value="Meme">Meme</option>
+     <option value="Veterinario">Veterinario</option>
+     <option value="PetFriendly">PetFriendly</option>
+     <option value="Tips">Tips</option>
+     <option value="Perdidos">Perdidos</option>
+     </select>
 
-     </selector>
-     <button type="button" class="btn-btn-primary" data-dismiss="modal" id="cerrar-publicar"> <img src="img/picture.svg" alt="Agregar imagen" class="add-image"></button>
-       <button type="button" class="btn-btn-primary" data-dismiss="modal" id="cerrar-publicar">Cerrar</button>
-       <button type="button" class="btn-btn-primary" id="btn-post" data-toggle="modal" data-target="#exampleModal">Publicar</button>
+       <button type="button" class="btn-btn-primary" data-dismiss="modal" id="cerrar-publicar"><p class="btn-text">Cerrar</p></button>
+       <button type="button" class="btn-btn-primary" id="btn-post" data-toggle="modal" data-target="#exampleModal"><p class="btn-text">Publicar</p></button>
      </div>
    </div>
  </div>
