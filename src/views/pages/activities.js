@@ -6,12 +6,12 @@ const activities = {
                 <h3 id="user-activities"></h3>
                 <p>En este lugar puedes agregar las citas o actividades 
                 relacionadas con tus mascotas y así no olvidarlas. Si deseas agregar una solo da click en agregar actividad</p>
-
-                <div id="cards-act-container" class="cards-act-container">
-                </div>
                 <!-- Triggering modal -->
                 <button class="button-agree" value="+ Agregar actividad" id="plus-activitie" data-toggle="modal" data-target="#exampleModal">
                 + Agregar actividad</button>
+                <div id="cards-act-container" class="cards-act-container">
+                </div>
+                
 
                 <!-- Modal -->
 
@@ -70,6 +70,7 @@ const activities = {
     },
     after_render: async() => {
         const firestore = firebase.firestore();
+        const user = firebase.auth().currentUser;
         const titleInput = document.getElementById('title');
         const dateInput = document.getElementById('date');
         const timeInput = document.getElementById('hour');
@@ -78,8 +79,8 @@ const activities = {
         const cardsSpace = document.getElementById('cards-act-container');
 
         const saveButtonActivitie = document.getElementById('save-act');
+
         
-        const user = firebase.auth().currentUser;
         //prueba para jalar info de un solo usuario;
         const eraseInputs = (titleInput, dateInput, timeInput, descriptionInput) => {
             titleInput.value = '';
@@ -88,43 +89,43 @@ const activities = {
             descriptionInput.value = '';
         }
 
-        const savingActivitie = (title, date, time, description, priority)=>{
+        const savingActivitie = (title, date, time, description, priority) => {
 
             db.collection('activities').add({
-                userID: user.uid,
-                name: user.displayName,
-                title: title,
-                date: date,
-                time: time,
-                description: description,
-                priority: priority
-            })
-            .then((docRef) => {
+                    userID: user.uid,
+                    name: user.displayName,
+                    title: title,
+                    date: date,
+                    time: time,
+                    description: description,
+                    priority: priority
+                })
+                .then((docRef) => {
                     console.log('Document written with ID: ', docRef.id);
                     console.log('Guardando actividad')
-            })
-            .then( ()=> {
-                const newActCard = window.createActivityCard(title, date, time, description, priority);
-                cardsSpace.innerHTML += newActCard;
-            })
-            .catch((error) => {
+                })
+                .then(() => {
+                    const newActCard = window.createActivityCard(title, date, time, description, priority);
+                    cardsSpace.innerHTML += newActCard;
+                })
+                .catch((error) => {
                     console.error('Error adding document: ', error);
                     console.error('No se guarda nada')
-            });
-        }  
+                });
+        }
 
         const gettingCardFromFirebase = () => {
-            firestore.collection('activities').where("userID","==",user.uid)
+            firestore.collection('activities').where("userID", "==", user.uid)
                 .get()
                 .then((snapshot) => {
                     snapshot.forEach(element => {
-                       const {title, date, time, description, priority} = element.data();
-                       const newCards = window.createActivityCard(title, date, time, description, priority)
-                       cardsSpace.innerHTML += newCards;
+                        const { title, date, time, description, priority } = element.data();
+                        const newCards = window.createActivityCard(title, date, time, description, priority)
+                        cardsSpace.innerHTML += newCards;
                     });
                 })
         }
-        
+
         gettingCardFromFirebase();
 
         saveButtonActivitie.addEventListener('click', () => {
@@ -138,7 +139,7 @@ const activities = {
             eraseInputs(titleInput, dateInput, timeInput, descriptionInput, priorityInput);
         })
 
-        
+
     }
 }
 
