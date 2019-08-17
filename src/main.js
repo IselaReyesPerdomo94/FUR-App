@@ -18,7 +18,7 @@ const routes = {
     '/home': Home,
 
     '/perfil': Profile,
-    '/mi-informacion': MyInfo,
+    '/mis-mascotas': MyInfo,
     '/mis-actividades': Activities,
     '/ayuda': Help
 
