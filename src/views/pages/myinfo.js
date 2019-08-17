@@ -92,24 +92,24 @@ const myInfo = {
 
         const user = firebase.auth().currentUser;
 
-        const eraseInputs = (furName, nickName, ageFur, ageFurTwo, specie, descriptionFur) => {
+        const eraseInputs = (furName, nickName, specie, ageFur, ageFurTwo,  descriptionFur) => {
             furName.value = '';
             nickName = '';
+            specie = '';
             ageFur = '';
             ageFurTwo = '';
-            specie = '';
             descriptionFur = '';
         }
 
-        const saveFurInfo = (namefur, furnickname, furage, furagetwo, furspecie, furdescription) => {
+        const saveFurInfo = (namefur, furnickname, furspecie, furage, furagetwo,  furdescription) => {
             db.collection('pets').add({
                     userID: user.uid,
                     name: user.displayName,
                     petname: namefur,
                     petnickname: furnickname,
+                    petspecie: furspecie,
                     petage: furage,
                     petagetwo: furagetwo,
-                    petspecie: furspecie,
                     petdescription: furdescription,
 
                 })
@@ -118,7 +118,7 @@ const myInfo = {
                     console.log('Guardando mascota')
                 })
                 .then(() => {
-                    const newPetCard = window.createFurCard(namefur, furnickname, furage, furagetwo, furspecie, furdescription);
+                    const newPetCard = window.createFurCard(namefur, furnickname, furspecie, furage, furagetwo,  furdescription);
                     cardFurSpace.innerHTML += newPetCard;
                 })
                 .catch((error) => {
@@ -143,13 +143,13 @@ const myInfo = {
         saveFur.addEventListener('click', () => {
             const namefur = furName.value;
             const furnickname = nickName.value;
+            const furspecie = specie.value;
             const furage = ageFur.value;
             const furagetwo = ageFurTwo.value;
-            const furspecie = specie.value;
             const furdescription = descriptionFur.value;
 
-            saveFurInfo(namefur, furnickname, furage, furagetwo, furspecie, furdescription)
-            eraseInputs(furName, nickName, ageFur, ageFurTwo, specie, descriptionFur);
+            saveFurInfo(namefur, furnickname, furspecie, furage, furagetwo, furspecie, furdescription)
+            eraseInputs(furName, nickName, specie, ageFur, ageFurTwo,  descriptionFur);
 
         })
 
@@ -167,13 +167,13 @@ const petCard = {
   <div class="card-myinfo">
   <div class="img-myinfo-content">
     <h3>*petName*</h3>
-    <!--<img src="*img*"/ class="img-myinfo">-->
+    <img src="*img*"/ class="img-myinfo">
   </div>
   <div class="txt-myinfo"> 
-    <p>Apodos:<span>*nickName*</span></p>
-    <p>Especie:<span>*specie*</span></p>
-    <p>Edad:<span>*age*</span> <span>*age2*</span></p>
-    <p>Acerca de:<span>*about*</span></p>
+    <p>Apodos: <span>*nickName*</span></p>
+    <p>Especie: <span>*specie*</span></p>
+    <p>Edad: <span>*age*</span> <span>*age2*</span></p>
+    <p>Acerca de: <span>*about*</span></p>
   </div>
 </div>
 `
