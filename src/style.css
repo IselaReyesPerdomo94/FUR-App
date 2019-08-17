@@ -137,7 +137,7 @@ footer {
 .login,  .mi-info {
     height: 100vh;
     width: 100%;
-    background-image: url("img/peces-betta.jpg");
+    background-image: url("img/perro-mirando-arriba_23-2147787329.jpg");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -713,7 +713,6 @@ footer {
 }
 .think{ /*NO BORRAR*/
     font-family: 'Oswald', sans-serif;
-    padding: 1rem;
 }
 .post-print{ /*NO BORRAR*/
     width: 19rem;
@@ -736,6 +735,7 @@ footer {
 }
 .profile-reactions{ /*NO BORRAR*/
     background-color: #EC0843;
+    width: 10rem;
 }
 
 /*Seleccionar filtro*/ /*NO BORRAR*/
@@ -745,6 +745,23 @@ footer {
     border-radius: 5px;
     font-family: 'Oswald', sans-serif;
     color: white;
+}
+
+.post-content-theme-title{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+  .reactions{
+        display: flex;
+        flex-direction: column;
+        color: white;
+        font-size: 2rem;
+    }
+
+.reactions i{
+    padding: 0.2rem;
 }
 
 @media only screen and (min-width: 768px) {
@@ -849,13 +866,16 @@ footer {
         display: flex;
         justify-content: center;
     }
+
+    .reactions{
+        font-size: 3.5rem;
+    }
     /*CAJA DE PUBLICACIONES*/ /*NO BORRAR*/
     .publicacion { /*NO BORRAR*/
         border-radius: 10px;
         width: 26rem;
     }
-    
-    
+        
     /* MI INFO */
     .mi-info {
         background-image: url("img/Cómo-Saber-si-un-Periquito-está-Enfermo-300x235.jpg");
@@ -939,7 +959,7 @@ footer {
     
     .profile-reactions{ /*NO BORRAR*/
         background-color: #EC0843; 
-        
+        width: 12rem;
     }
     .photo-profile{ /*NO BORRAR*/
         height: 14vh;
