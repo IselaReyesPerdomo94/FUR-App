@@ -493,6 +493,12 @@ footer {
     margin: 0;
 }
 
+#root{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 /*HOME*/ /*NO BORRAR*/
 
@@ -616,7 +622,7 @@ footer {
     background-color: white;
     border: 2px solid #EC0843;
     justify-content: center;
-    margin: 0.5rem;
+    margin: 0.5rem auto;
 }
 
 .crea-post { /*NO BORRAR*/
@@ -640,6 +646,7 @@ footer {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    align-items: center;
 }
 
 
@@ -710,7 +717,7 @@ footer {
 }
 .post-print{ /*NO BORRAR*/
     width: 19rem;
-    height: 60vh;
+    height: 40vh;
     display: flex;
     justify-items: center;
     margin: 0.5rem;
@@ -728,15 +735,9 @@ footer {
     color: #011627;
 }
 .profile-reactions{ /*NO BORRAR*/
-    height: 60vh;
     background-color: #EC0843;
 }
 
-/*Pie de página*/ /*NO BORRAR*/
-.made{
-    position: fixed;
-    align-items: center;
-}
 /*Seleccionar filtro*/ /*NO BORRAR*/
 .select-filter{ /*NO BORRAR*/
     background-color: #EC0843;
@@ -937,8 +938,6 @@ footer {
     /*Post NO BORRAR*/
     
     .profile-reactions{ /*NO BORRAR*/
-        height: 70vh;
-        width: 18rem;
         background-color: #EC0843; 
         
     }
@@ -979,18 +978,12 @@ footer {
         display: flex;
         justify-items: center;
         margin: 0.5rem;
-        float: left;
-    
     }
     /*Caja que contiene todos los posts NO BORRAR*/
     .conteiner-all-posts { /*NO BORRAR*/
         display: flex;
         flex-direction: column;
-        justify-items: center;
-        float: right;
-        margin: 2rem 2rem 5rem 15rem;
-        
-        
+        align-items: center;
     }
 
 }

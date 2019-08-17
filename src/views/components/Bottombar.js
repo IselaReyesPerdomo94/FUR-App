@@ -1,7 +1,7 @@
 let Bottombar = {
     render: async() => {
         let view = `
-        <p class="made">Hecho por Bere, Adri e Isela</p>
+        <p>Hecho por Bere, Adri e Isela</p>
         `
 
         return view
