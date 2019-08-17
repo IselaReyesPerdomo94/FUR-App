@@ -147,7 +147,7 @@ const activities = {
 const components = {
     card: `<div class="card-act">
                 <div class="title-card-act *priority*">
-                    <h5>*title*</h5>
+                    <h5>*title*</h5><i class="far fa-trash-alt"></i>
                 </div>    
                     <span>Fecha: <span>*date*</span></span>
                     <span>Hora: <span>*time*</span></span>
