@@ -58,13 +58,9 @@ const router = async() => {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             // User is signed in.
-            const userInfo = user;
-            console.log(userInfo)
-            return userInfo;
         } else {
             // No user is signed in.
             console.log('usuario no conectado')
-
             window.goingLogin();
         }
     });
@@ -77,4 +73,3 @@ window.addEventListener('hashchange', router);
 
 // Listen on page load:
 window.addEventListener('load', router);
-
