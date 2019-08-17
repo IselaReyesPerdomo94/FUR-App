@@ -83,6 +83,7 @@ const activities = {
         
         //prueba para jalar info de un solo usuario;
         const eraseInputs = (titleInput, dateInput, timeInput, descriptionInput) => {
+            console.log(typeof dateInput.value)
             titleInput.value = '';
             dateInput.value = '';
             timeInput.value = '';
@@ -115,7 +116,7 @@ const activities = {
         }
 
         const gettingCardFromFirebase = () => {
-            firestore.collection('activities').where("userID", "==", user.uid)
+            firestore.collection('activities').where("userID", "==", user.uid).orderBy("date")
                 .get()
                 .then((snapshot) => {
                     snapshot.forEach(element => {
