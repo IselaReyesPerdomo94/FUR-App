@@ -9,7 +9,7 @@ const profile = {
                     </div>
                     <div class="mid-photo">
                         
-                        <h1 id="user-name"></h1>
+                        
                     </div>
                     <div class="third">
                         <figure>
@@ -61,21 +61,26 @@ const profile = {
         return view
     },
     after_render: async() => {
-        const user = firebase.auth().currentUser;
-        const userName = document.querySelector('#user-name');
-        const photo = user.photoURL;
+        const user = await firebase.auth().currentUser;
+        const userInfoSpace = document.querySelector('.mid-photo');
+        const userProfileInfo = window.createProfileInformation(user.displayName, user.photoURL);
+        userInfoSpace.innerHTML = userProfileInfo;     
         
-        const addingName = () =>{
-            userName.innerHTML = user.displayName;
-        }
-        
-
-        const addingUrlPhoto = () => {
+       
 
         }
 
     }
+
+const userInfo = {
+    profileInfo : `
+        <figure>
+            <img src="*photoURL*" alt="foto de perfil">
+        </figure>
+        <h3>*userName*</h3>
+    `
 }
 
+export {userInfo}
 
 export default profile;
