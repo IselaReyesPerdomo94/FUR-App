@@ -394,7 +394,7 @@ footer {
 .card-act {
     background-color: #FFF1F1;
     height: 20vh;
-    width: 90%;
+    width: 95%;
     border-radius: 10px;
     margin: 0.5rem;
 }
@@ -411,7 +411,8 @@ footer {
     border-radius: 10px 10px 0px 0px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+    
 }
 
 .high {
@@ -743,7 +744,7 @@ footer {
         max-width: 1200px;
     }
     .card-act {
-        width: 30%;
+        width: 40%;
     }
     .conteiner-post {
         width: 50.1rem;
