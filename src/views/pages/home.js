@@ -39,7 +39,7 @@ const home = {
             </div>
            
             </div>
-            <div class="root" id="root">
+            <div class="root conteiner-post" id="root">
                     </div>
             </div>
 <!-- Modal -->
@@ -122,7 +122,7 @@ const home = {
           let str = ' ';
           querySnapshot.forEach((doc) => {
               console.log(`${doc.id} => ${doc.data().post} => ${doc.data().name}`);
-              str = `
+              str += `
               <div class="post-print">
               <p>Publicado por: ${doc.data().name}</p>
               <p>Post: ${doc.data().post}</p>

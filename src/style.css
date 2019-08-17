@@ -599,6 +599,7 @@ p:hover {
 .conteiner-posts{
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 .photo-post{
     width: 15rem;
