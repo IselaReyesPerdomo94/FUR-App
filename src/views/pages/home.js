@@ -111,6 +111,7 @@ const home = {
 
       //Método para obtener la data de los post
       db.collection("posts").get().then((querySnapshot) => {
+        const user = firebase.auth().currentUser;
         const root = document.querySelector("#root");
         const rootProfile = document.querySelector("#root-1");
         let str = ' ';
@@ -131,7 +132,7 @@ const home = {
             `;
             strProfile = `
             <div>
-            <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
+            <img src="${user.photoURL}" alt="Foto de perfil" class="photo-profile">
             </div>
             `;
 
