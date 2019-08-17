@@ -39,6 +39,8 @@ const home = {
             </div>
            
             </div>
+            <div class="root" id="root">
+                    </div>
             </div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -108,15 +110,30 @@ const home = {
       //Guardar data de los filtros
 
       console.log(savingPostData);
-      //Evento para guardar valores de filtro
 
-      //Evento para guardar valores de input
+      //Evento para guardar valores de input y filtro
       postsButton.addEventListener('click', () => {
         const postInput = document.querySelector('#publicacion').value;
         const postFilter =(selectFilter.options[selectFilter.selectedIndex].value);
-
         savingPostData(postInput, postFilter);
+        
+        db.collection("posts").get().then((querySnapshot) => {
+          const root = document.getElementById("root");
+          let str = ' ';
+          querySnapshot.forEach((doc) => {
+              console.log(`${doc.id} => ${doc.data().post} => ${doc.data().name}`);
+              str = `
+              <div class="post-print">
+              <p>Publicado por: ${doc.data().name}</p>
+              <p>Post: ${doc.data().post}</p>
+              </div>
+              `;
+  
+          });
+          root.innerHTML = str; 
+        });
       })
+      //Obtener data 
   
           }
         
