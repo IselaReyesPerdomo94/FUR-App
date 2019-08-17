@@ -5,12 +5,11 @@ const myInfo = {
             `   
         <section class="mi-info">
             <section class="profile-photo">
-                <h1> Mi info</h1>
+                <h1> Mis mascotas</h1>
+                <p>Cuentános sobre tus mascotas, para que la comunidad los conozca</p>
             </section>
             <div class="photo">
-             <img src="./img/elements/foto.png" class="element-photo"/>
-             <h1 id="user-name"></h1>
-             <button type="button" class="button-agree" id="agree-fur" data-toggle="modal" data-target="#exampleModal">+ Agregar mascotas</button> 
+             <button type="button" class="button-agree" id="agree-fur" data-toggle="modal" data-target="#exampleModal">+ Nueva mascota</button> 
             </div>
             <div id="cards-fur-container" class="cards-fur-container">
                 </div>
@@ -148,7 +147,7 @@ const myInfo = {
             const furagetwo = ageFurTwo.value;
             const furdescription = descriptionFur.value;
 
-            saveFurInfo(namefur, furnickname, furspecie, furage, furagetwo, furspecie, furdescription)
+            saveFurInfo(namefur, furnickname, furspecie, furage, furagetwo, furdescription)
             eraseInputs(furName, nickName, specie, ageFur, ageFurTwo,  descriptionFur);
 
         })
