@@ -1,7 +1,7 @@
 // aqui exportaras las funciones que necesites
 import { components } from "../views/pages/activities.js";
-
 import { petCard } from "../views/pages/myinfo.js";
+import {userInfo} from "../views/pages/profile.js";
 
 //Home function
 const goingHome = () => {
@@ -40,7 +40,7 @@ const signInFacebook = () => {
             const credential = error.credential;
             // ...
         });
-        savingUserData();
+    savingUserData();
 }
 
 
@@ -77,7 +77,7 @@ const signInGoogle = () => {
             const credential = error.credential;
             // ...
         });
-        savingUserData();
+    savingUserData();
 }
 
 const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput, acceptRegisterInput) => {
@@ -108,21 +108,20 @@ const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput
     }
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(()=> {
-             db.collection("users").add({
-             name: name,
-             email: email,
-             userID: user.uid
+        .then(() => {
+            db.collection("users").add({
+                    name: name,
+                    email: email,
+                    userID: user.uid
+                })
+                .then(function(docRef) {
+                    console.log("Document written with ID: ", docRef.id);
+                })
+                .then(() => goingProfile())
+                .catch(function(error) {
+                    console.error("Error adding document: ", error);
+                });
         })
-        .then(function(docRef) {
-          console.log("Document written with ID: ", docRef.id);
-        })
-        .then(() => goingProfile())
-        .catch(function(error) {
-          console.error("Error adding document: ", error);
-        });
-        }
-        )
         .catch(function(error) {
             // Handle Errors here.
             const errorCode = error.code;
@@ -132,7 +131,7 @@ const register = (userNameInput, emailInput, passwordInput, passwordConfirmInput
             console.log(password);
 
         });
-    email - password.html;      
+    email - password.html;
 }
 
 const signInEmailPassword = (emailLogin, currentPassword) => {
@@ -165,37 +164,37 @@ const signInEmailPassword = (emailLogin, currentPassword) => {
 }
 
 const signOut = () => {
-    firebase.auth().signOut()
-        .then(function() {
-            console.log('Sign-out successful');
-            goingLogin();
-            // location.reload();
-        }).catch(function(error) {
-            // An error happened.
-        });
-}
-//Saving user data
+        firebase.auth().signOut()
+            .then(function() {
+                console.log('Sign-out successful');
+                goingLogin();
+                // location.reload();
+            }).catch(function(error) {
+                // An error happened.
+            });
+    }
+    //Saving user data
 
-const savingUserData = () => {  
+const savingUserData = () => {
     firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-        db.collection("users").add({
-        name: user.displayName,
-        email: user.email, 
-        photo: user.photoURL,
-        userID: user.uid
+        if (user) {
+            db.collection("users").add({
+                    name: user.displayName,
+                    email: user.email,
+                    photo: user.photoURL,
+                    userID: user.uid
 
-        })
-        .then((docRef) =>{
-          console.log("Document written with ID: ", docRef.id);
-        })
-        .catch((error) => {
-          console.error("Error adding document: ", error);
-        });
-    } 
-});   
+                })
+                .then((docRef) => {
+                    console.log("Document written with ID: ", docRef.id);
+                })
+                .catch((error) => {
+                    console.error("Error adding document: ", error);
+                });
+        }
+    });
 }
-        
+
 
 
 //Activities function
@@ -206,21 +205,28 @@ const createActivityCard = (title, date, time, description, priority) => {
         .replace('*date*', date)
         .replace('*time*', time)
         .replace('*description*', description)
-        .replace("*priority*",priority)
+        .replace("*priority*", priority)
     return newCard;
 }
 
 //Mi Info function
 
-const createFurCard = (furName, nickName, specie, ageFur, ageFurTwo, descriptionFur) => {
+const createFurCard = (namefur, furnickname, furspecie, furage, furagetwo,  furdescription) => {
     const newFurCard = petCard.card
-        .replace('*petName*', furName.value)
-        .replace('*nickName*', nickName.value)
-        .replace('*age*', ageFur.value)
-        .replace('*age2*', ageFurTwo.value)
-        .replace('*specie*', specie.value)
-        .replace('*about*', descriptionFur.value)
+        .replace('*petName*', namefur)
+        .replace('*nickName*', furnickname)
+        .replace('*specie*', furspecie)
+        .replace('*age*', furage)
+        .replace('*age2*', furagetwo)
+        .replace('*about*', furdescription)
     return newFurCard;
+}
+
+const createProfileInformation = (userName, photoURL) =>{
+    const newProfile = userInfo.profileInfo
+    .replace('*userName*', userName)
+    .replace('*photoURL*', photoURL)
+    return newProfile;
 }
 
 window.signInFacebook = signInFacebook;
@@ -230,4 +236,6 @@ window.signInEmailPassword = signInEmailPassword;
 window.signOut = signOut;
 window.createActivityCard = createActivityCard;
 window.createFurCard = createFurCard;
-window.saveFurInfo = saveFurInfo;
+window.goingLogin = goingLogin;
+window.createProfileInformation = createProfileInformation;
+

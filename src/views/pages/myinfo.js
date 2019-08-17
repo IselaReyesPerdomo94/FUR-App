@@ -5,12 +5,11 @@ const myInfo = {
             `   
         <section class="mi-info">
             <section class="profile-photo">
-                <h1> Mi info</h1>
+                <h1> Mis mascotas</h1>
+                <p>Cuentános sobre tus mascotas, para que la comunidad los conozca</p>
             </section>
             <div class="photo">
-             <img src="./img/elements/foto.png" class="element-photo"/>
-             <h1 id="user-name"></h1>
-             <button type="button" class="button-agree" id="agree-fur" data-toggle="modal" data-target="#exampleModal">+ Agregar mascotas</button> 
+             <button type="button" class="button-agree" id="agree-fur" data-toggle="modal" data-target="#exampleModal">+ Nueva mascota</button> 
             </div>
             <div id="cards-fur-container" class="cards-fur-container">
                 </div>
@@ -80,6 +79,7 @@ const myInfo = {
         return view
     },
     after_render: async() => {
+        const firestore = firebase.firestore();
         const furName = document.getElementById('fur-name-input');
         const nickName = document.getElementById('nickname-input');
         const specie = document.getElementById('specie-input');
@@ -89,24 +89,74 @@ const myInfo = {
         const cardFurSpace = document.getElementById('cards-fur-container');
         const saveFur = document.getElementById('save');
 
-        const eraseInputs = () => {
+        const user = firebase.auth().currentUser;
+
+        const eraseInputs = (furName, nickName, specie, ageFur, ageFurTwo,  descriptionFur) => {
+            furName.value = '';
+            nickName = '';
+            specie = '';
+            ageFur = '';
+            ageFurTwo = '';
+            descriptionFur = '';
         }
 
-        const furCards = () => {
+        const saveFurInfo = (namefur, furnickname, furspecie, furage, furagetwo,  furdescription) => {
+            db.collection('pets').add({
+                    userID: user.uid,
+                    name: user.displayName,
+                    petname: namefur,
+                    petnickname: furnickname,
+                    petspecie: furspecie,
+                    petage: furage,
+                    petagetwo: furagetwo,
+                    petdescription: furdescription,
+
+                })
+                .then((docRef) => {
+                    console.log('Document written with ID', docRef);
+                    console.log('Guardando mascota')
+                })
+                .then(() => {
+                    const newPetCard = window.createFurCard(namefur, furnickname, furspecie, furage, furagetwo,  furdescription);
+                    cardFurSpace.innerHTML += newPetCard;
+                })
+                .catch((error) => {
+                    console.error('Error adding document: ', error);
+                    console.error('Error al guardar mascota')
+                });
         }
 
-        const saveFurInfo = () => {
-             
+        const gettingFurCardsfromFirebase = () => {
+            firestore.collection('pets').where('userID', '==', user.uid)
+                .get()
+                .then((snapshot) => {
+                    snapshot.forEach(element => {
+                        const { petname, petnickname, petspecie, petage, petagetwo, petdescription } = element.data();
+                        const newPetCard = window.createFurCard(petname, petnickname, petspecie, petage, petagetwo, petdescription)
+                        cardFurSpace.innerHTML += newPetCard;
+                    })
+                })
         }
 
+        gettingFurCardsfromFirebase();
         saveFur.addEventListener('click', () => {
-          saveFurInfo()
+            const namefur = furName.value;
+            const furnickname = nickName.value;
+            const furspecie = specie.value;
+            const furage = ageFur.value;
+            const furagetwo = ageFurTwo.value;
+            const furdescription = descriptionFur.value;
+
+            saveFurInfo(namefur, furnickname, furspecie, furage, furagetwo, furdescription)
+            eraseInputs(furName, nickName, specie, ageFur, ageFurTwo,  descriptionFur);
+
         })
 
-  
-    }
+
 
     }
+
+}
 
 
 
@@ -116,17 +166,17 @@ const petCard = {
   <div class="card-myinfo">
   <div class="img-myinfo-content">
     <h3>*petName*</h3>
-    <!--<img src="*img*"/ class="img-myinfo">-->
+    <img src="*img*"/ class="img-myinfo">
   </div>
   <div class="txt-myinfo"> 
-    <p>Apodos:<span>*nickName*</span></p>
-    <p>Especie:<span>*specie*</span></p>
-    <p>Edad:<span>*age*</span> <span>*age2*</span></p>
-    <p>Acerca de:<span>*about*</span></p>
+    <p>Apodos: <span>*nickName*</span></p>
+    <p>Especie: <span>*specie*</span></p>
+    <p>Edad: <span>*age*</span> <span>*age2*</span></p>
+    <p>Acerca de: <span>*about*</span></p>
   </div>
 </div>
 `
 }
 
 export { petCard };
-export default myInfo;
+export default myInfo
