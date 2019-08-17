@@ -28,16 +28,20 @@ const home = {
             </div>
             <hr class="line-2">
             <!--Trigger modal -->
-           <div class="conteiner-posts">
-           <div class="conteiner-post" data-toggle="modal" data-target="#exampleModal">
-           <div class="photo-post">
-           </div>
-           <div class="crea-post" >
-           <p class="c-post">Crear post</p>
-           </div>
-          
-           </div>
-
+            <div class="conteiner-posts">
+            <div class="conteiner-post" data-toggle="modal" data-target="#exampleModal">          
+            <div class="crea-post" >
+            <p class="c-post">Crear post</p>
+            </div>
+            <div class="photo-post">
+            <i class="fas fa-user-alt"></i>
+            <p class="think">¿En qué piensas?</p>
+            </div>
+           
+            </div>
+            <div class="root conteiner-post" id="root">
+                    </div>
+            </div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
  <div class="modal-dialog" role="document">
@@ -56,9 +60,17 @@ const home = {
      <div class="image">
      </div> 
      <div class="modal-footer">
-     <button type="button" class="btn-btn-primary" data-dismiss="modal" id="cerrar-publicar"> <img src="img/picture.svg" alt="Agregar imagen" class="add-image"></button>
-       <button type="button" class="btn-btn-primary" data-dismiss="modal" id="cerrar-publicar">Cerrar</button>
-       <button type="button" class="btn-btn-primary" id="btn-post">Publicar</button>
+     <select name="" class="select-filter">
+     <option value="All">¿Sobre qué tema publicarás?</option>
+     <option value="Meme">Meme</option>
+     <option value="Veterinario">Veterinario</option>
+     <option value="PetFriendly">PetFriendly</option>
+     <option value="Tips">Tips</option>
+     <option value="Perdidos">Perdidos</option>
+     </select>
+
+       <button type="button" class="btn-btn-primary" data-dismiss="modal" id="cerrar-publicar"><p class="btn-text">Cerrar</p></button>
+       <button type="button" class="btn-btn-primary" id="btn-post" data-toggle="modal" data-target="#exampleModal"><p class="btn-text">Publicar</p></button>
      </div>
    </div>
  </div>
@@ -72,18 +84,20 @@ const home = {
     },
     after_render: async() => {
       const postsButton = document.querySelector('#btn-post');
-      const user = firebase.auth().currentUser;
+      const selectFilter = document.querySelector('.select-filter');
       // Initialize Cloud Firestore through Firebase
       
-      
-      const savingPostData = (postInput) => {
+      //Guardar data de los post
+      const savingPostData = (postInput, postFilter) => {
+        const user = firebase.auth().currentUser;
 
         
         db.collection('posts').add({
           name : user.displayName,
           post : postInput,
           photo: user.photoURL,
-          userID: user.uid
+          userID: user.uid,
+          filter: postFilter
         })
         .then((docRef) => {
           console.log("Document written with ID: ", docRef.id);
@@ -93,12 +107,35 @@ const home = {
           console.error("Error adding document: ", error);
         })
       }
+      //Guardar data de los filtros
+
       console.log(savingPostData);
-      
+
+      //Evento para guardar valores de input y filtro
+      db.collection("posts").get().then((querySnapshot) => {
+        const root = document.getElementById("root");
+        let str = ' ';
+        querySnapshot.forEach((doc) => {
+            console.log(`${doc.id} => ${doc.data().post} => ${doc.data().name}`);
+            str += `
+            <div class="post-print conteiner-post">
+            <img src="${doc.data().photo}" alt="gatito" class="kitty">
+
+            <p class="think">Post: ${doc.data().post} </p>
+            <p class="think">Publicado por: ${doc.data().name}</p>
+            </div>
+            `;
+
+        });
+        root.innerHTML = str; 
+      });
       postsButton.addEventListener('click', () => {
-        const postInput = document.getElementById('publicacion').value;
-        savingPostData(postInput);
+        const postInput = document.querySelector('#publicacion').value;
+        const postFilter =(selectFilter.options[selectFilter.selectedIndex].value);
+        savingPostData(postInput, postFilter);
+        
       })
+      //Obtener data 
   
           }
         

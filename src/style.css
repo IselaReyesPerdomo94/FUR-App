@@ -564,7 +564,7 @@ footer {
     margin: 0.5rem;
     height: 22vh;
     width: 15rem;
-    border: 1px solid #EC0843;
+    border: 2px solid #EC0843;
     border-collapse: collapse;
 }
 
@@ -590,17 +590,20 @@ footer {
     height: 2rem;
     width: 2rem;
 }
-
+/*Cajita para hacer post y elementos del modal*/
 .btn-btn-primary {
-    background-color: white;
+    background-color: #EC0843;
     border: none;
-    border-radius: 8px;
-    font-family: 'Oswald', sans-serif;
-    color: #011627;
+    border-radius: 5px;
     width: 7rem;
-    height: 3vh;
+    height: 5vh;
     display: flex;
     float: right;
+}
+.btn-text{
+    margin: 0.5rem 0.5rem 4rem 2rem;
+    font-family: 'Oswald', sans-serif;
+    color: white;
 }
 
 .modal-title,
@@ -643,7 +646,8 @@ footer {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    align-items: center;
+}
+
 }
 
 .profile-header{
@@ -691,6 +695,46 @@ footer {
     font-size:3rem;
     color: white;
 }
+  
+  .photo-post{
+    width: 15rem;
+    height: 3vh;
+    border: #EC0843;
+    display: flex;
+    justify-content: center;
+    
+}
+.think{
+    font-family: 'Oswald', sans-serif;
+    padding: 1rem;
+}
+.fa, .fa-user-alt{
+    color: #EC0843;
+    font-size: 3rem;
+    padding: 1rem;
+}
+.select-filter{
+    background-color: #EC0843;
+    border: 3px solid #EC0843;
+    border-radius: 5px;
+    font-family: 'Oswald', sans-serif;
+    color: white;
+}
+.post-print{
+    width: 20rem;
+    height: 30vh;
+}
+.root{
+    width: 20rem;
+    height: 30vh;
+    background-color: #D62D22;
+    color: #F4F4F4;
+}
+/*Pie de página*/
+.made{
+    position: fixed;
+    align-items: center;
+  }
 
 @media only screen and (min-width: 768px) {
     .login {
@@ -784,6 +828,7 @@ footer {
         height: 20vh;
         background-color: white;
         border: 2px solid #EC0843;
+
         justify-content: center;
     }
     .crea-post {
@@ -795,7 +840,31 @@ footer {
     .c-post {
         font-family: 'Oswald', sans-serif;
         color: white;
-        font-size: 1rem;
+        font-size: 1.5rem;
+        margin: 0.01rem ;
+    }
+    .photo-post{
+        width: 20rem;
+        height: 3vh;
+        border: #EC0843;
+        display: flex;
+        justify-content: center;
+        margin: 2rem 2rem 15rem 15rem;
+        
+    }
+    .think{
+        font-family: 'Oswald', sans-serif;
+        font-size: 2rem;
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+    }
+    .fa, .fa-user-alt{
+        color: #EC0843;
+        font-size: 3rem;
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
     }
   
   /* MI INFO */
@@ -808,29 +877,48 @@ footer {
     .cards-fur-container{
         flex-direction: row-reverse;
         flex-wrap: wrap;
+  }
+    .img-myinfo-content,
+    .txt-myinfo {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+    height: 12rem;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFF1F1;
+    color: #EC0843;
+    font-size: 12px;   
+     }
+  
+   .txt-myinfo{
+        width: 60%;
+    } 
+  
+    .card-myinfo {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    height: 13rem;
+    background-color: #FFF1F1;
+    padding: 0.3rem;
+    border: 2px solid #EC0843;
+    border-radius: 10px;
     }
 
+    .img-myinfo {
+    width: 7rem;
+    height: 5rem;
+    margin: 2rem 0 0 0;
+    } 
+    
     .card-myinfo {
-  /* box-sizing: border-box;   */
         width: 33%;
         height: 11rem;
         padding: 0.3rem;
         justify-content: center;
     }
-
-    .img-myinfo-content,
-    .txt-myinfo {
-        display: flex;
-        flex-direction: column;
-        width: 40%;
-        height: 12rem;    
-        align-items: center;
-        justify-content: center; 
-    }
-
-    .txt-myinfo{
-        width: 60%;
-    }
+  
     /* MI INFO */
     .card-myinfo {
         display: flex;
@@ -858,5 +946,4 @@ footer {
         height: 9rem;
         border-radius: 100%;
     }
-
 }
