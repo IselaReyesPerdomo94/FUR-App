@@ -1,7 +1,7 @@
 // aqui exportaras las funciones que necesites
 import { components } from "../views/pages/activities.js";
-
 import { petCard } from "../views/pages/myinfo.js";
+import {userInfo} from "../views/pages/profile.js";
 
 //Home function
 const goingHome = () => {
@@ -222,6 +222,13 @@ const createFurCard = (namefur, furnickname, furage, furagetwo, furspecie, furde
     return newFurCard;
 }
 
+const createProfileInformation = (userName, photoURL) =>{
+    const newProfile = userInfo.profileInfo
+    .replace('*userName*', userName)
+    .replace('*photoURL*', photoURL)
+    return newProfile;
+}
+
 window.signInFacebook = signInFacebook;
 window.signInGoogle = signInGoogle;
 window.register = register;
@@ -230,4 +237,5 @@ window.signOut = signOut;
 window.createActivityCard = createActivityCard;
 window.createFurCard = createFurCard;
 window.goingLogin = goingLogin;
+window.createProfileInformation = createProfileInformation;
 

@@ -70,6 +70,7 @@ const activities = {
     },
     after_render: async() => {
         const firestore = firebase.firestore();
+        const user = firebase.auth().currentUser;
         const titleInput = document.getElementById('title');
         const dateInput = document.getElementById('date');
         const timeInput = document.getElementById('hour');
@@ -79,7 +80,7 @@ const activities = {
 
         const saveButtonActivitie = document.getElementById('save-act');
 
-        const user = firebase.auth().currentUser;
+        
         //prueba para jalar info de un solo usuario;
         const eraseInputs = (titleInput, dateInput, timeInput, descriptionInput) => {
             titleInput.value = '';

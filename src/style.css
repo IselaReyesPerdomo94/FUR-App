@@ -616,7 +616,7 @@ footer {
     color: white;
     display: grid;
     background-color: #EC0843;
-    height: 30vh;
+    height: 35vh;
     width: 100%;
     grid-template-columns: auto repeat(2, 1fr);
     grid-template-rows: 100% ;
@@ -638,6 +638,19 @@ footer {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+.mid-photo img {
+    height: 7rem;
+    border-radius: 100%;
+}
+
+.mid-photo h3 {
+    margin: 0;
+}
+
+.mid-photo figure{
+    margin: 0;
 }
 
 .third figure i{
@@ -786,5 +799,9 @@ footer {
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: 100% ;
         grid-template-areas: "first mid-photo third";
+    }
+    .mid-photo img {
+    height: 9rem;
+    border-radius: 100%;
     }
 }
