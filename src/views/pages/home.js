@@ -119,8 +119,10 @@ const home = {
             console.log(`${doc.id} => ${doc.data().post} => ${doc.data().name}`);
             str += `
             <div class="post-print conteiner-post">
-            <p>Publicado por: ${doc.data().name}</p>
-            <p>Post: ${doc.data().post}</p>
+            <img src="${doc.data().photo}" alt="gatito" class="kitty">
+
+            <p class="think">Post: ${doc.data().post} </p>
+            <p class="think">Publicado por: ${doc.data().name}</p>
             </div>
             `;
 
