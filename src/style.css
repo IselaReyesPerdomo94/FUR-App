@@ -304,7 +304,7 @@ footer {
 .card-myinfo {
   box-sizing: border-box;  
    display: flex;
-   justify-content: space-between 1;
+   justify-content: space-between;
    width: 70%;
    height: 13rem;
    background-color: #FFF1F1;
