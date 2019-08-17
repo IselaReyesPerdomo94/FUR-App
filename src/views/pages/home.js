@@ -120,18 +120,23 @@ const home = {
           if(theme == undefined){
             
           theme = 'General';
-          console.log('se cambio theme por', theme)
         } 
             str += `
             <div class="post-print conteiner-post-home">
               <div class="profile-reactions">
                 <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
                 <p class="think t">${doc.data().name}</p>
+                <div class="reactions">
+                  <i class="fas fa-smile-beam"></i>
+                  <i class="fas fa-angry"></i>
+                  <i class="fas fa-comment"></i>
+                  <i class="fas fa-share-alt-square"></i>
+                </div>
               </div>
-              <div>
-                <p class="think th" id="tema">Tema: ${theme} </p>
-                <p class="think th"> ${doc.data().post} </p>
-              </div>
+                <div class="post-content-theme-title">
+                  <p class="th" id="tema">Tema: ${theme} </p>
+                  <p class="think th"> ${doc.data().post} </p>
+                </div>
               </div>
               `;
               strProfile = `
