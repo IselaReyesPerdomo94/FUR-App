@@ -494,9 +494,9 @@ footer {
 }
 
 
-/*HOME*/
+/*HOME*/ /*NO BORRAR*/
 
-.flex-container {
+.flex-container { /*NO BORRAR*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -543,31 +543,6 @@ footer {
 }
 
 
-/*CAJA DE PUBLICACIONES*/
-
-.publication-conteiner {
-    background-color: white;
-    height: 40vh;
-    width: 19.5rem;
-    display: flex;
-    justify-content: center;
-}
-
-.utilidades {
-    background-color: #EC0843;
-    height: 40vh;
-    width: 6rem;
-}
-
-.publicacion {
-    border-radius: 8px;
-    margin: 0.5rem;
-    height: 22vh;
-    width: 15rem;
-    border: 2px solid #EC0843;
-    border-collapse: collapse;
-}
-
 .sub-archivos {
     display: flex;
 }
@@ -576,22 +551,45 @@ footer {
     display: none;
 }
 
-.btn-primary {
+
+
+/*Cajita para hacer post y elementos del modal*/ /*NO BORRAR*/
+.btn-primary { /*NO BORRAR*/
     background-color: #EC0843;
 }
 
-.image {
-    display: flex;
-    justify-content: left;
-}
-
-.add-image,
-.kitty {
-    height: 2rem;
-    width: 2rem;
-}
-/*Cajita para hacer post y elementos del modal*/
-.btn-btn-primary {
+    .image {/*NO BORRAR*/
+        display: flex;
+        justify-content: left;
+    }
+    .kitty { /*NO BORRAR*/
+        height: 2rem;
+        width: 2rem;
+    }
+    
+    .publication-conteiner { /*NO BORRAR*/
+        background-color: white;
+        height: 40vh;
+        width: 19.5rem;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .utilidades { /*NO BORRAR*/
+        background-color: #EC0843;
+        height: 40vh;
+        width: 6rem;
+    }
+    
+    .publicacion { /*NO BORRAR*/
+        border-radius: 8px;
+        margin: 0.5rem;
+        height: 22vh;
+        width: 15rem;
+        border: 2px solid #EC0843;
+        border-collapse: collapse;
+    }
+.btn-btn-primary { /*NO BORRAR*/
     background-color: #EC0843;
     border: none;
     border-radius: 5px;
@@ -600,7 +598,7 @@ footer {
     display: flex;
     float: right;
 }
-.btn-text{
+.btn-text{ /*NO BORRAR*/
     margin: 0.5rem 0.5rem 4rem 2rem;
     font-family: 'Oswald', sans-serif;
     color: white;
@@ -611,8 +609,8 @@ footer {
 #btn-publicar {
     font-family: 'Oswald', sans-serif;
 }
-
-.conteiner-post {
+/*Crear post*/ /*NO BORRAR*/
+.conteiner-post { /*NO BORRAR*/
     width: 19.1rem;
     height: 20vh;
     background-color: white;
@@ -621,7 +619,7 @@ footer {
     margin: 0.5rem;
 }
 
-.crea-post {
+.crea-post { /*NO BORRAR*/
     width: 19rem;
     height: 6vh;
     background-color: #EC0843;
@@ -629,17 +627,13 @@ footer {
     float: right;
 }
 
-.c-post {
+.c-post { /*NO BORRAR*/
     font-family: 'Oswald', sans-serif;
     color: white;
     font-size: 1rem;
     padding: 0.3rem;
 }
 
-.conteiner-posts {
-    display: flex;
-    justify-content: center;
-}
 
 /*Profile container, working with grid*/
 .profile{
@@ -695,8 +689,14 @@ footer {
     font-size:3rem;
     color: white;
 }
-  
-  .photo-post{
+/*Post*/ /*NO BORRAR*/
+/*Contiene todos los post*/ /*NO BORRAR*/
+.conteiner-all-posts {
+    
+    justify-content: center;
+    
+}
+.photo-post{ /*NO BORRAR*/
     width: 15rem;
     height: 3vh;
     border: #EC0843;
@@ -704,37 +704,47 @@ footer {
     justify-content: center;
     
 }
-.think{
+.think{ /*NO BORRAR*/
     font-family: 'Oswald', sans-serif;
     padding: 1rem;
 }
-.fa, .fa-user-alt{
-    color: #EC0843;
-    font-size: 3rem;
-    padding: 1rem;
+.post-print{ /*NO BORRAR*/
+    width: 19rem;
+    height: 60vh;
+    display: flex;
+    justify-items: center;
+    margin: 0.5rem;
+    
 }
-.select-filter{
+.photo-profile{ /*NO BORRAR*/
+    height: 10vh;
+    margin: 0.5rem;
+    border-radius: 50px;
+}
+.t{ /*NO BORRAR*/
+    color: white;
+}
+.th{ /*NO BORRAR*/
+    color: #011627;
+}
+.profile-reactions{ /*NO BORRAR*/
+    height: 60vh;
+    background-color: #EC0843;
+}
+
+/*Pie de página*/ /*NO BORRAR*/
+.made{
+    position: fixed;
+    align-items: center;
+}
+/*Seleccionar filtro*/ /*NO BORRAR*/
+.select-filter{ /*NO BORRAR*/
     background-color: #EC0843;
     border: 3px solid #EC0843;
     border-radius: 5px;
     font-family: 'Oswald', sans-serif;
     color: white;
 }
-.post-print{
-    width: 20rem;
-    height: 30vh;
-}
-.root{
-    width: 20rem;
-    height: 30vh;
-    background-color: #D62D22;
-    color: #F4F4F4;
-}
-/*Pie de página*/
-.made{
-    position: fixed;
-    align-items: center;
-  }
 
 @media only screen and (min-width: 768px) {
     .login {
@@ -790,23 +800,18 @@ footer {
         height: 9vh;
         margin: 2rem;
     }
-    /*CAJA DE PUBLICACIONES*/
-    .publicacion {
-        border-radius: 10px;
-        width: 26rem;
-    }
     .add-image {
         height: 2rem;
         width: 2rem;
     }
-
+    
     .activities{
         background-image: url("img/hurron-abajo.jpg");
         background-repeat: no-repeat;
         background-size: 100%;
         background-position: bottom;
     } 
-
+    
     .activities p, .activities h1{
         background-color: white;
         padding: 0.5rem;
@@ -823,51 +828,34 @@ footer {
     .card-act {
         width: 40%;
     }
-    .conteiner-post {
-        width: 50.1rem;
-        height: 20vh;
-        background-color: white;
-        border: 2px solid #EC0843;
-
-        justify-content: center;
-    }
-    .crea-post {
+    /*Crear post*/ /*NO BORRAR*/
+    .crea-post { /*NO BORRAR*/
         width: 50rem;
         height: 6vh;
         background-color: #EC0843;
         justify-content: left;
     }
-    .c-post {
+    .c-post { /*NO BORRAR*/
         font-family: 'Oswald', sans-serif;
         color: white;
         font-size: 1.5rem;
         margin: 0.01rem ;
     }
-    .photo-post{
-        width: 20rem;
-        height: 3vh;
-        border: #EC0843;
-        display: flex;
-        justify-content: center;
-        margin: 2rem 2rem 15rem 15rem;
-        
-    }
-    .think{
+    .think{ /*NO BORRAR*/
         font-family: 'Oswald', sans-serif;
         font-size: 2rem;
         padding: 1rem;
         display: flex;
         justify-content: center;
     }
-    .fa, .fa-user-alt{
-        color: #EC0843;
-        font-size: 3rem;
-        padding: 1rem;
-        display: flex;
-        justify-content: center;
+    /*CAJA DE PUBLICACIONES*/ /*NO BORRAR*/
+    .publicacion { /*NO BORRAR*/
+        border-radius: 10px;
+        width: 26rem;
     }
-  
-  /* MI INFO */
+    
+    
+    /* MI INFO */
     .mi-info {
         background-image: url("img/Cómo-Saber-si-un-Periquito-está-Enfermo-300x235.jpg");
         background-repeat: no-repeat;
@@ -877,48 +865,48 @@ footer {
     .cards-fur-container{
         flex-direction: row-reverse;
         flex-wrap: wrap;
-  }
+    }
     .img-myinfo-content,
     .txt-myinfo {
-    display: flex;
-    flex-direction: column;
-    width: 48%;
-    height: 12rem;
-    align-items: center;
-    justify-content: center;
-    background-color: #FFF1F1;
-    color: #EC0843;
-    font-size: 12px;   
-     }
-  
-   .txt-myinfo{
+        display: flex;
+        flex-direction: column;
+        width: 48%;
+        height: 12rem;
+        align-items: center;
+        justify-content: center;
+        background-color: #FFF1F1;
+        color: #EC0843;
+        font-size: 12px;   
+    }
+    
+    .txt-myinfo{
         width: 60%;
     } 
-  
-    .card-myinfo {
-    display: flex;
-    justify-content: space-between;
-    width: 90%;
-    height: 13rem;
-    background-color: #FFF1F1;
-    padding: 0.3rem;
-    border: 2px solid #EC0843;
-    border-radius: 10px;
-    }
-
-    .img-myinfo {
-    width: 7rem;
-    height: 5rem;
-    margin: 2rem 0 0 0;
-    } 
     
+    .card-myinfo {
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+        height: 13rem;
+        background-color: #FFF1F1;
+        padding: 0.3rem;
+        border: 2px solid #EC0843;
+        border-radius: 10px;
+    }
+    
+    .img-myinfo {
+        width: 7rem;
+        height: 5rem;
+    margin: 2rem 0 0 0;
+} 
+
     .card-myinfo {
         width: 33%;
         height: 11rem;
         padding: 0.3rem;
         justify-content: center;
     }
-  
+    
     /* MI INFO */
     .card-myinfo {
         display: flex;
@@ -946,4 +934,63 @@ footer {
         height: 9rem;
         border-radius: 100%;
     }
+    /*Post NO BORRAR*/
+    
+    .profile-reactions{ /*NO BORRAR*/
+        height: 70vh;
+        width: 18rem;
+        background-color: #EC0843; 
+        
+    }
+    .photo-profile{ /*NO BORRAR*/
+        height: 14vh;
+        margin: 0.2rem;
+        border-radius: 50px;
+        
+    }
+    .photo-post{ /*NO BORRAR*/
+        width: 20rem;
+        height: 3vh;
+        border: #EC0843;
+        display: flex;
+        justify-content: center;
+        margin: 2rem 2rem 15rem 15rem;
+        
+    }
+    .conteiner-post-home { /*NO BORRAR*/
+        width: 50.1rem;
+        height: 70vh;
+        background-color: white;
+        border: 2px solid #EC0843;
+        display: flex;
+        float: left;
+        flex-direction: row;
+    }
+    .conteiner-post{ /*NO BORRAR*/
+        width: 50.1rem;
+        height: 30vh;
+        background-color: white;
+        border: 2px solid #EC0843;
+        
+        
+        
+    }
+    .post-print{ /*NO BORRAR*/
+        display: flex;
+        justify-items: center;
+        margin: 0.5rem;
+        float: left;
+    
+    }
+    /*Caja que contiene todos los posts NO BORRAR*/
+    .conteiner-all-posts { /*NO BORRAR*/
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        float: right;
+        margin: 2rem 2rem 5rem 15rem;
+        
+        
+    }
+
 }

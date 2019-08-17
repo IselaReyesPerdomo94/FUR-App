@@ -28,18 +28,18 @@ const home = {
             </div>
             <hr class="line-2">
             <!--Trigger modal -->
-            <div class="conteiner-posts">
+            <div class="conteiner-all-posts">
             <div class="conteiner-post" data-toggle="modal" data-target="#exampleModal">          
             <div class="crea-post" >
             <p class="c-post">Crear post</p>
             </div>
             <div class="photo-post">
-            <i class="fas fa-user-alt"></i>
+            <div id="root-1"></div>
             <p class="think">¿En qué piensas?</p>
             </div>
            
             </div>
-            <div class="root conteiner-post" id="root">
+            <div id="root">
                     </div>
             </div>
 <!-- Modal -->
@@ -85,7 +85,6 @@ const home = {
     after_render: async() => {
       const postsButton = document.querySelector('#btn-post');
       const selectFilter = document.querySelector('.select-filter');
-      // Initialize Cloud Firestore through Firebase
       
       //Guardar data de los post
       const savingPostData = (postInput, postFilter) => {
@@ -107,35 +106,48 @@ const home = {
           console.error("Error adding document: ", error);
         })
       }
-      //Guardar data de los filtros
 
       console.log(savingPostData);
 
-      //Evento para guardar valores de input y filtro
+      //Método para obtener la data de los post
       db.collection("posts").get().then((querySnapshot) => {
-        const root = document.getElementById("root");
+        const root = document.querySelector("#root");
+        const rootProfile = document.querySelector("#root-1");
         let str = ' ';
+        let strProfile = ' ';
+
         querySnapshot.forEach((doc) => {
             console.log(`${doc.id} => ${doc.data().post} => ${doc.data().name}`);
             str += `
-            <div class="post-print conteiner-post">
-            <img src="${doc.data().photo}" alt="gatito" class="kitty">
-
-            <p class="think">Post: ${doc.data().post} </p>
-            <p class="think">Publicado por: ${doc.data().name}</p>
+            <div class="post-print conteiner-post-home">
+            <div class="profile-reactions">
+            <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
+            <p class="think t">${doc.data().name}</p>
+            </div>
+            <div>
+            <p class="think th">Post: ${doc.data().post} </p>
+            </div>
+            </div>
+            `;
+            strProfile = `
+            <div>
+            <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
             </div>
             `;
 
         });
-        root.innerHTML = str; 
+        root.innerHTML = str;
+        rootProfile.innerHTML = strProfile;
       });
       postsButton.addEventListener('click', () => {
+        //Guarda data de los filtros
         const postInput = document.querySelector('#publicacion').value;
+        //Guarda filtro seleccionado
         const postFilter =(selectFilter.options[selectFilter.selectedIndex].value);
         savingPostData(postInput, postFilter);
         
       })
-      //Obtener data 
+       
   
           }
         
