@@ -39,7 +39,7 @@ const home = {
             </div>
            
             </div>
-            <div class="root conteiner-post" id="root">
+            <div id="root">
                     </div>
             </div>
 <!-- Modal -->
@@ -122,7 +122,7 @@ const home = {
             <p class="think t">${doc.data().name}</p>
             </div>
             <div>
-            <p class="think">Post: ${doc.data().post} </p>
+            <p class="think th">Post: ${doc.data().post} </p>
             </div>
             </div>
             `;

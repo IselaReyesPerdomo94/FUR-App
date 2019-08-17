@@ -637,8 +637,9 @@ footer {
 }
 
 .conteiner-posts {
-    display: flex;
+    
     justify-content: center;
+    
 }
 
 /*Profile container, working with grid*/
@@ -731,20 +732,19 @@ footer {
 .photo-profile{
     height: 14vh;
     margin: 0.2rem;
+    border-radius: 40px;
 }
 .t{
     color: white;
+}
+.th{
+    color: #011627;
 }
 .profile-reactions{
     height: 60vh;
     background-color: #EC0843;
 }
-.root{
-    width: 20rem;
-    height: 30vh;
-    background-color: #D62D22;
-    color: #F4F4F4;
-}
+
 /*Pie de página*/
 .made{
     position: fixed;
@@ -843,8 +843,8 @@ footer {
         height: 20vh;
         background-color: white;
         border: 2px solid #EC0843;
-
         justify-content: center;
+        flex-direction: column;
     }
     .crea-post {
         width: 50rem;
