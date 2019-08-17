@@ -132,7 +132,7 @@ const home = {
             `;
             strProfile = `
             <div>
-            <img src="${user.uid}" alt="Foto de perfil" class="photo-profile">
+            <img src="${user.photoURL}" alt="Foto de perfil" class="photo-profile">
             </div>
             `;
 
