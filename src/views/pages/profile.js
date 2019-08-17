@@ -7,53 +7,59 @@ const profile = {
                     <div class="first">
                         <p>Soy: </p>
                     </div>
-                <div class="mid-photo">    
-                </div>
-                <div class="third">
-                    <figure>
-                        <i class="fas fa-paw"></i>
-                    </figure>
-                    <p>Perro: Fetuccini </p>
-                </div>
-                </div>
-                <div class="conteiner-posts">
-                    <div class="conteiner-post" data-toggle="modal" data-target="#exampleModal">
-                        <div class="photo-post">
-                            <div class="crea-post" >
-                                <p class="c-post">Crear post</p>
-                            </div>
-
-                        </div>
-                    </div>    
+                    <div class="mid-photo">    
+                    
+                    </div>
+                    <div class="third">
+                        <figure>
+                            <i class="fas fa-paw"></i>
+                        </figure> 
+                    </div>
                 </div>
 
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <!-- Create post box -->       
+                <div class="conteiner-post" data-toggle="modal" data-target="#exampleModal">          
+                    <div class="crea-post" >
+                        <p class="c-post">Crear post</p>
+                    </div>
+                    <div class="photo-post">
+                        <p class="think">¿En qué piensas?</p>
+                    </div>
+                </div>
+
+                <!-- Modal post container -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">¡Realiza una publicación!
-                            <img src="img/kitty.svg" alt="gatito" class="kitty">
+                                <img src="img/kitty.svg" alt="gatito" class="kitty">
                             </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                         </div>
                         <div class="modal-body">
+                            <select name="tema" class="select-filter">
+                                <option value="All">¿Sobre qué tema publicarás?</option>
+                                <option value="Meme">Meme</option>
+                                <option value="Veterinario">Veterinario</option>
+                                <option value="PetFriendly">PetFriendly</option>
+                                <option value="Tips">Tips</option>
+                                <option value="Perdidos">Perdidos</option>
+                            </select>
                             <textarea placeholder="¿En que piensas?" class="publicacion" id="publicacion"></textarea>
-                            </div>
-                                <div class="image">
-                            </div> 
-                            <div class="modal-footer">
-                                <button type="button" class="btn-btn-primary" data-dismiss="modal" id="cerrar-publicar"> <img src="img/picture.svg" alt="Agregar imagen" class="add-image"></button>
-                                <button type="button" class="btn-btn-primary" data-dismiss="modal" id="cerrar-publicar">Cerrar</button>
-                                <button type="button" class="btn-btn-primary" id="btn-post">Publicar</button>
-                            </div>
+                        </div>
+                        <div class="image">
+
+                        </div> 
+                        <div class="modal-footer">
+                            <button type="button" class="btn-btn-primary" id="btn-post" data-toggle="modal" data-target="#exampleModal"><p class="btn-text">Publicar</p></button>
                         </div>
                     </div>
                     </div>
-                </div>
-           
+                    </div>
+                            </div>
 
             </section>
         `
@@ -64,8 +70,33 @@ const profile = {
         const userInfoSpace = document.querySelector('.mid-photo');
         const userProfileInfo = window.createProfileInformation(user.displayName, user.photoURL);
         userInfoSpace.innerHTML = userProfileInfo;     
-        
+        const postsButton = document.querySelector('#btn-post');
+        const selectFilter = document.querySelector('.select-filter');
+
+        const savingPostData = (postInput, postFilter) => {        
+        db.collection('posts').add({
+          name : user.displayName,
+          post : postInput,
+          photo: user.photoURL,
+          userID: user.uid,
+          filter: postFilter
+        })
+        .then((docRef) => {
+          console.log("Document written with ID: ", docRef.id);
+          
+        })
+        .catch((error) => {
+          console.error("Error adding document: ", error);
+        })
+      }
        
+       postsButton.addEventListener('click', ()=> {
+           console.log('me estoy ejecutando');
+           const postInput = document.querySelector('#publicacion').value;
+        //Guarda filtro seleccionado
+        const postFilter =(selectFilter.options[selectFilter.selectedIndex].value);
+           savingPostData(postInput, postFilter)
+       })
 
         }
 

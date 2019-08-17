@@ -86,17 +86,21 @@ const home = {
       const postsButton = document.querySelector('#btn-post');
       const selectFilter = document.querySelector('.select-filter');
       
+
       //Guardar data de los post
       const savingPostData = (postInput, postFilter) => {
         const user = firebase.auth().currentUser;
-
+       
+      const currentDate = new Date();
+      const strDate = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`
         
         db.collection('posts').add({
           name : user.displayName,
           post : postInput,
           photo: user.photoURL,
           userID: user.uid,
-          filter: postFilter
+          filter: postFilter,
+          date: strDate
         })
         .then((docRef) => {
           console.log("Document written with ID: ", docRef.id);
@@ -108,7 +112,9 @@ const home = {
       }
 
       //Método para obtener la data de los post
-      db.collection("posts").get().then((querySnapshot) => {
+      db.collection("posts").orderBy('date','desc')
+      .get()
+      .then((querySnapshot) => {
         const user = firebase.auth().currentUser;
         const root = document.querySelector("#root");
         const rootProfile = document.querySelector("#root-1");

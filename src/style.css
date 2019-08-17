@@ -382,7 +382,7 @@ footer {
 .cards-act-container,
 .cards-fur-container {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -446,6 +446,11 @@ footer {
     align-items: center;
     justify-content: space-around;
     
+}
+
+.title-card-act i:hover{
+    cursor:pointer;
+    color: #EC0843;
 }
 
 .high {
@@ -869,6 +874,10 @@ footer {
 
     .reactions{
         font-size: 3.5rem;
+        cursor: pointer;
+    }
+    .reactions i:hover{
+        color: orange;
     }
     /*CAJA DE PUBLICACIONES*/ /*NO BORRAR*/
     .publicacion { /*NO BORRAR*/
