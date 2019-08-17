@@ -133,10 +133,10 @@ footer {
     color: white;
 }
 
-.login{
+.login  .mi-info {
     height: 100vh;
     width: 100%;
-    background-image: url("img/perro-mirando-arriba_23-2147787329.jpg");
+    background-image: url("img/peces-betta.jpg");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -194,15 +194,7 @@ footer {
     cursor: pointer;
 }
 
-.mi-info {
-    display: flex;
-    flex-direction: column;
-    background-image: url("img/welovepetsC_2048x.jpg");
-    padding: 2rem;
-    background-position: center;
-    background-color: #F4F4F4;
-    background-repeat: no-repeat;
-}
+
 
 .listo {
     bottom: 0;
@@ -226,7 +218,7 @@ footer {
 }
 
 
-/* Formulario Mi info */
+/* Modal Mi info */
 
 .form-profile,
 .modal-fade {
@@ -263,7 +255,7 @@ footer {
 .description-fur textarea {
     border: 2px solid #EC0843;
     border-radius: 10px;
-    width: 98%;
+    width: 88%;
 }
 
 .photo-fur {
@@ -273,17 +265,16 @@ footer {
     align-items: center;
     justify-content: center;
 }
+.fur-photo {
+    width: 3rem;
+    height: 3rem;
+}
 
 .content-image-add {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.fur-photo {
-    width: 2rem;
-    height: 2rem;
 }
 
 .save {
@@ -302,34 +293,65 @@ footer {
     margin: 0.5rem;
 }
 
+/* Cards Mi info */
+
+.mi-info {
+   
+    background-image: url("img/peces-betta (1).jpg");
+    background-repeat: no-repeat;
+}
+.card-myinfo {
+  box-sizing: border-box;  
+   display: flex;
+   justify-content: space-between 1;
+   width: 70%;
+   height: 13rem;
+   background-color: #FFF1F1;
+   padding: 0.3rem;
+   border-radius: 10px; 
+   margin: 1rem; 
+   justify-content: center   
+}
+
 .img-myinfo-content,
 .txt-myinfo {
     display: flex;
     flex-direction: column;
     width: 48%;
-    height: 12rem;
+    height: 12rem;    
+    color: #EC0843; 
     align-items: center;
+    justify-content: center; 
+}
+
+.txt-myinfo {
+    float: left;
+
     justify-content: center;
     background-color: #FFF1F1;
     color: #EC0843;
     font-size: 16px;
 }
 
-.card-myinfo {
-    display: flex;
-    justify-content: space-between;
-    width: 40%;
-    height: 13rem;
-    background-color: #FFF1F1;
-    padding: 0.3rem;
-    border: 2px solid #EC0843;
+.img-myinfo-content h3{
+    font-size: 1rem;
+    padding: 7px;
     border-radius: 10px;
+    border: 1.5px dashed #EC0843;
 }
 
+.txt-myinfo p {
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+      
+}
+ 
 .img-myinfo {
-    width: 8rem;
-    height: 6rem;
+    width: 6rem;
+    height: 5rem;
     margin: 1rem 0 0 0;
+    border-radius: 10px;
 }
 
 
@@ -763,6 +785,31 @@ footer {
         color: white;
         font-size: 1rem;
     }
+  
+  /* MI INFO */
+  .mi-info {
+    background-image: url("img/Cómo-Saber-si-un-Periquito-está-Enfermo-300x235.jpg");
+    background-repeat: no-repeat;
+}
+.card-myinfo {
+  /* box-sizing: border-box;   */
+   width: 33%;
+   height: 11rem;
+   padding: 0.3rem;
+   justify-content: center;
+ 
+}
+
+.img-myinfo-content,
+.txt-myinfo {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 10rem;    
+    align-items: center;
+    justify-content: center; 
+
+}
     /* MI INFO */
     .img-myinfo-content,
     .txt-myinfo {
@@ -804,4 +851,5 @@ footer {
     height: 9rem;
     border-radius: 100%;
     }
+
 }

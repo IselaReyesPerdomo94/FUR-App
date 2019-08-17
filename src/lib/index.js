@@ -211,13 +211,13 @@ const createActivityCard = (title, date, time, description, priority) => {
 
 //Mi Info function
 
-const createFurCard = (namefur, furnickname, furage, furagetwo, furspecie, furdescription) => {
+const createFurCard = (namefur, furnickname, furspecie, furage, furagetwo,  furdescription) => {
     const newFurCard = petCard.card
         .replace('*petName*', namefur)
         .replace('*nickName*', furnickname)
+        .replace('*specie*', furspecie)
         .replace('*age*', furage)
         .replace('*age2*', furagetwo)
-        .replace('*specie*', furspecie)
         .replace('*about*', furdescription)
     return newFurCard;
 }
