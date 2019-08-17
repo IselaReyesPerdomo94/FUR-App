@@ -493,12 +493,12 @@ footer {
 }
 
 .flex-container a,
-p {
+.flex-container p {
     color: #011627;
 }
 
-.flex-container a,
-p:hover {
+.flex-container a, 
+.flex-container p:hover {
     color: #EC0843;
     cursor: pointer;
     text-decoration: none;
@@ -581,6 +581,7 @@ p:hover {
     background-color: white;
     border: 2px solid #EC0843;
     justify-content: center;
+    margin: 0.5rem;
 }
 
 .crea-post {
@@ -601,6 +602,47 @@ p:hover {
 .conteiner-posts {
     display: flex;
     justify-content: center;
+}
+
+/*Profile container, working with grid*/
+.profile{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-header{
+    color: white;
+    display: grid;
+    background-color: #EC0843;
+    height: 30vh;
+    width: 100%;
+    grid-template-columns: auto repeat(2, 1fr);
+    grid-template-rows: 100% ;
+    grid-template-areas: "first mid-photo third";
+}
+
+.profile-header figure{
+    display: flex;
+    justify-content: center;
+}
+
+
+.first{ 
+    visibility: hidden;
+}
+
+.third, .mid-photo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.third figure i{
+    font-size:3rem;
+    color: white;
 }
 
 @media only screen and (min-width: 768px) {
@@ -673,6 +715,13 @@ p:hover {
         background-size: 100%;
         background-position: bottom;
     } 
+
+    .activities p, .activities h1{
+        background-color: white;
+        padding: 0.5rem;
+        border-radius: 10px;
+        opacity: 0.95;
+    }
     .cards-act-container {
         display: flex;
         flex-direction: row-reverse;
@@ -728,5 +777,14 @@ p:hover {
         width: 7rem;
         height: 5rem;
         margin: 2rem 0 0 0;
+    }
+    .profile-header{
+        width: 1200px;
+        display: grid;
+        background-color: #EC0843;
+        height: 30vh;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 100% ;
+        grid-template-areas: "first mid-photo third";
     }
 }
