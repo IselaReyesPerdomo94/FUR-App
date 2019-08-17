@@ -82,10 +82,11 @@ const home = {
     },
     after_render: async() => {
       const postsButton = document.querySelector('#btn-post');
+      const selectFilter = document.querySelector('.select-filter');
       // Initialize Cloud Firestore through Firebase
       
-      
-      const savingPostData = (postInput) => {
+      //Guardar data de los post
+      const savingPostData = (postInput, postFilter) => {
         const user = firebase.auth().currentUser;
 
         
@@ -93,7 +94,8 @@ const home = {
           name : user.displayName,
           post : postInput,
           photo: user.photoURL,
-          userID: user.uid
+          userID: user.uid,
+          filter: postFilter
         })
         .then((docRef) => {
           console.log("Document written with ID: ", docRef.id);
@@ -103,11 +105,17 @@ const home = {
           console.error("Error adding document: ", error);
         })
       }
+      //Guardar data de los filtros
+
       console.log(savingPostData);
-      
+      //Evento para guardar valores de filtro
+
+      //Evento para guardar valores de input
       postsButton.addEventListener('click', () => {
         const postInput = document.querySelector('#publicacion').value;
-        savingPostData(postInput);
+        const postFilter =(selectFilter.options[selectFilter.selectedIndex].value);
+
+        savingPostData(postInput, postFilter);
       })
   
           }
