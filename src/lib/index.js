@@ -3,6 +3,8 @@ import { components } from "../views/pages/activities.js";
 import { petCard } from "../views/pages/myinfo.js";
 import {userInfo} from "../views/pages/profile.js";
 
+
+
 //Home function
 const goingHome = () => {
     location.hash = '/home';
@@ -229,6 +231,31 @@ const createProfileInformation = (userName, photoURL) =>{
     return newProfile;
 }
 
+
+window.onload = function(){
+document.getElementById('photo').addEventListener('change', function(chargeimg){
+    chargeimg.preventDefault();
+    const addImageFur = chargeimg.target.files[0];
+    furImageLoad(addImageFur);
+});
+}
+function furImageLoad(addImageFur){
+    const refStorage = storageService.ref('imagenesdeusuarios').child(addImageFur.name);
+    const uploadTask = refStorage.put(addImageFur);
+    // event
+
+    uploadTask.on('state_changed', null,
+    function(error){
+        console.log('Error al subir el archivo', error);
+    },
+    function(){
+        console.log('subida completada');
+        messagefinal(uploadTask.snapshot)
+    }
+    );
+}
+
+
 window.signInFacebook = signInFacebook;
 window.signInGoogle = signInGoogle;
 window.register = register;
@@ -238,4 +265,5 @@ window.createActivityCard = createActivityCard;
 window.createFurCard = createFurCard;
 window.goingLogin = goingLogin;
 window.createProfileInformation = createProfileInformation;
+
 
