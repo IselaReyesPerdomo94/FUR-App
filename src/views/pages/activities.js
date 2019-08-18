@@ -64,6 +64,9 @@ const activities = {
                     </div>
                 </div>
                 </div>
+
+                <!--Eliminar actividad -->
+                    
             </section>
         `
         return view
@@ -83,7 +86,6 @@ const activities = {
         
         //prueba para jalar info de un solo usuario;
         const eraseInputs = (titleInput, dateInput, timeInput, descriptionInput) => {
-            console.log(typeof dateInput.value)
             titleInput.value = '';
             dateInput.value = '';
             timeInput.value = '';
@@ -148,12 +150,34 @@ const activities = {
 const components = {
     card: `<div class="card-act">
                 <div class="title-card-act *priority*">
-                    <h5>*title*</h5><i class="far fa-trash-alt"></i>
+                    <h5>*title*</h5><i class="far fa-trash-alt" data-toggle="modal" data-target="#exampleModalCenter"></i>
                 </div>    
                     <span>Fecha: <span>*date*</span></span>
                     <span>Hora: <span>*time*</span></span>
-                    <span>Descripción: <span>*description*</span></span>     
-              </div>`
+                    <p>Descripción: <span>*description*</span></p>     
+              </div>
+            
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">¿Estas seguro de borrar la actividad?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="buttons btn btn-primary">Borrar</button>                                
+                            </div>
+                            </div>
+                        </div>
+                        </div>  
+              
+              `
 }
 
 export { components };
