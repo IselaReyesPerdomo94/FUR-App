@@ -56,12 +56,7 @@ const home = {
           </button>
            </div>
            <div class="modal-body">
-           <textarea placeholder="¿En que piensas?" class="publicacion" id="publicacion"></textarea>
-           </div>
-          <div class="image">
-          </div> 
-          <div class="modal-footer">
-          <select name="" class="select-filter">
+            <select name="" class="select-filter">
           <option value="All">¿Sobre qué tema publicarás?</option>
           <option value="Meme">Meme</option>
           <option value="Veterinario">Veterinario</option>
@@ -69,8 +64,11 @@ const home = {
           <option value="Tips">Tips</option>
           <option value="Perdidos">Perdidos</option>
           </select>
-
-          <button type="button" class="btn-btn-primary" data-dismiss="modal" id="cerrar-publicar"><p class="btn-text">Cerrar</p></button>
+           <textarea placeholder="¿En que piensas?" class="publicacion" id="publicacion"></textarea>
+           </div>
+          <div class="image">
+          </div> 
+          <div class="modal-footer">
           <button type="button" class="btn-btn-primary" id="btn-post" data-toggle="modal" data-target="#exampleModal"><p class="btn-text">Publicar</p></button>
           </div>
           </div>
@@ -93,7 +91,7 @@ const home = {
         const user = firebase.auth().currentUser;
        
       const currentDate = new Date();
-      const strDate = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`
+      const strDate = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`
         
         db.collection('posts').add({
           name : user.displayName,
@@ -112,51 +110,59 @@ const home = {
         })
       }
 
-      //Método para obtener la data de los post
-      db.collection("posts").orderBy('date','desc')
-      .get()
-      .then((querySnapshot) => {
-        const user = firebase.auth().currentUser;
-        const root = document.querySelector("#root");
-        const rootProfile = document.querySelector("#root-1");
-        let str = ' ';
-        let strProfile = ' ';
-         
-        querySnapshot.forEach((doc) => {
-          let theme = doc.data().filter;
-          if(theme == undefined){
+        //Para obtener todos los post
+
+        const gettingAllPost = () => {
+          console.log('Hola deben de aparecer todos los post')
+          //Método para obtener la data de los post
+          db.collection("posts").orderBy('date','desc')
+          .get()
+          .then((querySnapshot) => {
+            const user = firebase.auth().currentUser;
+            const root = document.querySelector("#root");
+            const rootProfile = document.querySelector("#root-1");
+            let str = ' ';
+            let strProfile = ' ';
             
-          theme = 'General';
-        } 
-            str += `
-             <div class="post-print conteiner-post-home">
-              <div class="profile-reactions">
-                    <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
-                    <p class="think t">${doc.data().name}</p>
-                <div class="reactions">
-                    <i class="fas fa-smile-beam"></i>
-                    <i class="fas fa-angry"></i>
-                    <i class="fas fa-comment"></i>
-                    <i class="fas fa-share-alt-square"></i>
-                </div>
-              </div>
-                <div class="post-info-container">
-                    <div class="post-content-theme-title">
-                        <p class="th" id="tema">Tema: ${theme} </p><span>${doc.data().date}</span>
+            querySnapshot.forEach((doc) => {
+              let theme = doc.data().filter;
+              if(theme == undefined){
+                
+              theme = 'General';
+            } 
+                str += `
+                <div class="post-print conteiner-post-home">
+                  <div class="profile-reactions">
+                        <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
+                        <p class="think t">${doc.data().name}</p>
+                    <div class="reactions">
+                        <i class="fas fa-smile-beam"></i>
+                        <i class="fas fa-angry"></i>
+                        <i class="fas fa-comment"></i>
+                        <i class="fas fa-share-alt-square"></i>
                     </div>
-                    <p class="think th"> ${doc.data().post}</p>
+                  </div>
+                    <div class="post-info-container">
+                        <div class="post-content-theme-title">
+                            <p class="th" id="tema">Tema: ${theme} </p><span>${doc.data().date}</span>
+                        </div>
+                        <p class="think th"> ${doc.data().post}</p>
+                    </div>
+                  </div>
+                  `;
+                  strProfile = `
+                  <div>
+                      <img src="${user.photoURL}" alt="Foto de perfil" class="photo-profile">
                 </div>
-              </div>
-              `;
-              strProfile = `
-              <div>
-                  <img src="${user.photoURL}" alt="Foto de perfil" class="photo-profile">
-            </div>
-            `;
-            
-          rootProfile.innerHTML = strProfile;
-          
+                `;
+                
+              rootProfile.innerHTML = strProfile;
+              root.innerHTML = str;
+            });
         });
+        }
+
+        gettingAllPost();
       
       //Parametros para crear data de post
       postsButton.addEventListener('click', () => {
@@ -227,25 +233,7 @@ const home = {
        filterTips.addEventListener('click', () => {filterPost('Tips')}, true)
        filterVeterinario.addEventListener('click', () => {filterPost('Veterinario')}, true);
        filterPetfriendly.addEventListener('click', () => {filterPost('PetFriendly')}, true);
-       filterPerdidos.addEventListener('click', () => {filterPost('Perdidos')}, true);
-      
-      
-
-            
-            
-          
-        
-        
-        
-
-
-        
-           
-            
-            
-            
-            
-    })
+       filterPerdidos.addEventListener('click', () => {filterPost('Perdidos')}, true);          
         
       
     }

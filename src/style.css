@@ -452,7 +452,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    
+    padding: 0.5rem;
 }
 
 .title-card-act i:hover{
@@ -630,7 +630,7 @@ footer {
 }
 /*Crear post*/ /*NO BORRAR*/
 .conteiner-post { /*NO BORRAR*/
-    width: 19.1rem;
+    width: 90%;
     height: 18vh;
     background-color: white;
     border: 2px solid #EC0843;
@@ -639,7 +639,7 @@ footer {
 }
 
 .crea-post { /*NO BORRAR*/
-    width: 19rem;
+    width: 100%;
     height: 6vh;
     background-color: #EC0843;
     display: flex;
@@ -728,8 +728,8 @@ footer {
     font-family: 'Oswald', sans-serif;
 }
 .post-print{ /*NO BORRAR*/
-    width: 19rem;
-    height: 40vh;
+    width: 90%;
+    height: 50vh;
     display: flex;
     justify-items: center;
     margin: 0.5rem;
@@ -748,7 +748,7 @@ footer {
 }
 .profile-reactions{ /*NO BORRAR*/
     background-color: #EC0843;
-    width: 20$;
+    width: 30%;
 }
 
 /*Seleccionar filtro*/ /*NO BORRAR*/
@@ -768,7 +768,7 @@ footer {
 
 .post-info-container{
     display: flex;
-    width:80%;
+    width:70%;
     flex-direction: column;
     padding: 1rem;
 }
