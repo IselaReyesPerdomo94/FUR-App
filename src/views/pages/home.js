@@ -139,7 +139,7 @@ const home = {
 
       
 
-      
+      //Obtener las tarjetas por cada filtro
       const filterPost = (fil) => {postsRef.where('filter', '==', fil )
       .get()
       .then((querySnapshot) => {
@@ -167,9 +167,7 @@ const home = {
        })
       
   }
-         //Funciones de filtros
-      //const tips = 'Tips';
-      //const memes = 'Memes';
+       //Llamando las clases de las cajitas de cada filtro
          
       const postsRef = db.collection('posts');
       const filterTips = document.querySelector('.tips');
@@ -178,16 +176,14 @@ const home = {
       const filterPetfriendly = document.querySelector('.pet-friendly');
       const filterPerdidos = document.querySelector('.perdidos');
 
-       //seFilter.addEventListener('click', postView, true);
        
-       filterMemes.addEventListener('click', filterPost('Meme'), true);
-       filterTips.addEventListener('click', () =>
-        {filterPost('Tips')}, true)
-       //filterVeterinario.addEventListener('click', filterPost('Veterinario'), true);
-       filterPetfriendly.addEventListener('click', () => {
-         filterPost('PetFriendly')}
-       , true);
-       //filterPerdidos.addEventListener('click', filterPost('Perdidos'), true);
+
+       //Funcionalidad de filtros
+       filterMemes.addEventListener('click', () => {filterPost('Meme')}, true);
+       filterTips.addEventListener('click', () => {filterPost('Tips')}, true)
+       filterVeterinario.addEventListener('click', () => {filterPost('Veterinario')}, true);
+       filterPetfriendly.addEventListener('click', () => {filterPost('PetFriendly')}, true);
+       filterPerdidos.addEventListener('click', () => {filterPost('Perdidos')}, true);
       
       
 
