@@ -518,16 +518,17 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 
 /*IMÁGENES DE FILTRADO*/
 
-.veterinario,
-.memes,
-.pet-friendly,
-.tips,
-.perdidos {
+#veterinario, /*No borrar*/
+#memes,
+#pet-friendly,
+#tips,
+#perdidos {
     height: 6vh;
     border: 0.2rem;
     cursor: pointer;
@@ -829,14 +830,7 @@ footer {
         color: #EC0843;
         cursor: pointer;
     }
-    .veterinario,
-    .memes,
-    .pet-friendly,
-    .tips,
-    .perdidos {
-        height: 9vh;
-        margin: 2rem;
-    }
+    
     .add-image {
         height: 2rem;
         width: 2rem;
