@@ -66,12 +66,12 @@ const profile = {
         return view
     },
     after_render: async() => {
+        const firestore = firebase.firestore();
         const user = await firebase.auth().currentUser;
         const userInfoSpace = document.querySelector('.mid-photo');
         const userProfileInfo = window.createProfileInformation(user.displayName, user.photoURL);
         userInfoSpace.innerHTML = userProfileInfo;    
-        const petsInfo = document.querySelector('.third'); 
-        const petsInfoFirebase = () => {} 
+        const petsInfo = document.querySelector('.third');  
             
         const postsButton = document.querySelector('#btn-post');
         const selectFilter = document.querySelector('.select-filter');
@@ -100,6 +100,23 @@ const profile = {
         const postFilter =(selectFilter.options[selectFilter.selectedIndex].value);
            savingPostData(postInput, postFilter)
        })
+
+
+       const gettingPetInfo = () => {
+            firestore.collection('pets').where("userID", "==", user.uid)
+                .get()
+                .then((snapshot) => {
+                    snapshot.forEach(element => {
+                        const { petspecie, petname} = element.data();
+                        const petInfo = `
+                        <p>${petspecie}: ${petname}</p>
+                        `
+                        petsInfo.innerHTML += petInfo;
+                    });
+                })
+        }
+
+        gettingPetInfo();
 
         }
 
