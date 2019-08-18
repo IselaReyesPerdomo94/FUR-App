@@ -727,7 +727,7 @@ footer {
     font-family: 'Oswald', sans-serif;
 }
 .post-print{ /*NO BORRAR*/
-    width: 19rem;
+    width: 90%;
     height: 40vh;
     display: flex;
     justify-items: center;
@@ -747,7 +747,7 @@ footer {
 }
 .profile-reactions{ /*NO BORRAR*/
     background-color: #EC0843;
-    width: 20$;
+    width: 30%;
 }
 
 /*Seleccionar filtro*/ /*NO BORRAR*/
@@ -767,7 +767,7 @@ footer {
 
 .post-info-container{
     display: flex;
-    width:80%;
+    width:70%;
     flex-direction: column;
     padding: 1rem;
 }
