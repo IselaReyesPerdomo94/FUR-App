@@ -50,12 +50,14 @@ const myInfo = {
             </textarea>
             </div>
             <div class="photo-fur">
-               <div class="content-image-add"
-                <a href="">
-                    <img src="./img/elements/camera.png" class="fur-photo"/>
-                    Añadir foto
-                </a>
-                </div>
+              <form id="form-imagenes"> 
+                <label class="btn-img">
+                   <input type="file" name="files-img" value="" id="photo" class="hidden">
+                   <img type="file" src="./img/elements/camera.png" class="fur-photo" alt="add"/>
+                   <div id="mensaje"></div>
+                </label>
+              </form>  
+            </div>
             </div>    
             </div>
             </div> 
@@ -88,6 +90,7 @@ const myInfo = {
         const descriptionFur = document.getElementById('description-input');
         const cardFurSpace = document.getElementById('cards-fur-container');
         const saveFur = document.getElementById('save');
+        
 
         const user = firebase.auth().currentUser;
 
@@ -98,6 +101,7 @@ const myInfo = {
             ageFur = '';
             ageFurTwo = '';
             descriptionFur = '';
+
         }
 
         const saveFurInfo = (namefur, furnickname, furspecie, furage, furagetwo,  furdescription) => {
@@ -110,6 +114,7 @@ const myInfo = {
                     petage: furage,
                     petagetwo: furagetwo,
                     petdescription: furdescription,
+                    
 
                 })
                 .then((docRef) => {
@@ -125,17 +130,21 @@ const myInfo = {
                     console.error('Error al guardar mascota')
                 });
         }
+        
+        
+
 
         const gettingFurCardsfromFirebase = () => {
             firestore.collection('pets').where('userID', '==', user.uid)
                 .get()
                 .then((snapshot) => {
                     snapshot.forEach(element => {
-                        const { petname, petnickname, petspecie, petage, petagetwo, petdescription } = element.data();
+                        const { petname, petnickname, petspecie, petage, petagetwo, petdescription} = element.data();
                         const newPetCard = window.createFurCard(petname, petnickname, petspecie, petage, petagetwo, petdescription)
                         cardFurSpace.innerHTML += newPetCard;
                     })
                 })
+                
         }
 
         gettingFurCardsfromFirebase();
@@ -146,6 +155,7 @@ const myInfo = {
             const furage = ageFur.value;
             const furagetwo = ageFurTwo.value;
             const furdescription = descriptionFur.value;
+            
 
             saveFurInfo(namefur, furnickname, furspecie, furage, furagetwo, furdescription)
             eraseInputs(furName, nickName, specie, ageFur, ageFurTwo,  descriptionFur);
@@ -166,7 +176,7 @@ const petCard = {
   <div class="card-myinfo">
   <div class="img-myinfo-content">
     <h3>*petName*</h3>
-    <img src="*img*"/ class="img-myinfo">
+    <img src="*img*"/ class="img-myinfo" id="img-myinfo">
   </div>
   <div class="txt-myinfo"> 
     <p>Apodos: <span>*nickName*</span></p>
