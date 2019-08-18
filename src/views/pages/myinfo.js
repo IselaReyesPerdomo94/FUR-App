@@ -97,7 +97,7 @@ const myInfo = {
 
         const user = firebase.auth().currentUser;
 
-        const eraseInputs = (furName, nickName, specie, ageFur, ageFurTwo,  descriptionFur) => {
+        const eraseInputs = (furName, nickName, specie, ageFur, ageFurTwo, descriptionFur) => {
             furName.value = '';
             nickName = '';
             specie = '';
@@ -107,7 +107,7 @@ const myInfo = {
 
         }
 
-        const saveFurInfo = (namefur, furnickname, furspecie, furage, furagetwo,  furdescription) => {
+        const saveFurInfo = (namefur, furnickname, furspecie, furage, furagetwo, furdescription) => {
             db.collection('pets').add({
                     userID: user.uid,
                     name: user.displayName,
@@ -116,68 +116,84 @@ const myInfo = {
                     petspecie: furspecie,
                     petage: furage,
                     petagetwo: furagetwo,
-                    petdescription: furdescription,
-                    
-
+                    petdescription: furdescription
                 })
                 .then((docRef) => {
                     console.log('Document written with ID', docRef);
                     console.log('Guardando mascota')
                 })
                 .then(() => {
-                    const newPetCard = window.createFurCard(namefur, furnickname, furspecie, furage, furagetwo,  furdescription);
+                    const newPetCard = window.createFurCard(namefur, furnickname, furspecie, furage, furagetwo, furdescription);
                     cardFurSpace.innerHTML += newPetCard;
                 })
                 .catch((error) => {
                     console.error('Error adding document: ', error);
                     console.error('Error al guardar mascota')
                 });
-        }  
+        }
+
+
+
+        const savingPhotoFirebase = (chargeimg) => {
+            const addImageFur = chargeimg.target.files[0];
+
+            const refStorage = storageService.ref().child(`imagenesdemascotas/${addImageFur.name}`);
+            const uploadTask = refStorage.put(addImageFur)
+                .then(() => console.log('Uploaded file!'))
+                .then(() =>
+                    refStorage.getDownloadURL()
+                ).then((url) => {
+                    const urlPhoto = url;
+                    console.log(urlPhoto)
+                    return urlPhoto;
+                })
+                .catch(err => {
+                    console.log('Error:')
+                    console.log(err)
+                });
+        }
+
+
+
+        photo.addEventListener('change', (chargeimg) => {
+            console.log('Se esta ejecutando el evento de subir fotos')
+            const urlPhotoResult = savingPhotoFirebase(chargeimg);
+        });
+
+        saveFur.addEventListener('click', () => {
+            console.log('me estoy ejecutando')
+            const namefur = furName.value;
+            const furnickname = nickName.value;
+            const furspecie = specie.value;
+            const furage = ageFur.value;
+            const furagetwo = ageFurTwo.value;
+            const furdescription = descriptionFur.value;
+
+            saveFurInfo(namefur, furnickname, furspecie, furage, furagetwo, furdescription)
+            eraseInputs(furName, nickName, specie, ageFur, ageFurTwo, descriptionFur);
+        })
 
         const gettingFurCardsfromFirebase = () => {
             firestore.collection('pets').where('userID', '==', user.uid)
                 .get()
                 .then((snapshot) => {
                     snapshot.forEach(element => {
-                        const { petname, petnickname, petspecie, petage, petagetwo, petdescription} = element.data();
+                        const { petname, petnickname, petspecie, petage, petagetwo, petdescription } = element.data();
                         const newPetCard = window.createFurCard(petname, petnickname, petspecie, petage, petagetwo, petdescription)
                         cardFurSpace.innerHTML += newPetCard;
                     })
                 })
-              }
+        }
 
-        
+        gettingFurCardsfromFirebase();
 
-          gettingFurCardsfromFirebase();
 
-          saveFur.addEventListener('click', () => {
-            console.log('me estoy ejecutando')
-              const namefur = furName.value;
-              const furnickname = nickName.value;
-              const furspecie = specie.value;
-              const furage = ageFur.value;
-              const furagetwo = ageFurTwo.value;
-              const furdescription = descriptionFur.value;
-              saveFurInfo(namefur, furnickname, furspecie, furage, furagetwo, furdescription)
-              eraseInputs(furName, nickName, specie, ageFur, ageFurTwo,  descriptionFur);
-          })
 
-                   
-          photo.addEventListener('change', (chargeimg)=>{
-          const addImageFur = chargeimg.target.files[0];
-
-          const refStorage = storageService.ref().child(`imagenesdemascotas/${addImageFur.name}`);
-          const uploadTask = refStorage.put(addImageFur).then(() => console.log('Uploaded file!')).catch(err => {
-            console.log('Error:')
-            console.log(err)
-          });
-          
-          });
-               
 
     }
 
 }
+
 
 
 
@@ -187,7 +203,7 @@ const petCard = {
   <div class="card-myinfo">
   <div class="img-myinfo-content">
     <h3>*petName*</h3>
-    <img src="https://firebasestorage.googleapis.com/v0/b/app-fur.appspot.com/o/imagenesdemascotas%2Fjocho.jpg?alt=media&token=9e30fa86-0268-4a3a-8059-fc6b13e49229" class="img-myinfo" id="img-myinfo">
+    <img src="*img*" class="img-myinfo" id="img-myinfo">
   </div>
   <div class="txt-myinfo"> 
     <p>Apodos: <span>*nickName*</span></p>
