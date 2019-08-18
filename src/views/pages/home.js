@@ -178,18 +178,31 @@ const home = {
         let str = ' ';
 
       querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
+        let theme = doc.data().filter;
+        if(theme == undefined){
+          
+        theme = 'General';
+      } 
           str += `
           <div class="post-print conteiner-post-home">
-          <div class="profile-reactions">
-          <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
-          <p class="think t">${doc.data().name}</p>
-          </div>
-          <div>
-          <p class="think th">Post: ${doc.data().post} </p>
-          </div>
-          </div>
-          `;
+              <div class="profile-reactions">
+                    <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
+                    <p class="think t">${doc.data().name}</p>
+                <div class="reactions">
+                    <i class="fas fa-smile-beam"></i>
+                    <i class="fas fa-angry"></i>
+                    <i class="fas fa-comment"></i>
+                    <i class="fas fa-share-alt-square"></i>
+                </div>
+              </div>
+                <div class="post-info-container">
+                    <div class="post-content-theme-title">
+                        <p class="th" id="tema">Tema: ${theme} </p><span>${doc.data().date}</span>
+                    </div>
+                    <p class="think th"> ${doc.data().post}</p>
+                </div>
+              </div>
+              `;
       
       
         })
