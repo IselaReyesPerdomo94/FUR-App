@@ -231,7 +231,6 @@ const createProfileInformation = (userName, photoURL) =>{
     return newProfile;
 }
 
-
 window.signInFacebook = signInFacebook;
 window.signInGoogle = signInGoogle;
 window.register = register;
