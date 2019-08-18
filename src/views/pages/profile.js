@@ -69,7 +69,15 @@ const profile = {
         const user = await firebase.auth().currentUser;
         const userInfoSpace = document.querySelector('.mid-photo');
         const userProfileInfo = window.createProfileInformation(user.displayName, user.photoURL);
-        userInfoSpace.innerHTML = userProfileInfo;     
+        userInfoSpace.innerHTML = userProfileInfo;    
+        const petsInfo = document.querySelector('.third'); 
+        const petsInfoFirebase = 
+        () => {
+            `
+            <p>${}<label>${}</label></p>
+        `
+        } 
+            
         const postsButton = document.querySelector('#btn-post');
         const selectFilter = document.querySelector('.select-filter');
 
