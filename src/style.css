@@ -629,7 +629,7 @@ footer {
 }
 /*Crear post*/ /*NO BORRAR*/
 .conteiner-post { /*NO BORRAR*/
-    width: 19.1rem;
+    width: 90%;
     height: 18vh;
     background-color: white;
     border: 2px solid #EC0843;
@@ -638,7 +638,7 @@ footer {
 }
 
 .crea-post { /*NO BORRAR*/
-    width: 19rem;
+    width: 100%;
     height: 6vh;
     background-color: #EC0843;
     display: flex;
@@ -728,7 +728,7 @@ footer {
 }
 .post-print{ /*NO BORRAR*/
     width: 90%;
-    height: 40vh;
+    height: 50vh;
     display: flex;
     justify-items: center;
     margin: 0.5rem;
