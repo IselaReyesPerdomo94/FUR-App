@@ -1,7 +1,7 @@
 // aqui exportaras las funciones que necesites
 import { components } from "../views/pages/activities.js";
 import { petCard } from "../views/pages/myinfo.js";
-import {userInfo} from "../views/pages/profile.js";
+import { userInfo } from "../views/pages/profile.js";
 
 
 
@@ -213,7 +213,7 @@ const createActivityCard = (title, date, time, description, priority) => {
 
 //Mi Info function
 
-const createFurCard = (namefur, furnickname, furspecie, furage, furagetwo,  furdescription) => {
+const createFurCard = (namefur, furnickname, furspecie, furage, furagetwo, furdescription) => {
     const newFurCard = petCard.card
         .replace('*petName*', namefur)
         .replace('*nickName*', furnickname)
@@ -224,10 +224,10 @@ const createFurCard = (namefur, furnickname, furspecie, furage, furagetwo,  furd
     return newFurCard;
 }
 
-const createProfileInformation = (userName, photoURL) =>{
+const createProfileInformation = (userName, photoURL) => {
     const newProfile = userInfo.profileInfo
-    .replace('*userName*', userName)
-    .replace('*photoURL*', photoURL)
+        .replace('*userName*', userName)
+        .replace('*photoURL*', photoURL)
     return newProfile;
 }
 
@@ -240,5 +240,3 @@ window.createActivityCard = createActivityCard;
 window.createFurCard = createFurCard;
 window.goingLogin = goingLogin;
 window.createProfileInformation = createProfileInformation;
-
-
