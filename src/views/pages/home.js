@@ -43,17 +43,17 @@ const home = {
             <div id="root">
                     </div>
             </div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">¡Realiza una publicación!
-            <img src="img/kitty.svg" alt="gatito" class="kitty">
-            </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-           </button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal-dialog" role="document">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h5 class="modal-title" id="exampleModalLabel">¡Realiza una publicación!
+       <img src="img/kitty.svg" alt="gatito" class="kitty">
+       </h5>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
            </div>
            <div class="modal-body">
            <textarea placeholder="¿En que piensas?" class="publicacion" id="publicacion"></textarea>
@@ -87,17 +87,21 @@ const home = {
       const postsButton = document.querySelector('#btn-post');
       const selectFilter = document.querySelector('.select-filter');
       
+
       //Guardar data de los post
       const savingPostData = (postInput, postFilter) => {
         const user = firebase.auth().currentUser;
-
+       
+      const currentDate = new Date();
+      const strDate = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`
         
         db.collection('posts').add({
           name : user.displayName,
           post : postInput,
           photo: user.photoURL,
           userID: user.uid,
-          filter: postFilter
+          filter: postFilter,
+          date: strDate
         })
         .then((docRef) => {
           console.log("Document written with ID: ", docRef.id);
@@ -108,18 +112,45 @@ const home = {
         })
       }
 
-      console.log(savingPostData);
-
-      //Método para obtener foto de perfil de los usuarios
-          db.collection("posts")
-
-        .get().then(() => {
-          const user = firebase.auth().currentUser;
-          const rootProfile = document.querySelector("#root-1");
-
-          let strProfile = `
-            <div>
-            <img src="${user.photoURL}" alt="Foto de perfil" class="photo-profile">
+      //Método para obtener la data de los post
+      db.collection("posts").orderBy('date','desc')
+      .get()
+      .then((querySnapshot) => {
+        const user = firebase.auth().currentUser;
+        const root = document.querySelector("#root");
+        const rootProfile = document.querySelector("#root-1");
+        let str = ' ';
+        let strProfile = ' ';
+         
+        querySnapshot.forEach((doc) => {
+          let theme = doc.data().filter;
+          if(theme == undefined){
+            
+          theme = 'General';
+        } 
+            str += `
+             <div class="post-print conteiner-post-home">
+              <div class="profile-reactions">
+                    <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
+                    <p class="think t">${doc.data().name}</p>
+                <div class="reactions">
+                    <i class="fas fa-smile-beam"></i>
+                    <i class="fas fa-angry"></i>
+                    <i class="fas fa-comment"></i>
+                    <i class="fas fa-share-alt-square"></i>
+                </div>
+              </div>
+                <div class="post-info-container">
+                    <div class="post-content-theme-title">
+                        <p class="th" id="tema">Tema: ${theme} </p><span>${doc.data().date}</span>
+                    </div>
+                    <p class="think th"> ${doc.data().post}</p>
+                </div>
+              </div>
+              `;
+              strProfile = `
+              <div>
+                  <img src="${user.photoURL}" alt="Foto de perfil" class="photo-profile">
             </div>
             `;
             
@@ -201,12 +232,12 @@ const home = {
             
             
             
-    }
+    })
         
       
     }
 
-        
+  }  
        
         
     

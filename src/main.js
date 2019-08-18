@@ -34,7 +34,7 @@ const router = async() => {
 
     // Parse the URL and if it has an id part, change it with the string ":id"
     let parsedURL = (request.resource ? '/' + request.resource : '/') + (request.id ? '/:id' : '') + (request.verb ? '/' + request.verb : '')
-    console.log('este es parsedURL', parsedURL);
+    
     if (parsedURL === '/') {
         header.style.display = 'none';
         footer.style.display = 'none';
