@@ -78,13 +78,16 @@ const profile = {
         const postsButton = document.querySelector('#btn-post');
         const selectFilter = document.querySelector('.select-filter');
 
-        const savingPostData = (postInput, postFilter) => {        
+        const savingPostData = (postInput, postFilter) => {   
+            const currentDate = new Date();
+            const strDate = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`     
         db.collection('posts').add({
           name : user.displayName,
           post : postInput,
           photo: user.photoURL,
           userID: user.uid,
-          filter: postFilter
+          filter: postFilter, 
+          date: strDate
         })
         .then((docRef) => {
           console.log("Document written with ID: ", docRef.id);
@@ -121,11 +124,11 @@ const profile = {
         gettingPetInfo();
 
         
-        db.collection("posts").orderBy('date','desc')
+        db.collection("posts").where("userID", "==", user.uid)
       .get()
       .then((querySnapshot) => {
         const root = document.querySelector("#root");
-        const rootProfile = document.querySelector("#root-1");
+        //const rootProfile = document.querySelector("#root-1");
         let str = ' ';
         let strProfile = ' ';
          
@@ -138,18 +141,20 @@ const profile = {
             str += `
             <div class="post-print conteiner-post-home">
               <div class="profile-reactions">
-                <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
-                <p class="think t">${doc.data().name}</p>
+                    <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
+                    <p class="think t">${doc.data().name}</p>
                 <div class="reactions">
-                  <i class="fas fa-smile-beam"></i>
-                  <i class="fas fa-angry"></i>
-                  <i class="fas fa-comment"></i>
-                  <i class="fas fa-share-alt-square"></i>
+                    <i class="fas fa-smile-beam"></i>
+                    <i class="fas fa-angry"></i>
+                    <i class="fas fa-comment"></i>
+                    <i class="fas fa-share-alt-square"></i>
                 </div>
               </div>
-                <div class="post-content-theme-title">
-                  <p class="th" id="tema">Tema: ${theme} </p>
-                  <p class="think th"> ${doc.data().post} </p>
+                <div class="post-info-container">
+                    <div class="post-content-theme-title">
+                        <p class="th" id="tema">Tema: ${theme} </p><span>${doc.data().date}</span>
+                    </div>
+                    <p class="think th"> ${doc.data().post}</p>
                 </div>
               </div>
               `;
@@ -162,7 +167,6 @@ const profile = {
         });
         
         root.innerHTML = str;
-        rootProfile.innerHTML = strProfile;
       });
 
         }
