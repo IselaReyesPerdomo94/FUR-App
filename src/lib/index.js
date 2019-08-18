@@ -242,7 +242,7 @@ document.getElementById('photo').addEventListener('change', function(chargeimg){
 function furImageLoad(addImageFur){
     const refStorage = storageService.ref('imagenesdeusuarios').child(addImageFur.name);
     const uploadTask = refStorage.put(addImageFur);
-    // event
+    // event 
 
     uploadTask.on('state_changed', null,
     function(error){
