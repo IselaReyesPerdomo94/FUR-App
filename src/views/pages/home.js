@@ -3,9 +3,9 @@ const home = {
     render: async() => {
         const view = /*html*/ `
             <section class="home">
-            <hr class="line-1">
-            <div class="flex-container">
-            <div>
+              <hr class="line-1">
+              <div class="flex-container">
+              <div>
             <img src="img/happy-emoticon-with-one-tooth.svg" alt="Memes" class="memes">
             <p class="etiquetas-filtrado">Memes</p>
             </div>
@@ -28,18 +28,18 @@ const home = {
             </div>
             <hr class="line-2">
             <!--Trigger modal -->
-            <div class="conteiner-posts">
+            <div class="conteiner-all-posts">
             <div class="conteiner-post" data-toggle="modal" data-target="#exampleModal">          
             <div class="crea-post" >
             <p class="c-post">Crear post</p>
             </div>
             <div class="photo-post">
-            <i class="fas fa-user-alt"></i>
+            <div id="root-1"></div>
             <p class="think">¿En qué piensas?</p>
             </div>
            
             </div>
-            <div class="root conteiner-post" id="root">
+            <div id="root">
                     </div>
             </div>
 <!-- Modal -->
@@ -55,12 +55,7 @@ const home = {
        </button>
      </div>
      <div class="modal-body">
-       <textarea placeholder="¿En que piensas?" class="publicacion" id="publicacion"></textarea>
-     </div>
-     <div class="image">
-     </div> 
-     <div class="modal-footer">
-     <select name="" class="select-filter">
+     <select name="tema" class="select-filter">
      <option value="All">¿Sobre qué tema publicarás?</option>
      <option value="Meme">Meme</option>
      <option value="Veterinario">Veterinario</option>
@@ -68,8 +63,13 @@ const home = {
      <option value="Tips">Tips</option>
      <option value="Perdidos">Perdidos</option>
      </select>
+       <textarea placeholder="¿En que piensas?" class="publicacion" id="publicacion"></textarea>
+     </div>
+     <div class="image">
+     </div> 
+     <div class="modal-footer">
+     
 
-       <button type="button" class="btn-btn-primary" data-dismiss="modal" id="cerrar-publicar"><p class="btn-text">Cerrar</p></button>
        <button type="button" class="btn-btn-primary" id="btn-post" data-toggle="modal" data-target="#exampleModal"><p class="btn-text">Publicar</p></button>
      </div>
    </div>
@@ -85,19 +85,22 @@ const home = {
     after_render: async() => {
       const postsButton = document.querySelector('#btn-post');
       const selectFilter = document.querySelector('.select-filter');
-      // Initialize Cloud Firestore through Firebase
       
+
       //Guardar data de los post
       const savingPostData = (postInput, postFilter) => {
         const user = firebase.auth().currentUser;
-
+       
+      const currentDate = new Date();
+      const strDate = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`
         
         db.collection('posts').add({
           name : user.displayName,
           post : postInput,
           photo: user.photoURL,
           userID: user.uid,
-          filter: postFilter
+          filter: postFilter,
+          date: strDate
         })
         .then((docRef) => {
           console.log("Document written with ID: ", docRef.id);
@@ -107,35 +110,61 @@ const home = {
           console.error("Error adding document: ", error);
         })
       }
-      //Guardar data de los filtros
 
-      console.log(savingPostData);
-
-      //Evento para guardar valores de input y filtro
-      db.collection("posts").get().then((querySnapshot) => {
-        const root = document.getElementById("root");
+      //Método para obtener la data de los post
+      db.collection("posts").orderBy('date','desc')
+      .get()
+      .then((querySnapshot) => {
+        const user = firebase.auth().currentUser;
+        const root = document.querySelector("#root");
+        const rootProfile = document.querySelector("#root-1");
         let str = ' ';
+        let strProfile = ' ';
+         
         querySnapshot.forEach((doc) => {
-            console.log(`${doc.id} => ${doc.data().post} => ${doc.data().name}`);
+          let theme = doc.data().filter;
+          if(theme == undefined){
+            
+          theme = 'General';
+        } 
             str += `
-            <div class="post-print conteiner-post">
-            <img src="${doc.data().photo}" alt="gatito" class="kitty">
-
-            <p class="think">Post: ${doc.data().post} </p>
-            <p class="think">Publicado por: ${doc.data().name}</p>
+            <div class="post-print conteiner-post-home">
+              <div class="profile-reactions">
+                <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
+                <p class="think t">${doc.data().name}</p>
+                <div class="reactions">
+                  <i class="fas fa-smile-beam"></i>
+                  <i class="fas fa-angry"></i>
+                  <i class="fas fa-comment"></i>
+                  <i class="fas fa-share-alt-square"></i>
+                </div>
+              </div>
+                <div class="post-content-theme-title">
+                  <p class="th" id="tema">Tema: ${theme} </p>
+                  <p class="think th"> ${doc.data().post} </p>
+                </div>
+              </div>
+              `;
+              strProfile = `
+              <div>
+                  <img src="${user.photoURL}" alt="Foto de perfil" class="photo-profile">
             </div>
             `;
 
         });
-        root.innerHTML = str; 
+        
+        root.innerHTML = str;
+        rootProfile.innerHTML = strProfile;
       });
       postsButton.addEventListener('click', () => {
+        //Guarda data de los filtros
         const postInput = document.querySelector('#publicacion').value;
+        //Guarda filtro seleccionado
         const postFilter =(selectFilter.options[selectFilter.selectedIndex].value);
         savingPostData(postInput, postFilter);
         
       })
-      //Obtener data 
+       
   
           }
         
