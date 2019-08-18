@@ -56,15 +56,18 @@ const myInfo = {
                    <img type="file" src="./img/elements/camera.png" class="fur-photo" alt="add"/>
                    <div id="mensaje"></div>
                 </label>
-              </form>  
+                
+              </form> 
+              
             </div>
+            <div class="save">
+            <button type="button" class="buttons" id="save" data-dismiss="modal">Guardar</button> 
+            </div> 
             </div>    
             </div>
             </div> 
             <div class="modal-footer">
-            <div class="save">
-            <button type="button" class="buttons" id="save" data-dismiss="modal">Guardar</button> 
-            </div>
+            
                     
                   </div>
                 </div>
@@ -90,7 +93,7 @@ const myInfo = {
         const descriptionFur = document.getElementById('description-input');
         const cardFurSpace = document.getElementById('cards-fur-container');
         const saveFur = document.getElementById('save');
-        
+        const photo = document.getElementById('photo')
 
         const user = firebase.auth().currentUser;
 
@@ -129,10 +132,7 @@ const myInfo = {
                     console.error('Error adding document: ', error);
                     console.error('Error al guardar mascota')
                 });
-        }
-        
-        
-
+        }  
 
         const gettingFurCardsfromFirebase = () => {
             firestore.collection('pets').where('userID', '==', user.uid)
@@ -144,25 +144,36 @@ const myInfo = {
                         cardFurSpace.innerHTML += newPetCard;
                     })
                 })
-                
-        }
+              }
 
-        gettingFurCardsfromFirebase();
-        saveFur.addEventListener('click', () => {
-            const namefur = furName.value;
-            const furnickname = nickName.value;
-            const furspecie = specie.value;
-            const furage = ageFur.value;
-            const furagetwo = ageFurTwo.value;
-            const furdescription = descriptionFur.value;
-            
+        
 
-            saveFurInfo(namefur, furnickname, furspecie, furage, furagetwo, furdescription)
-            eraseInputs(furName, nickName, specie, ageFur, ageFurTwo,  descriptionFur);
+          gettingFurCardsfromFirebase();
 
-        })
+          saveFur.addEventListener('click', () => {
+            console.log('me estoy ejecutando')
+              const namefur = furName.value;
+              const furnickname = nickName.value;
+              const furspecie = specie.value;
+              const furage = ageFur.value;
+              const furagetwo = ageFurTwo.value;
+              const furdescription = descriptionFur.value;
+              saveFurInfo(namefur, furnickname, furspecie, furage, furagetwo, furdescription)
+              eraseInputs(furName, nickName, specie, ageFur, ageFurTwo,  descriptionFur);
+          })
 
+                   
+          photo.addEventListener('change', (chargeimg)=>{
+          const addImageFur = chargeimg.target.files[0];
 
+          const refStorage = storageService.ref().child(`imagenesdemascotas/${addImageFur.name}`);
+          const uploadTask = refStorage.put(addImageFur).then(() => console.log('Uploaded file!')).catch(err => {
+            console.log('Error:')
+            console.log(err)
+          });
+          
+          });
+               
 
     }
 
@@ -176,7 +187,7 @@ const petCard = {
   <div class="card-myinfo">
   <div class="img-myinfo-content">
     <h3>*petName*</h3>
-    <img src="*img*"/ class="img-myinfo" id="img-myinfo">
+    <img src="*img*" class="img-myinfo" id="img-myinfo">
   </div>
   <div class="txt-myinfo"> 
     <p>Apodos: <span>*nickName*</span></p>

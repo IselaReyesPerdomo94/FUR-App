@@ -71,12 +71,7 @@ const profile = {
         const userProfileInfo = window.createProfileInformation(user.displayName, user.photoURL);
         userInfoSpace.innerHTML = userProfileInfo;    
         const petsInfo = document.querySelector('.third'); 
-        const petsInfoFirebase = 
-        () => {
-            `
-            <p>${}<label>${}</label></p>
-        `
-        } 
+        const petsInfoFirebase = () => {} 
             
         const postsButton = document.querySelector('#btn-post');
         const selectFilter = document.querySelector('.select-filter');

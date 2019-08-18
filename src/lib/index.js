@@ -232,30 +232,6 @@ const createProfileInformation = (userName, photoURL) =>{
 }
 
 
-window.onload = function(){
-document.getElementById('photo').addEventListener('change', function(chargeimg){
-    chargeimg.preventDefault();
-    const addImageFur = chargeimg.target.files[0];
-    furImageLoad(addImageFur);
-});
-}
-function furImageLoad(addImageFur){
-    const refStorage = storageService.ref('imagenesdeusuarios').child(addImageFur.name);
-    const uploadTask = refStorage.put(addImageFur);
-    // event
-
-    uploadTask.on('state_changed', null,
-    function(error){
-        console.log('Error al subir el archivo', error);
-    },
-    function(){
-        console.log('subida completada');
-        messagefinal(uploadTask.snapshot)
-    }
-    );
-}
-
-
 window.signInFacebook = signInFacebook;
 window.signInGoogle = signInGoogle;
 window.register = register;
