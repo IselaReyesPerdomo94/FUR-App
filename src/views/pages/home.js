@@ -113,7 +113,6 @@ const home = {
         //Para obtener todos los post
 
         const gettingAllPost = () => {
-          console.log('Hola deben de aparecer todos los post')
           //Método para obtener la data de los post
           db.collection("posts").orderBy('date','desc')
           .get()
