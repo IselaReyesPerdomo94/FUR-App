@@ -186,10 +186,6 @@ const myInfo = {
         }
 
         gettingFurCardsfromFirebase();
-
-
-
-
     }
 
 }
