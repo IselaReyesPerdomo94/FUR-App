@@ -118,7 +118,7 @@ const activities = {
         }
 
         const gettingCardFromFirebase = () => {
-            firestore.collection('activities').where("userID", "==", user.uid).orderBy("date")
+            db.collection('activities').where("userID", "==", user.uid).orderBy("date")
                 .get()
                 .then((snapshot) => {
                     snapshot.forEach(element => {
@@ -130,6 +130,8 @@ const activities = {
         }
 
         gettingCardFromFirebase();
+
+        
 
         saveButtonActivitie.addEventListener('click', () => {
             const title = titleInput.value;
@@ -157,21 +159,21 @@ const components = {
                     <p>Descripción: <span>*description*</span></p>     
               </div>
             
-
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">¿Estas seguro de borrar la actividad?</h5>
+                                <h5 class="modal-title" id="exampleModalCenterTitle">¿Estas segur@ de borrar la actividad?</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
+                            <p>Si estas segur@, por favor confirma dando click en borrar</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="buttons btn btn-primary">Borrar</button>                                
+                                <button type="button" class="buttons btn btn-danger" data-dismiss="modal" aria-label="Close">Borrar</button>                                
                             </div>
                             </div>
                         </div>

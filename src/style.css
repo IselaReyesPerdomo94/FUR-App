@@ -451,7 +451,7 @@ footer {
     border-radius: 10px 10px 0px 0px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 0.5rem;
 }
 

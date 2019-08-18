@@ -124,7 +124,7 @@ const profile = {
         gettingPetInfo();
 
         
-        db.collection("posts").where("userID", "==", user.uid)
+        db.collection("posts").where("userID", "==", user.uid).orderBy('date','desc')
       .get()
       .then((querySnapshot) => {
         const root = document.querySelector("#root");
