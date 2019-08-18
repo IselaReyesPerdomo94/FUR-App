@@ -151,7 +151,6 @@ const myInfo = {
           gettingFurCardsfromFirebase();
 
           saveFur.addEventListener('click', () => {
-            console.log('me estoy ejecutando')
               const namefur = furName.value;
               const furnickname = nickName.value;
               const furspecie = specie.value;
@@ -187,7 +186,7 @@ const petCard = {
   <div class="card-myinfo">
   <div class="img-myinfo-content">
     <h3>*petName*</h3>
-    <img src="https://firebasestorage.googleapis.com/v0/b/app-fur.appspot.com/o/imagenesdemascotas%2Fjocho.jpg?alt=media&token=9e30fa86-0268-4a3a-8059-fc6b13e49229" class="img-myinfo" id="img-myinfo">
+    <img src="*img*" class="img-myinfo" id="img-myinfo">
   </div>
   <div class="txt-myinfo"> 
     <p>Apodos: <span>*nickName*</span></p>

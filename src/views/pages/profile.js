@@ -27,6 +27,8 @@ const profile = {
                     </div>
                 </div>
 
+                <div id="root"></div>
+
                 <!-- Modal post container -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -117,6 +119,51 @@ const profile = {
         }
 
         gettingPetInfo();
+
+        
+        db.collection("posts").orderBy('date','desc')
+      .get()
+      .then((querySnapshot) => {
+        const root = document.querySelector("#root");
+        const rootProfile = document.querySelector("#root-1");
+        let str = ' ';
+        let strProfile = ' ';
+         
+        querySnapshot.forEach((doc) => {
+          let theme = doc.data().filter;
+          if(theme == undefined){
+            
+          theme = 'General';
+        } 
+            str += `
+            <div class="post-print conteiner-post-home">
+              <div class="profile-reactions">
+                <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
+                <p class="think t">${doc.data().name}</p>
+                <div class="reactions">
+                  <i class="fas fa-smile-beam"></i>
+                  <i class="fas fa-angry"></i>
+                  <i class="fas fa-comment"></i>
+                  <i class="fas fa-share-alt-square"></i>
+                </div>
+              </div>
+                <div class="post-content-theme-title">
+                  <p class="th" id="tema">Tema: ${theme} </p>
+                  <p class="think th"> ${doc.data().post} </p>
+                </div>
+              </div>
+              `;
+              strProfile = `
+              <div>
+                  <img src="${user.photoURL}" alt="Foto de perfil" class="photo-profile">
+            </div>
+            `;
+
+        });
+        
+        root.innerHTML = str;
+        rootProfile.innerHTML = strProfile;
+      });
 
         }
 
