@@ -87,7 +87,7 @@ const home = {
       const user = await firebase.auth().currentUser;
       console.log(user)
       //Guardar data de los post
-      const savingPostData = (postInput, postFilter, postlikes) => {
+      const savingPostData = (postInput, postFilter) => {
         const user = firebase.auth().currentUser;
        
       const currentDate = new Date();
@@ -99,8 +99,9 @@ const home = {
           photo: user.photoURL,
           userID: user.uid,
           filter: postFilter,
-          date: strDate, 
-          likes: postlikes
+          date: strDate,
+          likes: 0
+          
         })
         .then((docRef) => {
           console.log("Document written with ID: ", docRef.id);
@@ -168,9 +169,10 @@ const home = {
       postsButton.addEventListener('click', () => {
         //Guarda data de los filtros
         const postInput = document.querySelector('#publicacion').value;
+        
         //Guarda filtro seleccionado
         const postFilter =(selectFilter.options[selectFilter.selectedIndex].value);
-       const likes = //función para agregar
+        savingPostData(postInput, postFilter);
         
         savingPostData(postInput, postFilter, likes);
         gettingAllPost()
@@ -209,7 +211,7 @@ const home = {
                     <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
                     <p class="think t">${doc.data().name}</p>
                 <div class="reactions">
-                    <i class="fas fa-smile-beam"></i>
+                    <i class="fas fa-smile-beam" id="smile"></i><p class="likes">${doc.data().likes}</p>
                     <i class="fas fa-angry"></i>
                     <i class="fas fa-comment"></i>
                     <i class="fas fa-share-alt-square"></i>
@@ -249,11 +251,34 @@ const home = {
 
        //Funcionalidad de likes
       
-      //Guardar likes de post
-      //const postLike =document.querySelector('#smile');
-      //postLike.addEventListener('click', ()=>{/*función para agregar*/}, true)
+       
+       const buttonLike = document.getElementById('smile');
+       if (buttonLike){
+        
+          console.log('Canito');
+          
+ 
+          buttonLike.addEventListener('click', () => {
+            console.log("¡Funciona boton de likes!");
+            
+            const likesRef = db.collection('posts').doc('i1dG4aXhDHJChlNSW6YA');
+     
+            
+            
+           
+          likesRef.update({
+             likes: firebase.firestore.FieldValue.increment(1)
+          })
+       }, true);
+        
+      }
+
+       
+         
       
-      
+       
+    
+     
 
       
        
