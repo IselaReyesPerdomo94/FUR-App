@@ -54,6 +54,7 @@ const myInfo = {
                 <label class="btn-img">
                    <input type="file" name="files-img" accept="image/*" id="photo" class="hidden">
                    <img type="file" src="./img/elements/camera.png" class="fur-photo" alt="add"/>
+                   <p id="progress-photo"></p>
                    <div id="mensaje"></div>
                 </label>
                 
@@ -61,7 +62,7 @@ const myInfo = {
               
             </div>
             <div class="save">
-            <button type="button" class="buttons" id="save" data-dismiss="modal">Guardar</button> 
+            <button type="button" class="buttons" id="save" data-dismiss="modal" disabled=true>Guardar</button> 
             </div> 
             </div>    
             </div>
@@ -112,12 +113,19 @@ const myInfo = {
             const addImageFur = chargeimg.target.files[0];
             const refStorage = storageService.ref().child(`imagenesdemascotas/${addImageFur.name}`);
             const uploadTask = refStorage.put(addImageFur)
-                .then(() =>
-                    refStorage.getDownloadURL())
+                .then(() => refStorage.getDownloadURL())
                 .then((url) => {
                     const urlPhoto = url;
                     console.log(urlPhoto)
                     fur.img = urlPhoto
+                })
+                .then(() => {
+                    const progress = document.querySelector('#progress-photo');
+                    progress.innerHTML = 'Se esta subiendo tu foto';
+                    setTimeout(() => {
+                        progress.innerHTML = 'Listo'
+                        saveFur.disabled = false;
+                    }, 3000)
                 })
                 .catch(err => {
                     console.log('Error:')
@@ -147,6 +155,7 @@ const myInfo = {
                 db.collection('pets').add(fur)
                     .then(() => fur = {})
                     .catch(err => console.log("Hubo un error: ", err))
+                    gettingFurCardsfromFirebase();
             }
         }
 
@@ -165,9 +174,11 @@ const myInfo = {
             firestore.collection('pets').where('userID', '==', user.uid)
                 .get()
                 .then((snapshot) => {
+                    cardFurSpace.innerHTML = '';
                     snapshot.forEach(element => {
                         const { petname, petnickname, petspecie, petage, petagetwo, petdescription, img } = element.data();
                         const newPetCard = window.createFurCard(petname, petnickname, petspecie, petage, petagetwo, petdescription, img)
+                        
                         cardFurSpace.innerHTML += newPetCard;
                     })
                 })
