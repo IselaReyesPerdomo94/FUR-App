@@ -201,13 +201,14 @@ const savingUserData = () => {
 
 //Activities function
 
-const createActivityCard = (title, date, time, description, priority) => {
+const createActivityCard = (title, date, time, description, priority, id) => {
     const newCard = components.card
         .replace('*title*', title)
         .replace('*date*', date)
         .replace('*time*', time)
         .replace('*description*', description)
-        .replace("*priority*", priority)
+        .replace('*priority*', priority)
+        .replace('*id*', id)
     return newCard;
 }
 
