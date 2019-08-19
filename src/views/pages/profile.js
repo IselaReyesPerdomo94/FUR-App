@@ -143,6 +143,7 @@ const profile = {
                     <p class="think t">${doc.data().name}</p>
                 <div class="reactions">
                     <i class="fas fa-smile-beam"></i>
+                    <p class="likes">${doc.data().likes}</p>
                     <i class="fas fa-angry"></i>
                     <i class="fas fa-comment"></i>
                     <i class="fas fa-share-alt-square"></i>
