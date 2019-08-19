@@ -84,8 +84,8 @@ const home = {
     after_render: async() => {
       const postsButton = document.querySelector('#btn-post');
       const selectFilter = document.querySelector('.select-filter');
-      
-
+      const user = await firebase.auth().currentUser;
+      console.log(user)
       //Guardar data de los post
       const savingPostData = (postInput, postFilter) => {
         const user = firebase.auth().currentUser;
@@ -115,7 +115,6 @@ const home = {
         //Para obtener todos los post
 
         const gettingAllPost = () => {
-          console.log('Hola deben de aparecer todos los post')
           //Método para obtener la data de los post
           db.collection("posts").orderBy('date','desc')
           .get()
@@ -175,18 +174,18 @@ const home = {
         const postFilter =(selectFilter.options[selectFilter.selectedIndex].value);
         savingPostData(postInput, postFilter);
         
+        savingPostData(postInput, postFilter, likes);
       })
-      
-      
-      // Atomically increment the population of the city by 50.
-      
-      
-        const postLikesRef = db.collection('posts').doc();
-        postLikesRef.update({
-          likes: firebase.firestore.FieldValue.increment(1)
-        })
-      
-      
+
+      //Llamando las clases de las cajitas de cada filtro
+         
+      const postsRef = db.collection('posts');
+      const filterTips = document.querySelector('.tips');
+      const filterMemes = document.querySelector('.memes');
+      console.log(filterMemes)
+      const filterVeterinario = document.querySelector('.veterinario');
+      const filterPetfriendly = document.querySelector('.pet-friendly');
+      const filterPerdidos = document.querySelector('.perdidos');
       
 
       //Obtener las tarjetas por cada filtro
@@ -194,7 +193,10 @@ const home = {
       .get()
       .then((querySnapshot) => {
         const root = document.querySelector("#root");
+        const user = firebase.auth().currentUser;
+        const rootProfile = document.querySelector("#root-1");
         let str = ' ';
+        let strProfile = ' ';
 
       querySnapshot.forEach((doc) => {
         let theme = doc.data().filter;
@@ -208,7 +210,7 @@ const home = {
                     <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
                     <p class="think t">${doc.data().name}</p>
                 <div class="reactions">
-                    <i class="fas fa-smile-beam"></i><p class="likes">${doc.data().likes}</p>
+                    <i class="fas fa-smile-beam" id="smile"></i><p class="likes">${doc.data().likes}</p>
                     <i class="fas fa-angry"></i>
                     <i class="fas fa-comment"></i>
                     <i class="fas fa-share-alt-square"></i>
@@ -222,7 +224,11 @@ const home = {
                 </div>
               </div>
               `;
-      
+              strProfile = `
+              <div>
+                  <img src="${user.photoURL}" alt="Foto de perfil" class="photo-profile">
+            </div>
+            `;
       
         })
         root.innerHTML = str;
@@ -230,25 +236,51 @@ const home = {
        })
       
   }
-       //Llamando las clases de las cajitas de cada filtro
-         
-      const postsRef = db.collection('posts');
-      const filterTips = document.querySelector('.tips');
-      const filterMemes = document.querySelector('.memes');
-      const filterVeterinario = document.querySelector('.veterinario');
-      const filterPetfriendly = document.querySelector('.pet-friendly');
-      const filterPerdidos = document.querySelector('.perdidos');
-
        
 
        //Funcionalidad de filtros
-       filterMemes.addEventListener('click', () => {filterPost('Meme')}, true);
-       filterTips.addEventListener('click', () => {filterPost('Tips')}, true)
+       filterMemes.addEventListener('click', () => {
+         filterPost('Meme')
+         console.log('Hola se ejecuta filtrado de memes')
+         });
+       filterTips.addEventListener('click', () => filterPost('Tips'));
        filterVeterinario.addEventListener('click', () => {filterPost('Veterinario')}, true);
        filterPetfriendly.addEventListener('click', () => {filterPost('PetFriendly')}, true);
        filterPerdidos.addEventListener('click', () => {filterPost('Perdidos')}, true); 
 
        //Funcionalidad de likes
+      
+       
+       const buttonLike = document.getElementById('smile');
+       if (buttonLike){
+        
+          console.log('Canito');
+          
+ 
+          buttonLike.addEventListener('click', () => {
+            console.log("¡Funciona boton de likes!");
+            
+            const likesRef = db.collection('posts').doc('i1dG4aXhDHJChlNSW6YA');
+     
+            
+            
+           
+          likesRef.update({
+             likes: firebase.firestore.FieldValue.increment(1)
+          })
+       }, true);
+        
+      }
+
+       
+         
+      
+       
+    
+     
+
+      
+       
       
     }
 

@@ -213,7 +213,7 @@ const createActivityCard = (title, date, time, description, priority) => {
 
 //Mi Info function
 
-const createFurCard = (namefur, furnickname, furspecie, furage, furagetwo, furdescription) => {
+const createFurCard = (namefur, furnickname, furspecie, furage, furagetwo, furdescription, img) => {
     const newFurCard = petCard.card
         .replace('*petName*', namefur)
         .replace('*nickName*', furnickname)
@@ -221,6 +221,8 @@ const createFurCard = (namefur, furnickname, furspecie, furage, furagetwo, furde
         .replace('*age*', furage)
         .replace('*age2*', furagetwo)
         .replace('*about*', furdescription)
+        .replace('*img*', img)
+
     return newFurCard;
 }
 
@@ -230,6 +232,13 @@ const createProfileInformation = (userName, photoURL) => {
         .replace('*photoURL*', photoURL)
     return newProfile;
 }
+
+const eraseDocumentFirebase = (collection, id)=> {
+    db.collection('collection').doc(id).delete()
+    .then(() =>console.log("Document successfully deleted!"))
+    .catch((error) => console.error("Error removing document: ", error));
+}
+
 
 window.signInFacebook = signInFacebook;
 window.signInGoogle = signInGoogle;

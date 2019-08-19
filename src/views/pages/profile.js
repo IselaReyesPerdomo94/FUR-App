@@ -80,7 +80,7 @@ const profile = {
 
         const savingPostData = (postInput, postFilter) => {   
             const currentDate = new Date();
-            const strDate = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`     
+            const strDate = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`     
         db.collection('posts').add({
           name : user.displayName,
           post : postInput,
@@ -124,7 +124,7 @@ const profile = {
         gettingPetInfo();
 
         
-        db.collection("posts").where("userID", "==", user.uid)
+        db.collection("posts").where("userID", "==", user.uid).orderBy('date','desc')
       .get()
       .then((querySnapshot) => {
         const root = document.querySelector("#root");

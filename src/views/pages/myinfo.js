@@ -52,8 +52,9 @@ const myInfo = {
             <div class="photo-fur">
               <form id="form-imagenes"> 
                 <label class="btn-img">
-                   <input type="file" name="files-img" value="" id="photo" class="hidden">
+                   <input type="file" name="files-img" accept="image/*" id="photo" class="hidden">
                    <img type="file" src="./img/elements/camera.png" class="fur-photo" alt="add"/>
+                   <p id="progress-photo"></p>
                    <div id="mensaje"></div>
                 </label>
                 
@@ -61,7 +62,7 @@ const myInfo = {
               
             </div>
             <div class="save">
-            <button type="button" class="buttons" id="save" data-dismiss="modal">Guardar</button> 
+            <button type="button" class="buttons" id="save" data-dismiss="modal" disabled=true>Guardar</button> 
             </div> 
             </div>    
             </div>
@@ -93,9 +94,11 @@ const myInfo = {
         const descriptionFur = document.getElementById('description-input');
         const cardFurSpace = document.getElementById('cards-fur-container');
         const saveFur = document.getElementById('save');
-        const photo = document.getElementById('photo')
+        const photo = document.getElementById('photo');
 
         const user = firebase.auth().currentUser;
+        const imgPlaceholder = "img/fur-logo.png";
+        let fur = {};
 
         const eraseInputs = (furName, nickName, specie, ageFur, ageFurTwo, descriptionFur) => {
             furName.value = '';
@@ -104,48 +107,25 @@ const myInfo = {
             ageFur = '';
             ageFurTwo = '';
             descriptionFur = '';
-
         }
-
-        const saveFurInfo = (namefur, furnickname, furspecie, furage, furagetwo, furdescription) => {
-            db.collection('pets').add({
-                    userID: user.uid,
-                    name: user.displayName,
-                    petname: namefur,
-                    petnickname: furnickname,
-                    petspecie: furspecie,
-                    petage: furage,
-                    petagetwo: furagetwo,
-                    petdescription: furdescription
-                })
-                .then((docRef) => {
-                    console.log('Document written with ID', docRef);
-                    console.log('Guardando mascota')
-                })
-                .then(() => {
-                    const newPetCard = window.createFurCard(namefur, furnickname, furspecie, furage, furagetwo, furdescription);
-                    cardFurSpace.innerHTML += newPetCard;
-                })
-                .catch((error) => {
-                    console.error('Error adding document: ', error);
-                    console.error('Error al guardar mascota')
-                });
-        }
-
-
 
         const savingPhotoFirebase = (chargeimg) => {
             const addImageFur = chargeimg.target.files[0];
-
             const refStorage = storageService.ref().child(`imagenesdemascotas/${addImageFur.name}`);
             const uploadTask = refStorage.put(addImageFur)
-                .then(() => console.log('Uploaded file!'))
-                .then(() =>
-                    refStorage.getDownloadURL()
-                ).then((url) => {
+                .then(() => refStorage.getDownloadURL())
+                .then((url) => {
                     const urlPhoto = url;
                     console.log(urlPhoto)
-                    return urlPhoto;
+                    fur.img = urlPhoto
+                })
+                .then(() => {
+                    const progress = document.querySelector('#progress-photo');
+                    progress.innerHTML = 'Se esta subiendo tu foto';
+                    setTimeout(() => {
+                        progress.innerHTML = 'Listo'
+                        saveFur.disabled = false;
+                    }, 3000)
                 })
                 .catch(err => {
                     console.log('Error:')
@@ -153,23 +133,40 @@ const myInfo = {
                 });
         }
 
+        const saveFurInfo = () => {
+            if (!furName.value || !nickName.value || !specie.value || !ageFur.value || !ageFurTwo.value || !descriptionFur.value) {
+                alert('Por favor rellena todos los campos :D');
+            } else {
+                fur.name = user.displayName
+                fur.userID = user.uid
+                fur.petname = furName.value
+                fur.petnickname = nickName.value
+                fur.petspecie = specie.value
+                fur.petage = ageFur.value
+                fur.petagetwo = ageFurTwo.value
+                fur.petdescription = descriptionFur.value
+                if (!fur.img) {
+                    let noPhoto = confirm('No has seleccionado imagen para tu mascota :O ¿Deseas continuar?');
+                    if (noPhoto) {
+                        console.log('no se paró la ejecución');
+                        fur.img = imgPlaceholder;
+                    }
+                }
+                db.collection('pets').add(fur)
+                    .then(() => fur = {})
+                    .catch(err => console.log("Hubo un error: ", err))
+                    gettingFurCardsfromFirebase();
+            }
+        }
 
 
         photo.addEventListener('change', (chargeimg) => {
             console.log('Se esta ejecutando el evento de subir fotos')
-            const urlPhotoResult = savingPhotoFirebase(chargeimg);
+            savingPhotoFirebase(chargeimg);
         });
 
         saveFur.addEventListener('click', () => {
-            console.log('me estoy ejecutando')
-            const namefur = furName.value;
-            const furnickname = nickName.value;
-            const furspecie = specie.value;
-            const furage = ageFur.value;
-            const furagetwo = ageFurTwo.value;
-            const furdescription = descriptionFur.value;
-
-            saveFurInfo(namefur, furnickname, furspecie, furage, furagetwo, furdescription)
+            saveFurInfo()
             eraseInputs(furName, nickName, specie, ageFur, ageFurTwo, descriptionFur);
         })
 
@@ -177,15 +174,18 @@ const myInfo = {
             firestore.collection('pets').where('userID', '==', user.uid)
                 .get()
                 .then((snapshot) => {
+                    cardFurSpace.innerHTML = '';
                     snapshot.forEach(element => {
-                        const { petname, petnickname, petspecie, petage, petagetwo, petdescription } = element.data();
-                        const newPetCard = window.createFurCard(petname, petnickname, petspecie, petage, petagetwo, petdescription)
+                        const { petname, petnickname, petspecie, petage, petagetwo, petdescription, img } = element.data();
+                        const newPetCard = window.createFurCard(petname, petnickname, petspecie, petage, petagetwo, petdescription, img)
+                        
                         cardFurSpace.innerHTML += newPetCard;
                     })
                 })
         }
 
         gettingFurCardsfromFirebase();
+
     }
 
 }
