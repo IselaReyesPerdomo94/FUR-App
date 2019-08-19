@@ -173,6 +173,7 @@ const home = {
        const likes = //función para agregar
         
         savingPostData(postInput, postFilter, likes);
+        gettingAllPost()
       })
 
       //Llamando las clases de las cajitas de cada filtro
