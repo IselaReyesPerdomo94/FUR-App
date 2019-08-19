@@ -234,7 +234,7 @@ const createProfileInformation = (userName, photoURL) => {
 }
 
 const eraseDocumentFirebase = (collection, id)=> {
-    db.collection('collection').doc(id).delete()
+    db.collection(collection).doc(id).delete()
     .then(() =>console.log("Document successfully deleted!"))
     .catch((error) => console.error("Error removing document: ", error));
 }
@@ -249,3 +249,4 @@ window.createActivityCard = createActivityCard;
 window.createFurCard = createFurCard;
 window.goingLogin = goingLogin;
 window.createProfileInformation = createProfileInformation;
+window.eraseDocumentFirebase = eraseDocumentFirebase;
