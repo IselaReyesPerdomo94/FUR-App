@@ -451,7 +451,7 @@ footer {
     border-radius: 10px 10px 0px 0px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 0.5rem;
 }
 
@@ -614,7 +614,7 @@ footer {
     border-radius: 5px;
     width: 7rem;
     height: 5vh;
-    display: flex;
+     display: flex;
     float: right;
 }
 .btn-text{ /*NO BORRAR*/
@@ -782,6 +782,11 @@ footer {
 
 .reactions i{
     padding: 0.2rem;
+}
+/*Número de likes*/
+.likes{
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
 }
 
 @media only screen and (min-width: 768px) {

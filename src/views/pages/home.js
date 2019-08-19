@@ -87,7 +87,7 @@ const home = {
       
 
       //Guardar data de los post
-      const savingPostData = (postInput, postFilter) => {
+      const savingPostData = (postInput, postFilter, postlikes) => {
         const user = firebase.auth().currentUser;
        
       const currentDate = new Date();
@@ -99,7 +99,8 @@ const home = {
           photo: user.photoURL,
           userID: user.uid,
           filter: postFilter,
-          date: strDate
+          date: strDate, 
+          likes: postlikes
         })
         .then((docRef) => {
           console.log("Document written with ID: ", docRef.id);
@@ -113,7 +114,6 @@ const home = {
         //Para obtener todos los post
 
         const gettingAllPost = () => {
-          console.log('Hola deben de aparecer todos los post')
           //Método para obtener la data de los post
           db.collection("posts").orderBy('date','desc')
           .get()
@@ -136,10 +136,10 @@ const home = {
                         <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
                         <p class="think t">${doc.data().name}</p>
                     <div class="reactions">
-                        <i class="fas fa-smile-beam"></i>
-                        <i class="fas fa-angry"></i>
-                        <i class="fas fa-comment"></i>
-                        <i class="fas fa-share-alt-square"></i>
+                        <i class="fas fa-smile-beam" id="smile"></i><p class="likes">${doc.data().likes}</p>
+                        <i class="fas fa-angry" id="angry"></i>
+                        <i class="fas fa-comment" id="comment"></i>
+                        <i class="fas fa-share-alt-square" id="share"></i>
                     </div>
                   </div>
                     <div class="post-info-container">
@@ -170,10 +170,16 @@ const home = {
         const postInput = document.querySelector('#publicacion').value;
         //Guarda filtro seleccionado
         const postFilter =(selectFilter.options[selectFilter.selectedIndex].value);
-        savingPostData(postInput, postFilter);
+       const likes = //función para agregar
         
+        savingPostData(postInput, postFilter, likes);
+       
       })
-
+      
+      //Guardar likes de post
+      const postLike =document.querySelector('#smile');
+      postLike.addEventListener('click', ()=>{/*función para agregar*/}, true)
+      
       
 
       //Obtener las tarjetas por cada filtro
@@ -233,8 +239,9 @@ const home = {
        filterTips.addEventListener('click', () => {filterPost('Tips')}, true)
        filterVeterinario.addEventListener('click', () => {filterPost('Veterinario')}, true);
        filterPetfriendly.addEventListener('click', () => {filterPost('PetFriendly')}, true);
-       filterPerdidos.addEventListener('click', () => {filterPost('Perdidos')}, true);          
-        
+       filterPerdidos.addEventListener('click', () => {filterPost('Perdidos')}, true); 
+
+       //Funcionalidad de likes
       
     }
 

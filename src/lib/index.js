@@ -233,6 +233,13 @@ const createProfileInformation = (userName, photoURL) => {
     return newProfile;
 }
 
+const eraseDocumentFirebase = (collection, id)=> {
+    db.collection('collection').doc(id).delete()
+    .then(() =>console.log("Document successfully deleted!"))
+    .catch((error) => console.error("Error removing document: ", error));
+}
+
+
 window.signInFacebook = signInFacebook;
 window.signInGoogle = signInGoogle;
 window.register = register;
