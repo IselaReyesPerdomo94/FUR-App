@@ -98,14 +98,7 @@ const profile = {
         })
       }
        
-       postsButton.addEventListener('click', ()=> {
-           console.log('me estoy ejecutando');
-           const postInput = document.querySelector('#publicacion').value;
-        //Guarda filtro seleccionado
-        const postFilter =(selectFilter.options[selectFilter.selectedIndex].value);
-           savingPostData(postInput, postFilter)
-       })
-
+       
 
        const gettingPetInfo = () => {
             firestore.collection('pets').where("userID", "==", user.uid)
@@ -224,6 +217,14 @@ const profile = {
 
         getUserPost();        
 
+postsButton.addEventListener('click', ()=> {
+           console.log('me estoy ejecutando');
+           const postInput = document.querySelector('#publicacion').value;
+        //Guarda filtro seleccionado
+        const postFilter =(selectFilter.options[selectFilter.selectedIndex].value);
+           savingPostData(postInput, postFilter)
+            getUserPost(); 
+       })
 
 
         }
