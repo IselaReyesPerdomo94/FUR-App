@@ -200,6 +200,16 @@ const home = {
       const filterPetfriendly = document.querySelector('.pet-friendly');
       const filterPerdidos = document.querySelector('.perdidos');
       
+      console.log(filterTips)
+      //Funcionalidad de filtros
+       filterMemes.addEventListener('click', () => {filterPost('Meme')});
+       filterTips.addEventListener('click', () => filterPost('Tips'));
+       filterVeterinario.addEventListener('click', () => {filterPost('Veterinario')}, true);
+       filterPetfriendly.addEventListener('click', () => {filterPost('PetFriendly')}, true);
+       filterPerdidos.addEventListener('click', () => {filterPost('Perdidos')}, true); 
+  
+       
+
 
       //Obtener las tarjetas por cada filtro
       const filterPost = (fil) => {postsRef.where('filter', '==', fil )
@@ -217,7 +227,7 @@ const home = {
         if(theme == undefined){
           
         theme = 'General';
-      } 
+        } 
           str += `
           <div class="post-print conteiner-post-home">
               <div class="profile-reactions">
@@ -265,15 +275,7 @@ const home = {
       
        })
        
-       //Funcionalidad de filtros
-       filterMemes.addEventListener('click', () => {filterPost('Meme')});
-       filterTips.addEventListener('click', () => filterPost('Tips'));
-       filterVeterinario.addEventListener('click', () => {filterPost('Veterinario')}, true);
-       filterPetfriendly.addEventListener('click', () => {filterPost('PetFriendly')}, true);
-       filterPerdidos.addEventListener('click', () => {filterPost('Perdidos')}, true); 
-  
        
-
       
 
               
