@@ -155,6 +155,7 @@ const myInfo = {
                 db.collection('pets').add(fur)
                     .then(() => fur = {})
                     .catch(err => console.log("Hubo un error: ", err))
+                    gettingFurCardsfromFirebase();
             }
         }
 
@@ -173,9 +174,11 @@ const myInfo = {
             firestore.collection('pets').where('userID', '==', user.uid)
                 .get()
                 .then((snapshot) => {
+                    cardFurSpace.innerHTML = '';
                     snapshot.forEach(element => {
                         const { petname, petnickname, petspecie, petage, petagetwo, petdescription, img } = element.data();
                         const newPetCard = window.createFurCard(petname, petnickname, petspecie, petage, petagetwo, petdescription, img)
+                        
                         cardFurSpace.innerHTML += newPetCard;
                     })
                 })
