@@ -80,7 +80,7 @@ const profile = {
 
         const savingPostData = (postInput, postFilter) => {   
             const currentDate = new Date();
-            const strDate = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`     
+            const strDate = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`     
         db.collection('posts').add({
           name : user.displayName,
           post : postInput,
