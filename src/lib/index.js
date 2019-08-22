@@ -1,9 +1,12 @@
 // aqui exportaras las funciones que necesites
+// import * as firebase from '../js/configure.js';
 import { components } from "../views/pages/activities.js";
 import { petCard } from "../views/pages/myinfo.js";
 import { userInfo } from "../views/pages/profile.js";
 
-
+// firebase.initializeApp(firebaseConfig);
+// const db = firebase.firestore();
+// const storageService = firebase.storage();
 
 //Home function
 const goingHome = () => {
@@ -45,17 +48,20 @@ const signInFacebook = () => {
     savingUserData();
 }
 
+const observer = () => {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // User is signed in.
+            goingHome();
+        } else {
+            // No user is signed in.
+            console.log('usuario no conectado')
+            goingLogin();
+        }
+    });
+}
 
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        // User is signed in.
-        goingHome();
-    } else {
-        // No user is signed in.
-        console.log('usuario no conectado')
-        goingLogin();
-    }
-});
+window.addEventListener('load', observer);
 
 //Sign in Google
 const signInGoogle = () => {
@@ -251,3 +257,5 @@ window.createFurCard = createFurCard;
 window.goingLogin = goingLogin;
 window.createProfileInformation = createProfileInformation;
 window.eraseDocumentFirebase = eraseDocumentFirebase;
+window.savingUserData = savingUserData;
+//export {signInFacebook, signInGoogle, register, signInEmailPassword, signOut, createActivityCard, createFurCard, goingLogin, createProfileInformation, eraseDocumentFirebase}

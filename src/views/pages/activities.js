@@ -107,10 +107,6 @@ const activities = {
                     console.log('Document written with ID: ', docRef.id);
                     console.log('Guardando actividad')
                 })
-                // .then(() => {
-                //     const newActCard = window.createActivityCard(title, date, time, description, priority);
-                //     cardsSpace.innerHTML += newActCard;
-                // })
                 .catch((error) => {
                     console.error('Error adding document: ', error);
                     console.error('No se guarda nada')

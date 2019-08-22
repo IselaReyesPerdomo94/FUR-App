@@ -191,8 +191,7 @@ const profile = {
         
         root.innerHTML = str;
         let postToBeErased = null;
-        console.log(postToBeErased)
-        
+               
         const trashes = document.querySelectorAll('.eraseIcon');
         const eraseButton = document.querySelectorAll('.erasePost');
         const arrEraseButton = Array.from(eraseButton);
