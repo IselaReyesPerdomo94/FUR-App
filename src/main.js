@@ -55,7 +55,7 @@ const router = async() => {
     content.innerHTML = await page.render();
     await page.after_render();
 
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged((user)=> {
         if (user) {
             // User is signed in.
         } else {

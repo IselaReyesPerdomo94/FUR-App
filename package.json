@@ -10,7 +10,7 @@
     ],
     "license": "MIT",
     "scripts": {
-        "htmlhint": "htmlhint dist/*.html ",
+        "htmlhint": "htmlhint src/*.html ",
         "eslint": "eslint --ext .js src/ test/",
         "pretest": "npm run htmlhint && npm run eslint",
         "test": "jest --coverage",
@@ -23,12 +23,14 @@
         "babel-jest": "^24.8.0",
         "eslint": "^6.0.1",
         "eslint-plugin-jest": "^22.1.2",
+        "firebase-mock": "^2.2.10",
         "htmlhint": "^0.11.0",
         "jest": "^24.8.0",
         "regenerator-runtime": "^0.13.1",
         "serve": "^11.0.2"
     },
     "dependencies": {
-        "@google-cloud/storage": "^3.1.0"
+        "@google-cloud/storage": "^3.1.0",
+        "jslint": "^0.12.1"
     }
 }
