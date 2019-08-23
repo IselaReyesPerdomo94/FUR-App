@@ -1,4 +1,3 @@
-
 const home = {
     render: async() => {
         const view = /*html*/ `
@@ -82,57 +81,58 @@ const home = {
         return view
     },
     after_render: async() => {
-      const postsButton = document.querySelector('#btn-post');
-      const selectFilter = document.querySelector('.select-filter');
-      const user = await firebase.auth().currentUser;
-      
-      //Guardar data de los post
-      const savingPostData = (postInput, postFilter) => {
-        const user = firebase.auth().currentUser;
-       
-      const currentDate = new Date();
-      const strDate = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`
-        
-        db.collection('posts').add({
-          name : user.displayName,
-          post : postInput,
-          photo: user.photoURL,
-          userID: user.uid,
-          filter: postFilter,
-          date: strDate,
-          likes: 0
-          
-        })
-        .then((docRef) => {
-          console.log("Document written with ID: ", docRef.id);
-          
-        })
-        .catch((error) => {
-          console.error("Error adding document: ", error);
-        })
-      }
+        const postsButton = document.querySelector('#btn-post');
+        const selectFilter = document.querySelector('.select-filter');
+        const user = await firebase.auth().currentUser;
+
+        //Guardar data de los post
+        const savingPostData = (postInput, postFilter) => {
+            const user = firebase.auth().currentUser;
+
+            const currentDate = new Date();
+            const strDate = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`
+
+            db.collection('posts').add({
+                    name: user.displayName,
+                    post: postInput,
+                    photo: user.photoURL,
+                    userID: user.uid,
+                    filter: postFilter,
+                    date: strDate,
+                    likes: 0
+
+                })
+                .then((docRef) => {
+                    console.log("Document written with ID: ", docRef.id);
+
+                })
+                .catch((error) => {
+                    console.error("Error adding document: ", error);
+                })
+        }
 
         //Para obtener todos los post
 
         const gettingAllPost = () => {
-          //Método para obtener la data de los post
-          db.collection("posts").orderBy('date','desc')
-          .get()
-          .then((querySnapshot) => {
-            const user = firebase.auth().currentUser;
-            const root = document.querySelector("#root");
-            const rootProfile = document.querySelector("#root-1");
-            let str = ' ';
-            let strProfile = ' ';
-            
-            querySnapshot.forEach((doc) => {
-              let idPost = doc.id;
-              let theme = doc.data().filter;
-              if(theme == undefined){
-                
-              theme = 'General';
-            } 
-                str += `
+            //Método para obtener la data de los post
+            db.collection("posts").orderBy('date', 'desc')
+                .get()
+                .then((querySnapshot) => {
+                    const user = firebase.auth().currentUser;
+                    const root = document.querySelector("#root");
+                    const rootProfile = document.querySelector("#root-1");
+                    let str = ' ';
+                    let strProfile = ' ';
+
+                    querySnapshot.forEach((doc) => {
+                        let idPost = doc.id;
+                        let theme = doc.data().filter;
+                        if (theme == undefined) {
+
+                            theme = 'General';
+                        }
+
+                        str += `
                 <div class="post-print conteiner-post-home">
                   <div class="profile-reactions">
                         <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
@@ -153,82 +153,82 @@ const home = {
                     </div>
                   </div>
                   `;
-                  strProfile = `
+                        strProfile = `
                   <div>
                       <img src="${user.photoURL}" alt="Foto de perfil" class="photo-profile">
                 </div>
                 `;
-                
-              rootProfile.innerHTML = strProfile;
-              root.innerHTML = str;
-                  let likeToAdd = null;
-                  
-                  const buttonLike = document.querySelectorAll('.smile');
-                  const arrButtonLike = Array.from(buttonLike);
-                  arrButtonLike.forEach( likeButton => {
-                    likeButton.addEventListener('click', (e)=> {
-                          likeToAdd = e.target.id;
-                          const likesRef = db.collection('posts').doc(likeToAdd);
-                          likesRef.update({likes: firebase.firestore.FieldValue.increment(1)})
-                    })
-                  })
-            });
-        });
+
+                        rootProfile.innerHTML = strProfile;
+                        root.innerHTML = str;
+                        let likeToAdd = null;
+
+                        const buttonLike = document.querySelectorAll('.smile');
+                        const arrButtonLike = Array.from(buttonLike);
+                        arrButtonLike.forEach(likeButton => {
+                            likeButton.addEventListener('click', (e) => {
+                                likeToAdd = e.target.id;
+                                const likesRef = db.collection('posts').doc(likeToAdd);
+                                likesRef.update({ likes: firebase.firestore.FieldValue.increment(1) })
+                            })
+                        })
+                    });
+                });
         }
 
         gettingAllPost();
-      
-      //Parametros para crear data de post
-      postsButton.addEventListener('click', () => {
-        //Guarda data de los filtros
-        const postInput = document.querySelector('#publicacion').value;
-        
-        //Guarda filtro seleccionado
-        const postFilter =(selectFilter.options[selectFilter.selectedIndex].value);
-        savingPostData(postInput, postFilter);
-        
-        savingPostData(postInput, postFilter, likes);
-        gettingAllPost()
-      })
 
-      //Llamando las clases de las cajitas de cada filtro
-         
-      const postsRef = db.collection('posts');
-      const filterTips = document.querySelector('.tips');
-      const filterMemes = document.querySelector('.memes');
-      const filterVeterinario = document.querySelector('.veterinario');
-      const filterPetfriendly = document.querySelector('.pet-friendly');
-      const filterPerdidos = document.querySelector('.perdidos');
-      
-      console.log(filterTips)
-      //Funcionalidad de filtros
-       filterMemes.addEventListener('click', () => {filterPost('Meme')});
-       filterTips.addEventListener('click', () => filterPost('Tips'));
-       filterVeterinario.addEventListener('click', () => {filterPost('Veterinario')}, true);
-       filterPetfriendly.addEventListener('click', () => {filterPost('PetFriendly')}, true);
-       filterPerdidos.addEventListener('click', () => {filterPost('Perdidos')}, true); 
-  
-       
+        //Parametros para crear data de post
+        postsButton.addEventListener('click', () => {
+            //Guarda data de los filtros
+            const postInput = document.querySelector('#publicacion').value;
+
+            //Guarda filtro seleccionado
+            const postFilter = (selectFilter.options[selectFilter.selectedIndex].value);
+            savingPostData(postInput, postFilter);
+
+            savingPostData(postInput, postFilter, likes);
+            gettingAllPost()
+        })
+
+        //Llamando las clases de las cajitas de cada filtro
+
+        const postsRef = db.collection('posts');
+        const filterTips = document.querySelector('.tips');
+        const filterMemes = document.querySelector('.memes');
+        const filterVeterinario = document.querySelector('.veterinario');
+        const filterPetfriendly = document.querySelector('.pet-friendly');
+        const filterPerdidos = document.querySelector('.perdidos');
+
+        //Funcionalidad de filtros
+        filterMemes.addEventListener('click', () => { filterPost('Meme') });
+        filterTips.addEventListener('click', () => filterPost('Tips'));
+        filterVeterinario.addEventListener('click', () => { filterPost('Veterinario') }, true);
+        filterPetfriendly.addEventListener('click', () => { filterPost('PetFriendly') }, true);
+        filterPerdidos.addEventListener('click', () => { filterPost('Perdidos') }, true);
 
 
-      //Obtener las tarjetas por cada filtro
-      const filterPost = (fil) => {postsRef.where('filter', '==', fil )
-      .get()
-      .then((querySnapshot) => {
-        const root = document.querySelector("#root");
-        const user = firebase.auth().currentUser;
-        const rootProfile = document.querySelector("#root-1");
-        let str = ' ';
-        let strProfile = ' ';
 
-      querySnapshot.forEach((doc) => {
-        let theme = doc.data().filter;
-        let idPost = doc.id;
-        if(theme == undefined){
-          
-        theme = 'General';
-        } 
-          str += `
+
+        //Obtener las tarjetas por cada filtro
+        const filterPost = (fil) => {
+            postsRef.where('filter', '==', fil)
+                .get()
+                .then((querySnapshot) => {
+                    const root = document.querySelector("#root");
+                    const user = firebase.auth().currentUser;
+                    const rootProfile = document.querySelector("#root-1");
+                    let str = ' ';
+                    let strProfile = ' ';
+
+                    querySnapshot.forEach((doc) => {
+                        let theme = doc.data().filter;
+                        let idPost = doc.id;
+                        if (theme == undefined) {
+
+                            theme = 'General';
+                        }
+                        str += `
           <div class="post-print conteiner-post-home">
               <div class="profile-reactions">
                     <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
@@ -249,56 +249,56 @@ const home = {
                 </div>
               </div>
               `;
-              strProfile = `
+                        strProfile = `
               <div>
                   <img src="${user.photoURL}" alt="Foto de perfil" class="photo-profile">
             </div>
             `;
-      
-        root.innerHTML = str;
-        //Funcionalidad de likes
-        let likeToAdd = null;
-       
-       const buttonLike = document.querySelectorAll('.smile');
-       const arrButtonLike = Array.from(buttonLike);
 
-       arrButtonLike.forEach( likeButton => {
-         likeButton.addEventListener('click', (e)=> {
-              likeToAdd = e.target.id;
-              console.log(likeToAdd);
-              const likesRef = db.collection('posts').doc(likeToAdd);
-              likesRef.update({likes: firebase.firestore.FieldValue.increment(1)})
-         })
-       })
-        })
+                        root.innerHTML = str;
+                        //Funcionalidad de likes
+                        let likeToAdd = null;
 
-      
-       })
-       
-       
-      
+                        const buttonLike = document.querySelectorAll('.smile');
+                        const arrButtonLike = Array.from(buttonLike);
 
-              
-          
-     
-        
-      }
+                        arrButtonLike.forEach(likeButton => {
+                            likeButton.addEventListener('click', (e) => {
+                                likeToAdd = e.target.id;
+                                console.log(likeToAdd);
+                                const likesRef = db.collection('posts').doc(likeToAdd);
+                                likesRef.update({ likes: firebase.firestore.FieldValue.increment(1) })
+                            })
+                        })
+                    })
 
-       
-         
-      
-       
-    
-     
 
-      
-       
-      
+                })
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
     }
 
-  }  
-       
-        
-    
+}
+
+
+
 
 export default home;
