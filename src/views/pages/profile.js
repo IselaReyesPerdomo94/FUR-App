@@ -72,40 +72,41 @@ const profile = {
         const user = await firebase.auth().currentUser;
         const userInfoSpace = document.querySelector('.mid-photo');
         const userProfileInfo = window.createProfileInformation(user.displayName, user.photoURL);
-        userInfoSpace.innerHTML = userProfileInfo;    
-        const petsInfo = document.querySelector('.third');  
-            
+        userInfoSpace.innerHTML = userProfileInfo;
+        const petsInfo = document.querySelector('.third');
+
         const postsButton = document.querySelector('#btn-post');
         const selectFilter = document.querySelector('.select-filter');
 
-        const savingPostData = (postInput, postFilter) => {   
+        const savingPostData = (postInput, postFilter) => {
             const currentDate = new Date();
-            const strDate = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`     
-        db.collection('posts').add({
-          name : user.displayName,
-          post : postInput,
-          photo: user.photoURL,
-          userID: user.uid,
-          filter: postFilter, 
-          date: strDate
-        })
-        .then((docRef) => {
-          console.log("Document written with ID: ", docRef.id);
-          
-        })
-        .catch((error) => {
-          console.error("Error adding document: ", error);
-        })
-      }
-       
-       
+            const strDate = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`
+            db.collection('posts').add({
+                    name: user.displayName,
+                    post: postInput,
+                    photo: user.photoURL,
+                    userID: user.uid,
+                    filter: postFilter,
+                    date: strDate,
+                    likes: 0
+                })
+                .then((docRef) => {
+                    console.log("Document written with ID: ", docRef.id);
 
-       const gettingPetInfo = () => {
+                })
+                .catch((error) => {
+                    console.error("Error adding document: ", error);
+                })
+        }
+
+
+
+        const gettingPetInfo = () => {
             firestore.collection('pets').where("userID", "==", user.uid)
                 .get()
-                .then((snapshot) => {
-                    snapshot.forEach(element => {
-                        const { petspecie, petname} = element.data();
+                .then((onSnapshot) => {
+                    onSnapshot.forEach(element => {
+                        const { petspecie, petname } = element.data();
                         const petInfo = `
                         <p>${petspecie}: ${petname}</p>
                         `
@@ -117,26 +118,26 @@ const profile = {
         gettingPetInfo();
 
         const getUserPost = () => {
-          let collection = db.collection("posts");
-        let collectionRef = collection.doc();
-        
-       
-       collection.where("userID", "==", user.uid).orderBy('date','desc')
-      .get()
-      .then((querySnapshot) => {
-        const root = document.querySelector("#root");
-        //const rootProfile = document.querySelector("#root-1");
-        let str = ' ';
-        let strProfile = ' ';
-         
-        querySnapshot.forEach((doc) => {
-            let id = doc.id;
-          let theme = doc.data().filter;
-          if(theme == undefined){
-            
-          theme = 'General';
-        } 
-            str += `
+            let collection = db.collection("posts");
+            let collectionRef = collection.doc();
+
+
+            collection.where("userID", "==", user.uid).orderBy('date', 'desc')
+                .get()
+                .then((onSnapshot) => {
+                    const root = document.querySelector("#root");
+                    //const rootProfile = document.querySelector("#root-1");
+                    let str = ' ';
+                    let strProfile = ' ';
+
+                    onSnapshot.forEach((doc) => {
+                        let id = doc.id;
+                        let theme = doc.data().filter;
+                        if (theme == undefined) {
+
+                            theme = 'General';
+                        }
+                        str += `
             <div class="post-print conteiner-post-home">
               <div class="profile-reactions">
                     <img src="${doc.data().photo}" alt="Foto de perfil" class="photo-profile">
@@ -178,7 +179,7 @@ const profile = {
                         </div>
                         </div>  
               `;
-              strProfile = `
+                        strProfile = `
               <div>
                   <img src="${user.photoURL}" alt="Foto de perfil" class="photo-profile">
             </div>
@@ -187,59 +188,71 @@ const profile = {
 
             `;
 
-        });
-        
-        root.innerHTML = str;
-        let postToBeErased = null;
-               
-        const trashes = document.querySelectorAll('.eraseIcon');
-        const eraseButton = document.querySelectorAll('.erasePost');
-        const arrEraseButton = Array.from(eraseButton);
-        const arrTrashes = Array.from(trashes);
+                    });
 
-        arrTrashes.forEach( trashIcon => {
-            trashIcon.addEventListener('click', (e)=>{
-                postToBeErased = e.target.id
-                 console.log(postToBeErased)
-                })
-        })
+                    root.innerHTML = str;
+                    let postToBeErased = null;
 
-        arrEraseButton.forEach( eraseButtonModal => {
-            eraseButtonModal.addEventListener('click', (e) => {
-                window.eraseDocumentFirebase('posts', postToBeErased);
-                getUserPost();
-            })
-        })
+                    const trashes = document.querySelectorAll('.eraseIcon');
+                    const eraseButton = document.querySelectorAll('.erasePost');
+                    const arrEraseButton = Array.from(eraseButton);
+                    const arrTrashes = Array.from(trashes);
 
-        
-      }); 
-       } 
+                    const buttonLike = document.querySelectorAll('.smile');
+                    const arrButtonLike = Array.from(buttonLike);
+                    arrButtonLike.forEach(likeButton => {
+                        likeButton.addEventListener('click', (e) => {
+                            likeToAdd = e.target.id;
+                            const likesRef = db.collection('posts').doc(likeToAdd);
+                            likesRef.update({ likes: firebase.firestore.FieldValue.increment(1) })
+                        })
+                    })
 
-        getUserPost();        
+                    arrTrashes.forEach(trashIcon => {
+                        trashIcon.addEventListener('click', (e) => {
+                            postToBeErased = e.target.id
+                            console.log(postToBeErased)
+                        })
+                    })
 
-postsButton.addEventListener('click', ()=> {
-           console.log('me estoy ejecutando');
-           const postInput = document.querySelector('#publicacion').value;
-        //Guarda filtro seleccionado
-        const postFilter =(selectFilter.options[selectFilter.selectedIndex].value);
-           savingPostData(postInput, postFilter)
-            getUserPost(); 
-       })
+                    arrEraseButton.forEach(eraseButtonModal => {
+                        eraseButtonModal.addEventListener('click', (e) => {
+                            window.eraseDocumentFirebase('posts', postToBeErased);
+                            getUserPost();
+                        })
+                    })
+                    let likeToAdd = null;
 
 
+
+
+                });
         }
+
+        getUserPost();
+
+        postsButton.addEventListener('click', () => {
+            console.log('me estoy ejecutando');
+            const postInput = document.querySelector('#publicacion').value;
+            //Guarda filtro seleccionado
+            const postFilter = (selectFilter.options[selectFilter.selectedIndex].value);
+            savingPostData(postInput, postFilter)
+            getUserPost();
+        })
+
 
     }
 
+}
+
 const userInfo = {
-    profileInfo : `
+    profileInfo: `
         <figure>
             <img src="*photoURL*" alt="foto de perfil">
         </figure>
         <h3>*userName*</h3>`
 }
 
-export {userInfo}
+export { userInfo }
 
 export default profile;
-
