@@ -117,14 +117,14 @@ const home = {
             //Método para obtener la data de los post
             db.collection("posts").orderBy('date', 'desc')
                 .get()
-                .then((querySnapshot) => {
+                .then((onSnapshot) => {
                     const user = firebase.auth().currentUser;
                     const root = document.querySelector("#root");
                     const rootProfile = document.querySelector("#root-1");
                     let str = ' ';
                     let strProfile = ' ';
 
-                    querySnapshot.forEach((doc) => {
+                    onSnapshot.forEach((doc) => {
                         let idPost = doc.id;
                         let theme = doc.data().filter;
                         if (theme == undefined) {
@@ -187,7 +187,6 @@ const home = {
             const postFilter = (selectFilter.options[selectFilter.selectedIndex].value);
             savingPostData(postInput, postFilter);
 
-            savingPostData(postInput, postFilter, likes);
             gettingAllPost()
         })
 
@@ -214,14 +213,14 @@ const home = {
         const filterPost = (fil) => {
             postsRef.where('filter', '==', fil)
                 .get()
-                .then((querySnapshot) => {
+                .then((onSnapshot) => {
                     const root = document.querySelector("#root");
                     const user = firebase.auth().currentUser;
                     const rootProfile = document.querySelector("#root-1");
                     let str = ' ';
                     let strProfile = ' ';
 
-                    querySnapshot.forEach((doc) => {
+                    onSnapshot.forEach((doc) => {
                         let theme = doc.data().filter;
                         let idPost = doc.id;
                         if (theme == undefined) {

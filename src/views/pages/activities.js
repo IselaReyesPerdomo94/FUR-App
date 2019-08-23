@@ -83,7 +83,7 @@ const activities = {
 
         const saveButtonActivitie = document.getElementById('save-act');
 
-        
+
         //prueba para jalar info de un solo usuario;
         const eraseInputs = (titleInput, dateInput, timeInput, descriptionInput) => {
             titleInput.value = '';
@@ -117,8 +117,8 @@ const activities = {
             cardsSpace.innerHTML = '';
             db.collection('activities').where("userID", "==", user.uid).orderBy("date")
                 .get()
-                .then((querysnapshot) => {
-                    querysnapshot.forEach(element => {
+                .then((onSnapshot) => {
+                    onSnapshot.forEach(element => {
                         const { title, date, time, description, priority } = element.data();
                         let id = element.id;
                         console.log(id)
@@ -132,16 +132,16 @@ const activities = {
                         const arrEraseButtonAct = Array.from(eraseButtonAct);
 
                         arrTrashesAct.forEach(trashIcon => {
-                            trashIcon.addEventListener('click', (e)=>{
+                            trashIcon.addEventListener('click', (e) => {
                                 activitieToBeErased = e.target.id;
                                 console.log(activitieToBeErased);
                             })
                         })
 
                         arrEraseButtonAct.forEach(eraseButtonModal => {
-                            eraseButtonModal.addEventListener('click', (e) =>{
+                            eraseButtonModal.addEventListener('click', (e) => {
                                 window.eraseDocumentFirebase('activities', activitieToBeErased);
-                                cardsSpace.innerHTML ='';
+                                cardsSpace.innerHTML = '';
                                 gettingCardFromFirebase();
                             })
                         })
@@ -151,7 +151,7 @@ const activities = {
 
         gettingCardFromFirebase();
 
-        
+
 
         saveButtonActivitie.addEventListener('click', () => {
             const title = titleInput.value;
